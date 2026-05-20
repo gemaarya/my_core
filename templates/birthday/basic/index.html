@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Birthday Surprise 🎂</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: Arial;
+  background: linear-gradient(to right, #ff9a9e, #fad0c4);
+  color: white;
+  overflow: hidden;
+}
+
+/* Center Everything */
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  flex-direction: column;
+  text-align: center;
+}
+
+/* Hidden */
+.hidden { display: none; }
+
+/* Input */
+input {
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  margin-top: 10px;
+}
+
+button {
+  margin-top: 10px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 10px;
+  background: #ff4d6d;
+  color: white;
+  cursor: pointer;
+}
+
+/* Slideshow centered */
+.slideshow {
+  position: relative;
+  width: 80vw;
+  max-width: 320px;
+  margin: 20px auto;
+}
+
+.slideshow img {
+  width: 100%;
+  border-radius: 15px;
+}
+
+/* Typing */
+#typingText {
+  white-space: pre-line;
+  border-right: 2px solid white;
+  padding-right: 5px;
+  animation: blink 1s infinite;
+}
+
+@keyframes blink {
+  50% { border-color: transparent; }
+}
+
+/* Hearts */
+.hearts {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  top: 0;
+}
+
+.heart {
+  position: absolute;
+  animation: floatUp 5s linear infinite;
+}
+
+@keyframes floatUp {
+  0% { transform: translateY(100vh); opacity: 1; }
+  100% { transform: translateY(-10vh); opacity: 0; }
+}
+/* ---- FOOTER ---- */
+footer {
+  position: fixed;
+  bottom: 10px;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  z-index: 199;
+}
+.footer-copy {
+  font-size: 12px;
+  color: #ffffff;
+  letter-spacing: 1px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- Password Screen -->
+<div id="lockScreen" class="center">
+  <h2>Enter Password 🔐</h2>
+  <input type="password" id="password" placeholder="Enter password">
+  <button onclick="checkPassword()">Surprise 🎁</button>
+  <p id="error" style="color:yellow;"></p>
+</div>
+
+<!-- Main Content -->
+<div id="mainContent" class="hidden center">
+  <h1>🎉 Happy Birthday ❤️</h1>
+
+  <p id="typingText"></p>
+
+  <!-- Slideshow -->
+  <div class="slideshow">
+    <img id="slide" src="images/photo1.jpg">
+  </div>
+</div>
+
+<!-- Hearts -->
+<div class="hearts"></div>
+
+<!-- Music -->
+<audio id="bgMusic" loop>
+  <source src="music/birthday.mp3" type="audio/mp3">
+</audio>
+<footer>
+  <p class="footer-copy" style="color:#ffffff;">Made with ❤️ by <a href="https://instagram.com/gem_invite" target="_blank" style="color:#ffffff !important; text-decoration:none;">@gem_invite</a></p>
+</footer>
+<!-- Confetti -->
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+<script>
+// 🔐 Change your password here
+const correctPassword = "123456";
+
+// Password check
+function checkPassword() {
+  const input = document.getElementById("password").value;
+  if (input === correctPassword) {
+    document.getElementById("lockScreen").style.display = "none";
+    document.getElementById("mainContent").classList.remove("hidden");
+
+    document.getElementById("bgMusic").play();
+    confetti({ particleCount: 150, spread: 70 });
+    typeWriter();
+  } else {
+    document.getElementById("error").innerText = "Wrong password ❌";
+  }
+}
+
+// Typing Message
+const message = "Best wishes to the special person who understands me more than anyone else 💖\nEvery moment with you is magical ✨\nHappy Birthday To My Rasmalai 🎂❤️";
+
+let i = 0;
+function typeWriter() {
+  if (i < message.length) {
+    document.getElementById("typingText").innerHTML += message.charAt(i);
+    i++;
+    setTimeout(typeWriter, 50);
+  }
+}
+
+// Slideshow
+const images = [
+  "images/first.jpg",
+  "images/second.jpg",
+  "images/third.jpg",
+  "images/fourth.jpg"
+];
+
+let index = 0;
+setInterval(() => {
+  index = (index + 1) % images.length;
+  document.getElementById("slide").src = images[index];
+}, 2000);
+
+// Hearts
+function createHeart() {
+  const heart = document.createElement("div");
+  heart.classList.add("heart");
+  heart.innerHTML = "💖";
+
+  heart.style.left = Math.random() * 100 + "vw";
+  heart.style.fontSize = (Math.random() * 20 + 20) + "px";
+
+  document.querySelector(".hearts").appendChild(heart);
+  setTimeout(() => heart.remove(), 5000);
+}
+setInterval(createHeart, 300);
+
+// Disable right click
+document.addEventListener("contextmenu", e => e.preventDefault());
+</script>
+
+</body>
+</html>

@@ -1,0 +1,1026 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <!-- ============================================================
+   🍼 BABY SHOWER WEBSITE  |  RESELLER EDIT GUIDE
+   ============================================================
+   Search "✏️ EDIT" to jump to every changeable line.
+   Full table of line numbers is at the very bottom.
+   ============================================================ -->
+
+  <!-- ✏️ EDIT LINE 15 — Browser tab title -->
+  <title>Baby Shower · Baby Sharma 🌸</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Nunito:wght@300;400;600;700&display=swap" rel="stylesheet"/>
+
+  <style>
+    /* ============================================================
+       ✏️ EDIT LINES 26–37 — THEME COLORS
+       Girl    : keep as-is (pink/blush)
+       Boy     : --p1:#93c5fd  --p2:#3b82f6  --p3:#dbeafe  --p4:#eff6ff  --accent:#60a5fa
+       Neutral : --p1:#fdba74  --p2:#ea580c  --p3:#ffedd5  --p4:#fff7ed  --accent:#fb923c
+       ============================================================ */
+    :root{
+      --p1:     #ffb3c6;   /* LINE 29 — primary pink */
+      --p2:     #ff85a1;   /* LINE 30 — deeper rose */
+      --p3:     #ffe0ea;   /* LINE 31 — soft blush bg */
+      --p4:     #fff0f5;   /* LINE 32 — lightest blush */
+      --accent: #f9a8c9;   /* LINE 33 — accent pink */
+      --mint:   #b8f0d8;   /* LINE 34 — mint green */
+      --lemon:  #fff3b0;   /* LINE 35 — lemon yellow */
+      --text:   #5a3245;   /* LINE 36 — dark text */
+      --subtext:#9b6b7e;   /* LINE 37 — subtext */
+      --white:  #ffffff;
+      --r-sm:20px; --r-lg:40px;
+      --shadow:0 8px 40px rgba(255,133,161,0.18);
+    }
+
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    html{scroll-behavior:smooth;}
+    body{
+      font-family:'Nunito',sans-serif;
+      background:var(--p4); color:var(--text);
+      overflow-x:hidden;
+      cursor:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Ctext y='26' font-size='26'%3E🌸%3C/text%3E%3C/svg%3E") 16 16,auto;
+    }
+
+    /* ── BACKGROUND BLOBS ── */
+    .bg-floats{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden;}
+    .float-shape{position:absolute;border-radius:50%;animation:floatBob ease-in-out infinite alternate;}
+    @keyframes floatBob{
+      from{transform:translateY(0) rotate(0deg);}
+      to  {transform:translateY(-20px) rotate(8deg);}
+    }
+
+    /* ── SPARKLES ── */
+    .sparkle-layer{position:fixed;inset:0;pointer-events:none;z-index:1;overflow:hidden;}
+    .sp{position:absolute;font-size:1.2rem;animation:spFall linear infinite;opacity:0;}
+    @keyframes spFall{
+      0%  {transform:translateY(-40px) rotate(0deg) scale(0.5);opacity:0;}
+      10% {opacity:1;}
+      90% {opacity:0.8;}
+      100%{transform:translateY(105vh) rotate(720deg) scale(1.2);opacity:0;}
+    }
+
+    /* ── MUSIC PLAYER ── */
+    .music-bar{
+      position:fixed;bottom:24px;right:24px;z-index:200;
+      background:white;border:2.5px solid var(--p1);border-radius:60px;
+      padding:10px 20px 10px 10px;
+      display:flex;align-items:center;gap:12px;
+      box-shadow:0 8px 32px rgba(255,133,161,0.3);
+      animation:popIn 0.6s 1.5s cubic-bezier(.34,1.56,.64,1) both;
+    }
+    @keyframes popIn{
+      from{transform:scale(0) translateY(20px);opacity:0;}
+      to  {transform:scale(1) translateY(0);opacity:1;}
+    }
+    .music-bar:hover{transform:scale(1.04);transition:transform 0.2s;}
+    .play-btn{
+      width:46px;height:46px;border-radius:50%;border:none;cursor:pointer;
+      background:linear-gradient(135deg,var(--p1),var(--p2));
+      color:white;font-size:1.15rem;
+      display:flex;align-items:center;justify-content:center;
+      box-shadow:0 4px 16px rgba(255,133,161,0.4);
+      transition:transform 0.2s,box-shadow 0.2s;flex-shrink:0;
+    }
+    .play-btn:hover{transform:scale(1.12);box-shadow:0 6px 24px rgba(255,133,161,0.5);}
+    .music-meta{line-height:1.35;}
+    .music-meta .song{font-weight:700;font-size:0.8rem;color:var(--text);max-width:130px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+    .music-meta .note{font-size:0.68rem;color:var(--subtext);letter-spacing:0.05em;}
+    .bars{display:flex;align-items:center;gap:3px;height:22px;}
+    .bars b{display:block;width:4px;border-radius:4px;background:linear-gradient(180deg,var(--p2),var(--p1));animation:barDance 0.7s ease-in-out infinite alternate;}
+    .bars b:nth-child(1){height:8px; animation-delay:0s;}
+    .bars b:nth-child(2){height:18px;animation-delay:0.12s;}
+    .bars b:nth-child(3){height:12px;animation-delay:0.24s;}
+    .bars b:nth-child(4){height:20px;animation-delay:0.36s;}
+    .bars b:nth-child(5){height:10px;animation-delay:0.48s;}
+    .bars.stopped b{animation-play-state:paused;}
+    @keyframes barDance{from{transform:scaleY(0.4);}to{transform:scaleY(1);}}
+
+    /* ── HERO ── */
+    .hero{
+      position:relative;z-index:2;min-height:100vh;
+      display:flex;flex-direction:column;align-items:center;justify-content:center;
+      text-align:center;padding:80px 24px 100px;
+      background:
+        radial-gradient(ellipse 80% 60% at 15% 15%,rgba(255,179,198,0.45) 0%,transparent 65%),
+        radial-gradient(ellipse 60% 50% at 85% 80%,rgba(184,240,216,0.35) 0%,transparent 55%),
+        radial-gradient(ellipse 50% 40% at 50% 50%,rgba(255,243,176,0.3) 0%,transparent 60%),
+        var(--p4);
+    }
+    .hero-sticker{font-size:5rem;animation:wobble 3s ease-in-out infinite;margin-bottom:16px;filter:drop-shadow(0 4px 12px rgba(255,133,161,0.4));}
+    @keyframes wobble{0%,100%{transform:rotate(-5deg) scale(1);}50%{transform:rotate(5deg) scale(1.08);}}
+    .hero-eyebrow{
+      display:inline-flex;align-items:center;gap:8px;
+      background:white;border:2px solid var(--p1);border-radius:100px;
+      padding:6px 20px;font-size:0.78rem;font-weight:700;
+      letter-spacing:0.18em;text-transform:uppercase;color:var(--p2);
+      margin-bottom:24px;animation:fadeSlideUp 0.8s 0.2s both;
+    }
+    .hero-name{
+      font-family:'Playfair Display',serif;
+      font-size:clamp(3.4rem,11vw,8rem);font-weight:700;line-height:1;
+      color:var(--text);animation:fadeSlideUp 0.8s 0.4s both;
+    }
+    .hero-name em{font-style:italic;color:var(--p2);display:block;}
+    .hero-tagline{
+      font-size:clamp(1rem,2.5vw,1.3rem);font-weight:300;color:var(--subtext);
+      margin-top:18px;letter-spacing:0.06em;animation:fadeSlideUp 0.8s 0.6s both;
+    }
+    .hero-pills{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:36px;animation:fadeSlideUp 0.8s 0.8s both;}
+    .pill{
+      background:white;border:2px solid var(--p3);border-radius:100px;
+      padding:10px 22px;font-size:0.9rem;font-weight:600;color:var(--text);
+      box-shadow:0 4px 16px rgba(255,133,161,0.12);
+      display:flex;align-items:center;gap:8px;
+    }
+    .hero-scroll{position:absolute;bottom:32px;left:50%;transform:translateX(-50%);font-size:1.8rem;animation:scrollBounce 1.8s ease-in-out infinite;opacity:0.6;}
+    @keyframes scrollBounce{0%,100%{transform:translateX(-50%) translateY(0);}50%{transform:translateX(-50%) translateY(10px);}}
+    @keyframes fadeSlideUp{from{opacity:0;transform:translateY(32px);}to{opacity:1;transform:translateY(0);}}
+
+    /* ── SECTION COMMONS ── */
+    section{position:relative;z-index:2;padding:80px 24px;}
+    .inner{max-width:920px;margin:0 auto;}
+    .sec-label{text-align:center;font-size:0.72rem;font-weight:700;letter-spacing:0.28em;text-transform:uppercase;color:var(--p2);margin-bottom:10px;}
+    .sec-title{font-family:'Playfair Display',serif;font-size:clamp(2rem,5vw,3.2rem);font-weight:700;text-align:center;color:var(--text);margin-bottom:6px;}
+    .sec-title em{font-style:italic;color:var(--p2);}
+    .sec-div{width:56px;height:4px;background:linear-gradient(90deg,var(--p1),var(--mint));border-radius:4px;margin:16px auto 50px;}
+
+    /* ── PHOTO SLIDESHOW ── */
+    .sec-photos{background:linear-gradient(160deg,var(--p3) 0%,#fff8fc 100%);}
+
+    /* Keep old .photo-card for lightbox compat — hidden by default */
+    .gallery-grid{display:none;}
+
+    /* Slideshow wrapper */
+    /* this if for fix ratio of photos*/
+    .slideshow-wrap{
+      position:relative;max-width:960px;margin:0 auto;
+      border-radius:32px;overflow:hidden;
+      box-shadow:0 16px 56px rgba(255,133,161,0.28);
+      background:var(--p3);
+      min-height:480px;
+    }
+    
+    .slide img{
+      width:100%;height:100%;object-fit:contain;display:block;
+      background:#fff0f5;
+   }
+    .slide{
+      position:relative;height:0;opacity:0;overflow:hidden;
+      transition:opacity 0.8s ease-in-out;
+    }
+    .slide.active{opacity:1;height:auto;z-index:2;}
+    .slide.prev{opacity:0;z-index:1;}
+    .slide img{
+      width:100%;height:100%;object-fit:cover;display:block;
+    }
+    .slide-placeholder{
+      width:100%;height:100%;
+      display:flex;flex-direction:column;align-items:center;justify-content:center;
+      gap:14px;background:linear-gradient(135deg,var(--p3),var(--p4));
+    }
+    .slide-placeholder .ph-icon{font-size:4rem;opacity:0.45;}
+    .slide-placeholder .ph-text{font-size:0.9rem;color:var(--subtext);opacity:0.7;text-align:center;line-height:1.5;}
+    .slide-label{
+      position:absolute;bottom:0;left:0;right:0;z-index:5;
+      padding:24px 20px 16px;
+      background:linear-gradient(to top,rgba(90,50,69,0.78) 0%,transparent 100%);
+      color:white;font-size:0.95rem;font-weight:700;letter-spacing:0.05em;
+      text-align:center;
+    }
+    /* Arrows */
+    .slide-btn{
+      position:absolute;top:50%;transform:translateY(-50%);z-index:10;
+      background:rgba(255,255,255,0.82);border:none;border-radius:50%;
+      width:44px;height:44px;cursor:pointer;font-size:1.2rem;
+      display:flex;align-items:center;justify-content:center;
+      box-shadow:0 4px 16px rgba(255,133,161,0.25);
+      transition:background 0.2s,transform 0.2s;
+    }
+    .slide-btn:hover{background:white;transform:translateY(-50%) scale(1.1);}
+    .slide-btn.prev-btn{left:14px;}
+    .slide-btn.next-btn{right:14px;}
+    /* Dots */
+    .slide-dots{
+      display:flex;justify-content:center;gap:9px;margin-top:20px;
+    }
+    .slide-dot{
+      width:11px;height:11px;border-radius:50%;
+      background:var(--p3);border:2px solid var(--p1);cursor:pointer;
+      transition:background 0.3s,transform 0.2s;
+    }
+    .slide-dot.active{background:var(--p2);transform:scale(1.25);}
+
+    /* Placeholder when no image is added */
+    .photo-card{
+      position:relative;border-radius:24px;overflow:hidden;
+      aspect-ratio:3/4;
+      box-shadow:0 8px 32px rgba(255,133,161,0.2);
+      background:var(--p3);
+    }
+    .photo-placeholder{
+      width:100%;height:100%;
+      display:flex;flex-direction:column;align-items:center;justify-content:center;
+      gap:10px;color:var(--subtext);font-size:0.82rem;text-align:center;padding:16px;
+      background:linear-gradient(135deg,var(--p3),var(--p4));
+    }
+    .photo-placeholder .ph-icon{font-size:2.6rem;opacity:0.5;}
+    .photo-placeholder .ph-text{font-size:0.75rem;opacity:0.6;line-height:1.4;}
+    .photo-label{
+      position:absolute;bottom:0;left:0;right:0;
+      padding:20px 16px 14px;
+      background:linear-gradient(to top,rgba(90,50,69,0.75) 0%,transparent 100%);
+      color:white;font-size:0.85rem;font-weight:600;
+      letter-spacing:0.05em;
+    }
+
+    /* Lightbox */
+    .lightbox{
+      position:fixed;inset:0;z-index:999;
+      background:rgba(40,10,25,0.92);
+      display:none;align-items:center;justify-content:center;
+      padding:24px;
+    }
+    .lightbox.open{display:flex;}
+    .lightbox img{max-width:90vw;max-height:90vh;border-radius:16px;box-shadow:0 16px 64px rgba(0,0,0,0.5);}
+    .lb-close{
+      position:absolute;top:20px;right:24px;
+      font-size:2rem;color:white;cursor:pointer;
+      background:none;border:none;line-height:1;opacity:0.7;
+      transition:opacity 0.2s,transform 0.2s;
+    }
+    .lb-close:hover{opacity:1;transform:scale(1.2);}
+
+    /* ── COUNTDOWN ── */
+    .sec-countdown{background:linear-gradient(135deg,var(--p3) 0%,#fff0fa 100%);}
+    .cd-grid{display:flex;justify-content:center;gap:20px;flex-wrap:wrap;}
+    .cd-box{
+      background:white;border-radius:var(--r-lg);padding:28px 20px;min-width:110px;
+      text-align:center;box-shadow:var(--shadow);border-bottom:4px solid var(--p1);
+      transition:transform 0.3s;
+    }
+    .cd-box:hover{transform:translateY(-6px) scale(1.03);}
+    .cd-box:nth-child(2){border-color:var(--mint);}
+    .cd-box:nth-child(3){border-color:var(--lemon);}
+    .cd-box:nth-child(4){border-color:var(--p2);}
+    .cd-num{
+      font-family:'Playfair Display',serif;font-size:3.6rem;line-height:1;font-weight:700;
+      background:linear-gradient(135deg,var(--p2),var(--p1));
+      -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+    }
+    .cd-unit{font-size:0.72rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--subtext);margin-top:8px;}
+
+    /* ── SWEET MESSAGE ── */
+    .sec-message{background:var(--p4);}
+    .msg-wrap{
+      background:white;border-radius:var(--r-lg);padding:56px 52px;
+      box-shadow:var(--shadow);position:relative;overflow:hidden;
+    }
+    .msg-wrap::before{content:'💌';position:absolute;top:-20px;right:30px;font-size:8rem;opacity:0.08;transform:rotate(12deg);}
+    .msg-wrap::after{content:'';position:absolute;bottom:0;left:0;right:0;height:6px;background:linear-gradient(90deg,var(--p1),var(--mint),var(--lemon),var(--p2));}
+    .msg-wrap p{
+      font-family:'Playfair Display',serif;font-size:1.3rem;
+      font-style:italic;line-height:2;color:var(--text);margin-bottom:24px;
+    }
+    .msg-sig{font-size:0.82rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--p2);}
+
+    /* ── EVENT DETAILS ── */
+    .sec-details{background:linear-gradient(180deg,var(--p4) 0%,white 100%);}
+    .cards-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:20px;}
+    .ev-card{
+      background:white;border-radius:var(--r-lg);padding:36px 24px;text-align:center;
+      box-shadow:var(--shadow);position:relative;overflow:hidden;
+      transition:transform 0.3s,box-shadow 0.3s;
+    }
+    .ev-card:hover{transform:translateY(-8px);box-shadow:0 16px 50px rgba(255,133,161,0.22);}
+    .ev-card::before{content:'';position:absolute;top:0;left:0;right:0;height:5px;background:linear-gradient(90deg,var(--p1),var(--p2));}
+    .ev-card:nth-child(2)::before{background:linear-gradient(90deg,var(--mint),#5ecfaf);}
+    .ev-card:nth-child(3)::before{background:linear-gradient(90deg,var(--lemon),#f4c542);}
+    .ev-card:nth-child(4)::before{background:linear-gradient(90deg,var(--p2),var(--p1));}
+    .ev-icon{font-size:2.8rem;margin-bottom:16px;animation:iconPop 3s ease-in-out infinite;}
+    @keyframes iconPop{0%,100%{transform:scale(1);}50%{transform:scale(1.12);}}
+    .ev-card h3{font-family:'Playfair Display',serif;font-size:1.25rem;font-weight:700;margin-bottom:10px;color:var(--text);}
+    .ev-card p{font-size:0.9rem;line-height:1.75;color:var(--subtext);}
+    .ev-card p strong{color:var(--text);font-weight:700;}
+
+    /* ── GIFT IDEAS ── */
+    .sec-gifts{background:linear-gradient(135deg,#fff5f8 0%,#f0fff8 100%);}
+    .gifts-cloud{display:flex;flex-wrap:wrap;gap:14px;justify-content:center;}
+    .gift-tag{
+      background:white;border:2.5px solid var(--p3);border-radius:100px;
+      padding:12px 26px;font-size:0.9rem;font-weight:600;color:var(--text);
+      display:flex;align-items:center;gap:8px;
+      box-shadow:0 4px 16px rgba(255,133,161,0.1);
+      transition:all 0.25s;cursor:default;
+    }
+    .gift-tag:hover{
+      background:linear-gradient(135deg,var(--p1),var(--p2));
+      color:white;border-color:transparent;
+      transform:scale(1.06) translateY(-3px);
+      box-shadow:0 8px 28px rgba(255,133,161,0.3);
+    }
+
+    /* ── WISHES ── */
+    .sec-wishes{background:var(--p4);}
+    .wish-form{max-width:520px;margin:0 auto;display:flex;flex-direction:column;gap:14px;}
+    .wish-form input,.wish-form textarea{
+      border:2.5px solid var(--p3);border-radius:var(--r-sm);
+      padding:14px 18px;font-family:'Nunito',sans-serif;font-size:0.95rem;
+      color:var(--text);background:white;outline:none;
+      transition:border-color 0.2s,box-shadow 0.2s;resize:vertical;
+    }
+    .wish-form input:focus,.wish-form textarea:focus{border-color:var(--p1);box-shadow:0 0 0 4px rgba(255,179,198,0.2);}
+    .wish-form input::placeholder,.wish-form textarea::placeholder{color:#d4b0be;}
+    .wish-submit{
+      align-self:center;
+      background:linear-gradient(135deg,var(--p1),var(--p2));
+      color:white;border:none;border-radius:100px;
+      padding:15px 44px;font-family:'Nunito',sans-serif;font-size:1rem;font-weight:700;
+      cursor:pointer;box-shadow:0 6px 24px rgba(255,133,161,0.35);
+      transition:transform 0.2s,box-shadow 0.2s;
+    }
+    .wish-submit:hover{transform:scale(1.05);box-shadow:0 10px 36px rgba(255,133,161,0.45);}
+    .wish-ok{
+      text-align:center;font-family:'Playfair Display',serif;font-style:italic;
+      font-size:1.3rem;color:#5ecfaf;display:none;margin-top:8px;
+    }
+    .wish-board{margin-top:48px;display:flex;flex-direction:column;gap:16px;}
+    .wish-card{
+      background:white;border-radius:20px;padding:22px 28px;
+      box-shadow:0 4px 20px rgba(255,133,161,0.1);border-left:4px solid var(--p1);
+      animation:wishPop 0.5s cubic-bezier(.34,1.56,.64,1) both;
+    }
+    @keyframes wishPop{from{transform:scale(0.8) translateY(16px);opacity:0;}to{transform:scale(1) translateY(0);opacity:1;}}
+    .wish-card .wname{font-weight:700;color:var(--p2);margin-bottom:6px;font-size:0.95rem;}
+    .wish-card .wtext{font-size:0.9rem;line-height:1.7;color:var(--subtext);}
+    .wish-date{font-size:0.7rem;color:#cba8b8;margin-top:8px;}
+    .wish-empty{text-align:center;color:var(--subtext);font-style:italic;padding:24px;opacity:0.6;}
+
+    /* ── GOOGLE MAP SECTION ── */
+    .sec-map{background:var(--p4);padding:60px 24px;}
+    .map-frame-wrap{
+      border-radius:28px;overflow:hidden;
+      box-shadow:0 12px 48px rgba(255,133,161,0.22);
+      border:3px solid var(--p1);
+      max-width:860px;margin:0 auto;
+    }
+    .map-frame-wrap iframe{
+      width:100%;height:420px;display:block;border:none;
+    }
+    .map-link-row{text-align:center;margin-top:18px;}
+    .map-link-btn{
+      display:inline-flex;align-items:center;gap:8px;
+      background:linear-gradient(135deg,var(--p1),var(--p2));
+      color:white;text-decoration:none;
+      border-radius:100px;padding:12px 30px;
+      font-family:'Nunito',sans-serif;font-size:0.95rem;font-weight:700;
+      box-shadow:0 6px 24px rgba(255,133,161,0.35);
+      transition:transform 0.2s,box-shadow 0.2s;
+    }
+    .map-link-btn:hover{transform:scale(1.05);box-shadow:0 10px 36px rgba(255,133,161,0.45);color:white;}
+
+    /* ── FOOTER ── */
+    footer{
+      position:relative;z-index:2;
+      background:linear-gradient(135deg,var(--text) 0%,#3d1f2e 100%);
+      text-align:center;padding:56px 24px 40px;overflow:hidden;
+    }
+    footer::before{
+      content:'🌸🌷🌸🌷🌸🌷🌸🌷🌸🌷🌸🌷🌸';
+      position:absolute;top:0;left:0;right:0;font-size:1.6rem;
+      background:rgba(255,255,255,0.07);padding:10px 0;
+      letter-spacing:0.3em;white-space:nowrap;
+    }
+    .footer-emoji{font-size:3.5rem;margin-bottom:12px;animation:wobble 3s ease-in-out infinite;}
+    .footer-title{font-family:'Playfair Display',serif;font-size:2.4rem;font-style:italic;color:var(--p1);margin-bottom:10px;}
+    footer p{font-size:0.85rem;color:rgba(255,255,255,0.55);letter-spacing:0.08em;margin-top:6px;}
+    footer a{color:var(--accent);text-decoration:none;font-weight:600;}
+    footer a:hover{color:var(--mint);}
+    .footer-hearts{margin-top:24px;font-size:1.4rem;animation:heartbeat 1.5s ease-in-out infinite;}
+    @keyframes heartbeat{0%,100%{transform:scale(1);}50%{transform:scale(1.15);}}
+
+    /* ── RESPONSIVE ── */
+    @media(max-width:600px){
+      .music-bar{right:12px;bottom:12px;padding:8px 14px 8px 8px;}
+      .msg-wrap{padding:36px 22px;}
+      .cd-grid{gap:12px;}
+      .cd-box{min-width:80px;padding:22px 14px;}
+      .cd-num{font-size:2.8rem;}
+    }
+  </style>
+</head>
+<body>
+
+<div class="bg-floats" id="bgFloats"></div>
+<div class="sparkle-layer" id="sparkles"></div>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <button class="lb-close" onclick="closeLightbox()">✕</button>
+  <img id="lbImg" src="" alt="Photo"/>
+</div>
+
+<!-- ================================================
+     🎵 EMBEDDED MUSIC PLAYER
+     ================================================
+     Music is embedded DIRECTLY inside the HTML file
+     as a base64-encoded audio string.
+     No YouTube. No internet needed. Works offline.
+
+     ✏️ HOW TO ADD YOUR OWN SONG (exact steps):
+     ─────────────────────────────────────────────
+     STEP 1: Get an MP3 file (any lullaby/soft song)
+
+     STEP 2: Convert it to Base64
+       • On Windows: open PowerShell and run:
+           [Convert]::ToBase64String([IO.File]::ReadAllBytes("C:\path\song.mp3")) > song.txt
+       • On Mac/Linux, open Terminal and run:
+           base64 -i song.mp3 -o song.txt
+
+     STEP 3: Open song.txt — copy ALL the text inside
+
+     STEP 4: In this HTML file, go to LINE 547
+       Find the line that starts with:  data:audio/wav;base64,
+       Delete EVERYTHING after the comma until the closing quote "
+       Paste your copied base64 text there
+
+     STEP 5: On LINE 548, also change:
+       data:audio/wav;base64,   →   data:audio/mpeg;base64,
+       (if your file is MP3. Keep wav if it is WAV.)
+
+     ✏️ EDIT LINE 565 — Song name shown in the player
+     ================================================ -->
+
+<!-- MUSIC: Using a public-domain lullaby streamed from a reliable CDN -->
+<audio id="bgAudio" loop preload="auto">
+  <source src="song.mp3" type="audio/mpeg">
+</audio>
+
+<div class="music-bar" id="musicBar">
+  <button class="play-btn" id="playBtn" onclick="toggleMusic()">▶</button>
+  <div class="music-meta">
+    <!-- ✏️ EDIT LINE 565 — Song name shown on the player -->
+    <div class="song"> </div>
+    <div class="note">🎵 Playing for baby</div>
+  </div>
+  <div class="bars stopped" id="bars">
+    <b></b><b></b><b></b><b></b><b></b>
+  </div>
+</div>
+
+<!-- ================================================
+     🌸 HERO SECTION
+     ================================================ -->
+<section class="hero">
+  <!-- ✏️ EDIT LINE 576 — Main hero emoji -->
+  <div class="hero-sticker">👶</div>
+
+  <div class="hero-eyebrow">✨ You're Invited ✨</div>
+
+  <h1 class="hero-name">
+    <!-- ✏️ EDIT LINE 582 — First heading line -->
+    Baby Shower
+    <!-- ✏️ EDIT LINE 584 — Baby / family name (italic) -->
+    <em>Baby Sharma</em>
+  </h1>
+
+  <!-- ✏️ EDIT LINE 588 — Tagline under name -->
+  <p class="hero-tagline">A tiny blessing is on the way — come celebrate with us! 🌷</p>
+
+  <div class="hero-pills">
+    <!-- ✏️ EDIT LINE 592 — Date pill -->
+    <div class="pill">📅 Sunday, 15 June 2025</div>
+    <!-- ✏️ EDIT LINE 594 — Time pill -->
+    <div class="pill">🕓 4:00 PM onwards</div>
+    <!-- ✏️ EDIT LINE 596 — Venue pill -->
+    <div class="pill">📍 The Grand Ballroom, Jaipur</div>
+  </div>
+
+  <div class="hero-scroll">🌸</div>
+</section>
+
+<!-- ================================================
+     📸 PHOTO GALLERY SECTION
+     ================================================
+     ✏️ HOW TO ADD PHOTOS (per card):
+     ─────────────────────────────────────────────
+     Each photo card below has a placeholder by default.
+     To add a real photo, find the card and:
+
+       OPTION A — Use an online image URL:
+         Replace the <div class="photo-placeholder"> block with:
+         <img src="https://your-image-url.com/photo.jpg" alt="Mom & Dad"/>
+
+       OPTION B — Use a local file (self-hosted):
+         Upload photo to same folder as this HTML file
+         Replace placeholder with:
+         <img src="mom.jpg" alt="Mom"/>
+
+       OPTION C — Embed photo as base64 (fully offline):
+         Convert image: base64 -i photo.jpg -o photo.txt  (Mac/Linux)
+         Replace placeholder with:
+         <img src="data:image/jpeg;base64,PASTE_BASE64_HERE" alt="Mom"/>
+
+     ✏️ EDIT LINE 628 — Label text for each card
+     ✏️ ADD/REMOVE cards freely inside .gallery-grid
+     ================================================ -->
+<section class="sec-photos">
+  <div class="inner">
+    <p class="sec-label">Our Beautiful Family</p>
+    <h2 class="sec-title">With <em>Love</em> &amp; Joy</h2>
+    <div class="sec-div"></div>
+
+    <!-- ================================================
+         📸 PHOTO SLIDESHOW
+         To add your own photos, replace the <div class="slide-placeholder">
+         block inside each .slide with:
+           <img src="YOUR_PHOTO_URL" alt="Description"/>
+         You can add more slides by copying a .slide block.
+         ================================================ -->
+    <div class="slideshow-wrap" id="slideshow">
+
+      <!-- SLIDE 1 — Family photo -->
+      <div class="slide active" data-index="0">
+        <img src="images/first.jpeg"/>
+        <div class="slide-label">Our Little Family 💕</div>
+      </div>
+
+      <!-- SLIDE 2 — Mom photo -->
+      <div class="slide" data-index="1">
+        <img src="images/sec.jpeg"/>
+        <div class="slide-label">Glowing Mama 🌸</div>
+      </div>
+
+     <!-- SLIDE 3 — Extra / optional -->
+      <div class="slide" data-index="5">
+        <img src="images/third.jpeg"/>
+        <div class="slide-label">Special Memory 🎀</div>
+      </div>
+
+      <!-- Prev / Next arrows -->
+      <button class="slide-btn prev-btn" onclick="slideshowMove(-1)" aria-label="Previous">‹</button>
+      <button class="slide-btn next-btn" onclick="slideshowMove(1)" aria-label="Next">›</button>
+    </div><!-- /.slideshow-wrap -->
+
+    <!-- Dot indicators -->
+    <div class="slide-dots" id="slideDots">
+      <div class="slide-dot active" onclick="slideshowGo(0)"></div>
+      <div class="slide-dot" onclick="slideshowGo(1)"></div>
+      
+      <div class="slide-dot" onclick="slideshowGo(5)"></div>
+    </div>
+
+    <!-- Hidden original grid (kept for lightbox compatibility) -->
+    <div class="gallery-grid" style="display:none;">
+      <div class="photo-card"><div class="photo-placeholder"><div class="ph-icon">👨‍👩‍👧</div></div><div class="photo-label">Our Little Family 💕</div></div>
+      <div class="photo-card"><div class="photo-placeholder"><div class="ph-icon">🤰</div></div><div class="photo-label">Glowing Mama 🌸</div></div>
+      <div class="photo-card"><div class="photo-placeholder"><div class="ph-icon">👨</div></div><div class="photo-label">Proud Papa 💙</div></div>
+      <div class="photo-card"><div class="photo-placeholder"><div class="ph-icon">💑</div></div><div class="photo-label">Together Forever 💍</div></div>
+      <div class="photo-card"><div class="photo-placeholder"><div class="ph-icon">🌟</div></div><div class="photo-label">Baby's First Photo 🌙</div></div>
+      <div class="photo-card"><div class="photo-placeholder"><div class="ph-icon">🎀</div></div><div class="photo-label">Special Memory 🎀</div></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ================================================
+     ⏳ COUNTDOWN SECTION
+     ================================================ -->
+<section class="sec-countdown">
+  <div class="inner">
+    <p class="sec-label">The Big Day Arrives In</p>
+    <h2 class="sec-title">Count<em>down</em></h2>
+    <div class="sec-div"></div>
+    <div class="cd-grid">
+      <div class="cd-box"><div class="cd-num" id="cd-d">00</div><div class="cd-unit">Days</div></div>
+      <div class="cd-box"><div class="cd-num" id="cd-h">00</div><div class="cd-unit">Hours</div></div>
+      <div class="cd-box"><div class="cd-num" id="cd-m">00</div><div class="cd-unit">Minutes</div></div>
+      <div class="cd-box"><div class="cd-num" id="cd-s">00</div><div class="cd-unit">Seconds</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================================================
+     💌 SWEET MESSAGE
+     ================================================ -->
+<section class="sec-message">
+  <div class="inner">
+    <p class="sec-label">A Note From the Family</p>
+    <h2 class="sec-title">Our <em>Sweet</em> News</h2>
+    <div class="sec-div"></div>
+    <div class="msg-wrap">
+      <!-- ✏️ EDIT LINES 719–724 — Main invitation message -->
+      <p>
+        With hearts bursting with love and joy, we're so excited to share
+        our little miracle with you! Please join us for a beautiful
+        afternoon filled with laughter, love, and the sweetest surprises
+        as we shower our precious baby with all the warmth in the world.
+        We can't wait to celebrate with you! 🌸
+      </p>
+      <!-- ✏️ EDIT LINE 727 — Sign-off name -->
+      <div class="msg-sig">— With all our love, Priya &amp; Rohan 💕</div>
+    </div>
+  </div>
+</section>
+
+<!-- ================================================
+     📋 EVENT DETAILS
+     ================================================ -->
+<section class="sec-details">
+  <div class="inner">
+    <p class="sec-label">Everything You Need to Know</p>
+    <h2 class="sec-title">Event <em>Details</em></h2>
+    <div class="sec-div"></div>
+    <div class="cards-grid">
+
+      <div class="ev-card">
+        <div class="ev-icon">📍</div>
+        <h3>Venue</h3>
+        <!-- ✏️ EDIT LINES 743–746 — Venue address -->
+        <p><strong>The Grand Ballroom</strong><br/>Hotel Clarks Amer, JLN Marg<br/>Jaipur, Rajasthan 302017</p>
+      </div>
+
+      <div class="ev-card">
+        <div class="ev-icon">🗓️</div>
+        <h3>Date &amp; Time</h3>
+        <!-- ✏️ EDIT LINES 751–753 — Date & time -->
+        <p><strong>Sunday, 15 June 2025</strong><br/>4:00 PM – 8:00 PM IST<br/>Doors open at 3:30 PM</p>
+      </div>
+
+      <div class="ev-card">
+        <div class="ev-icon">👗</div>
+        <h3>Dress Code</h3>
+        <!-- ✏️ EDIT LINES 758–760 — Dress code -->
+        <p><strong>Pastels &amp; Florals</strong><br/>Soft, cheerful colours<br/>Semi-formal attire</p>
+      </div>
+
+      <div class="ev-card">
+        <div class="ev-icon">🎨</div>
+        <h3>Theme</h3>
+        <!-- ✏️ EDIT LINES 766–768 — Party theme -->
+        <p><strong>Garden in Bloom 🌸</strong><br/>Soft florals &amp; butterflies<br/>Baby blossom décor</p>
+      </div>
+
+      <div class="ev-card">
+        <div class="ev-icon">🍽️</div>
+        <h3>Food &amp; Drinks</h3>
+        <!-- ✏️ EDIT LINES 774–776 — Food details -->
+        <p><strong>Catered by Chef Meera</strong><br/>Veg &amp; Jain options available<br/>Mocktail bar &amp; dessert station</p>
+      </div>
+
+      <div class="ev-card">
+        <div class="ev-icon">📞</div>
+        <h3>Contact Us</h3>
+        <!-- ✏️ EDIT LINES 782–784 — Contact details -->
+        <p><strong>Priya:</strong> +91 98765 43210<br/><strong>Rohan:</strong> +91 91234 56789<br/>sharma.baby2025@gmail.com</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ================================================
+     🗺️ LIVE GOOGLE MAP — Venue Location
+     ================================================
+     The map below shows Hotel Clarks Amer, Jaipur.
+     ✏️ To change the location: update the q= parameter in the
+     iframe src URL below (e.g. q=Your+Venue+Name+City).
+     ================================================ -->
+<section class="sec-map">
+  <div class="inner">
+    <p class="sec-label">Find Us Here</p>
+    <h2 class="sec-title">Venue <em>Location</em> 📍</h2>
+    <div class="sec-div"></div>
+    <div class="map-frame-wrap">
+      <!-- Live Google Maps embed — no API key needed -->
+      <iframe
+        src="https://maps.google.com/maps?q=Hotel+Clarks+Amer+Jaipur+Rajasthan&t=&z=15&ie=UTF8&iwloc=&output=embed"
+        allowfullscreen=""
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        title="Venue Location — Hotel Clarks Amer, Jaipur">
+      </iframe>
+    </div>
+    <div class="map-link-row">
+      <a class="map-link-btn"
+         href="https://www.google.com/maps/search/Hotel+Clarks+Amer+Jaipur+Rajasthan"
+         target="_blank" rel="noopener">
+        📍 Open in Google Maps &rarr;
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ================================================
+     🎁 GIFT IDEAS  (registry button removed)
+     ================================================ -->
+<section class="sec-gifts">
+  <div class="inner">
+    <p class="sec-label">Thoughtful Gifts Welcome</p>
+    <h2 class="sec-title">Gift <em>Ideas</em></h2>
+    <div class="sec-div"></div>
+    <!-- ✏️ EDIT LINES 798–811 — Gift tags (add/remove/change freely) -->
+    <div class="gifts-cloud">
+      <div class="gift-tag">🧸 Soft Toys</div>
+      <div class="gift-tag">👶 Baby Clothes (0–6m)</div>
+      <div class="gift-tag">🍼 Feeding Essentials</div>
+      <div class="gift-tag">🛁 Bath &amp; Skincare</div>
+      <div class="gift-tag">📚 Baby Books</div>
+      <div class="gift-tag">🎶 Musical Toys</div>
+      <div class="gift-tag">🌛 Nursery Décor</div>
+      <div class="gift-tag">👟 Tiny Shoes</div>
+      <div class="gift-tag">🧴 Baby Grooming Kit</div>
+      <div class="gift-tag">💳 Gift Cards Welcome</div>
+      <div class="gift-tag">🌡️ Baby Monitor</div>
+      <div class="gift-tag">🪆 Keepsake Box</div>
+    </div>
+    <!-- Registry button has been removed as requested -->
+  </div>
+</section>
+
+<!-- ================================================
+     💬 WISHES — Permanent Memory Wall
+     ================================================
+     Wishes are saved in the visitor's browser (localStorage).
+     They NEVER disappear — even after the event date passes.
+     All past wishes are shown as a memory wall forever.
+
+     ⚠️  IMPORTANT FOR RESELLERS:
+     localStorage is per-device per-browser.
+     This means each visitor only sees wishes they personally
+     submitted on that device.
+     
+     For a SHARED wall (everyone sees all wishes):
+     → Use a free backend like:
+        • https://formspree.io  (free tier, no code)
+        • Google Firebase Realtime DB (free tier)
+        • Airtable + fetch API
+     Ask your developer to wire up the sendWish() function
+     to POST to one of these services.
+     ================================================ -->
+<section class="sec-wishes">
+  <div class="inner">
+    <p class="sec-label">Share Your Love</p>
+    <h2 class="sec-title">Memory <em>Wall</em> 💕</h2>
+    <div class="sec-div"></div>
+    <p style="text-align:center;color:var(--subtext);font-size:0.9rem;margin-bottom:30px;font-style:italic;">
+      These wishes will stay here forever — a little memory book for baby 🌸
+    </p>
+    <div class="wish-form">
+      <input type="text"  id="wName" placeholder="Your name 💖" maxlength="60"/>
+      <textarea id="wText" rows="4" placeholder="Write your sweetest wish for baby..."></textarea>
+      <button class="wish-submit" onclick="sendWish()">Send My Wish 🌸</button>
+      <p class="wish-ok" id="wishOk">Your wish has been saved forever! 💞</p>
+    </div>
+    <div class="wish-board" id="wishBoard"></div>
+  </div>
+</section>
+
+<!-- ================================================
+     🌸 FOOTER
+     ================================================ -->
+<footer>
+  <div class="footer-emoji">🍼</div>
+  <!-- ✏️ EDIT LINE 858 — Footer headline -->
+  <div class="footer-title">Baby Sharma is coming! 🌸</div>
+  <!-- ✏️ EDIT LINE 860 — Footer email -->
+  <p>Questions? Reach us at <a href="mailto:sharma.baby2025@gmail.com">sharma.baby2025@gmail.com</a></p>
+  <p style="margin-top:8px;">
+    <!-- ✏️ EDIT LINE 863 — WhatsApp number -->
+    Or WhatsApp us: <a href="https://wa.me/919876543210" target="_blank">+91 98765 43210</a>
+  </p>
+  <!-- ✏️ EDIT LINE 867 — Credit line -->
+  <p class="footer-copy" style="color:#ffffff;">Made with ❤️ by <a href="https://instagram.com/gem_invite" target="_blank" style="color:#ffffff !important; text-decoration:none;">@gem_invite</a></p>
+  <div class="footer-hearts">💗 💗 💗</div>
+</footer>
+
+<!-- ================================================
+     📜 JAVASCRIPT
+     ================================================ -->
+<script>
+/* ── BACKGROUND BLOBS ── */
+const blobColors=['rgba(255,179,198,0.25)','rgba(184,240,216,0.22)','rgba(255,243,176,0.28)','rgba(255,133,161,0.15)'];
+const bf=document.getElementById('bgFloats');
+for(let i=0;i<8;i++){
+  const b=document.createElement('div');
+  b.className='float-shape';
+  const size=80+Math.random()*200;
+  b.style.cssText=`width:${size}px;height:${size}px;left:${Math.random()*100}%;top:${Math.random()*100}%;background:${blobColors[i%blobColors.length]};animation-duration:${6+Math.random()*8}s;animation-delay:${Math.random()*4}s;`;
+  bf.appendChild(b);
+}
+
+/* ── SPARKLES ── */
+const sp=document.getElementById('sparkles');
+const sparkEmojis=['✨','🌸','⭐','💫','🌟','💕','🎀','🍭'];
+for(let i=0;i<28;i++){
+  const s=document.createElement('div');
+  s.className='sp';
+  s.textContent=sparkEmojis[Math.floor(Math.random()*sparkEmojis.length)];
+  s.style.cssText=`left:${Math.random()*100}vw;font-size:${0.8+Math.random()*1.2}rem;animation-duration:${10+Math.random()*14}s;animation-delay:${Math.random()*14}s;`;
+  sp.appendChild(s);
+}
+
+/* ── COUNTDOWN ──
+   ✏️ EDIT LINE 904 — Event date for countdown
+   Format: new Date(YEAR, MONTH-1, DAY, HOUR, MINUTE)
+   June 15 2025 at 4PM = new Date(2025, 5, 15, 16, 0) */
+const EVENT=new Date(2025,5,15,16,0);
+function tick(){
+  const now=new Date(),diff=EVENT-now;
+  if(diff<=0){
+    document.querySelector('.sec-countdown .inner').innerHTML=
+      '<p style="text-align:center;font-family:\'Playfair Display\',serif;font-style:italic;font-size:2rem;color:var(--p2);padding:30px">🎀 The big day is here! Enjoy every moment! 🎉</p>';
+    return;
+  }
+  const pad=n=>String(Math.floor(n)).padStart(2,'0');
+  document.getElementById('cd-d').textContent=pad(diff/86400000);
+  document.getElementById('cd-h').textContent=pad((diff%86400000)/3600000);
+  document.getElementById('cd-m').textContent=pad((diff%3600000)/60000);
+  document.getElementById('cd-s').textContent=pad((diff%60000)/1000);
+}
+tick();setInterval(tick,1000);
+
+/* ── EMBEDDED MUSIC PLAYER ── */
+const audio=document.getElementById('bgAudio');
+const btn=document.getElementById('playBtn');
+const bars=document.getElementById('bars');
+let playing=false;
+
+function toggleMusic(){
+  if(!playing){
+    audio.play().then(()=>{
+      btn.textContent='⏸';bars.classList.remove('stopped');playing=true;
+    }).catch(()=>{
+      btn.textContent='⏸';bars.classList.remove('stopped');playing=true;
+    });
+  } else {
+    audio.pause();
+    btn.textContent='▶';bars.classList.add('stopped');playing=false;
+  }
+}
+
+/* ── LIGHTBOX ── */
+function openLightbox(card){
+  const img=card.querySelector('img');
+  if(!img) return; // no image added yet
+  document.getElementById('lbImg').src=img.src;
+  document.getElementById('lightbox').classList.add('open');
+}
+function closeLightbox(){
+  document.getElementById('lightbox').classList.remove('open');
+}
+document.addEventListener('keydown',e=>{ if(e.key==='Escape') closeLightbox(); });
+
+/* ── WISHES — PERMANENT MEMORY WALL ── */
+/* Wishes use localStorage — they persist FOREVER on that browser/device.
+   The event date does not clear them. They accumulate as a memory book. */
+const WISH_KEY='babyShower_wishes_v2';
+let wishes=[];
+try{ wishes=JSON.parse(localStorage.getItem(WISH_KEY)||'[]'); }catch(e){ wishes=[]; }
+
+function renderWishes(){
+  const board=document.getElementById('wishBoard');
+  if(wishes.length===0){
+    board.innerHTML='<div class="wish-empty">No wishes yet — be the first to send your love! 💕</div>';
+    return;
+  }
+  board.innerHTML=wishes.slice().reverse().map(w=>`
+    <div class="wish-card">
+      <div class="wname">💕 ${escHtml(w.n)}</div>
+      <div class="wtext">${escHtml(w.t)}</div>
+      <div class="wish-date">📅 ${w.d||''}</div>
+    </div>`).join('');
+}
+
+function escHtml(s){
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+renderWishes();
+
+function sendWish(){
+  const n=document.getElementById('wName').value.trim();
+  const t=document.getElementById('wText').value.trim();
+  if(!n||!t){alert('Please enter your name and a wish! 💕');return;}
+  const now=new Date();
+  const d=now.toLocaleDateString('en-IN',{day:'numeric',month:'long',year:'numeric'});
+  wishes.push({n,t,d});
+  try{ localStorage.setItem(WISH_KEY,JSON.stringify(wishes)); }catch(e){}
+  document.getElementById('wName').value='';
+  document.getElementById('wText').value='';
+  const ok=document.getElementById('wishOk');
+  ok.style.display='block';
+  setTimeout(()=>ok.style.display='none',3500);
+  renderWishes();
+}
+
+/* ── PHOTO SLIDESHOW ── */
+(function(){
+  const slides=document.querySelectorAll('#slideshow .slide');
+  const dots=document.querySelectorAll('#slideDots .slide-dot');
+  let current=0,timer=null;
+
+  function goTo(n){
+    slides[current].classList.remove('active');
+    dots[current].classList.remove('active');
+    current=(n+slides.length)%slides.length;
+    slides[current].classList.add('active');
+    dots[current].classList.add('active');
+  }
+  window.slideshowMove=function(dir){goTo(current+dir);resetTimer();}
+  window.slideshowGo=function(n){goTo(n);resetTimer();}
+
+  function resetTimer(){
+    clearInterval(timer);
+    timer=setInterval(()=>goTo(current+1),4000);
+  }
+  resetTimer();
+})();
+
+/* ── SCROLL REVEAL ── */
+const io=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){e.target.style.opacity='1';e.target.style.transform='translateY(0) scale(1)';}
+  });
+},{threshold:0.08});
+document.querySelectorAll('.ev-card,.cd-box,.gift-tag,.msg-wrap,.photo-card').forEach(el=>{
+  el.style.opacity='0';
+  el.style.transform='translateY(28px) scale(0.97)';
+  el.style.transition='opacity 0.65s ease,transform 0.65s ease';
+  io.observe(el);
+});
+</script>
+
+<!--
+=================================================================
+📋  MASTER EDIT REFERENCE TABLE — ALL CHANGEABLE LINES
+=================================================================
+LINE    | WHAT TO CHANGE
+--------|------------------------------------------------------------
+15      | Browser tab title
+29      | Primary pink color (--p1)
+30      | Deeper rose (--p2)
+31      | Soft blush bg (--p3)
+32      | Lightest blush bg (--p4)
+33      | Accent color (--accent)
+34      | Mint green (--mint)
+35      | Lemon yellow (--lemon)
+36      | Dark text color (--text)
+37      | Subtext color (--subtext)
+547     | Base64 audio data — paste your own after the comma
+548     | Audio MIME type: audio/wav or audio/mpeg
+565     | Song name shown in player
+576     | Hero main emoji
+582     | First line of big heading
+584     | Baby/family name (italic)
+588     | Tagline under name
+592     | Date pill
+594     | Time pill
+596     | Venue pill
+622     | Photo card 1 — replace placeholder with family <img/>
+628     | Photo card 1 — label text
+633     | Photo card 2 — replace placeholder with mom <img/>
+639     | Photo card 2 — label text
+644     | Photo card 3 — replace placeholder with dad <img/>
+650     | Photo card 3 — label text
+655     | Photo card 4 — replace placeholder with couple <img/>
+661     | Photo card 4 — label text
+666     | Photo card 5 — replace placeholder with scan/nursery <img/>
+672     | Photo card 5 — label text
+677     | Photo card 6 — replace placeholder or delete whole card
+683     | Photo card 6 — label text
+719–724 | Invitation message paragraph
+727     | Sign-off / closing line
+743–745 | Venue detail card
+751–753 | Date & time detail card
+758–760 | Dress code detail card
+766–768 | Party theme detail card
+774–776 | Food & drinks detail card
+782–784 | Contact details card
+798–811 | Gift tags (add/remove/change each line)
+858     | Footer headline
+860     | Footer email
+863     | Footer WhatsApp link & number
+867     | Footer credit line
+904     | Countdown event date & time
+=================================================================
+COLOR PRESETS:
+  GIRL    : defaults (pink/blush)
+  BOY     : --p1:#93c5fd; --p2:#3b82f6; --p3:#dbeafe; --p4:#eff6ff; --accent:#60a5fa
+  NEUTRAL : --p1:#fdba74; --p2:#ea580c; --p3:#ffedd5; --p4:#fff7ed; --accent:#fb923c
+=================================================================
+HOW TO ADD PHOTO (quick reminder):
+  <img src="YOUR_URL_OR_BASE64" alt="Description"/>
+  Place this INSIDE the .photo-card div,
+  REPLACING the <div class="photo-placeholder">...</div> block.
+=================================================================
+-->
+</body>
+</html>

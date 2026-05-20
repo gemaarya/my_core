@@ -1,0 +1,1391 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>आचार्यश्री महाप्रज्ञ - 17वाँ महाप्रयाण दिवस</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Devanagari:wght@400;600;700;900&family=Noto+Sans+Devanagari:wght@300;400;500;700&family=Cinzel+Decorative:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #c9a84c;
+    --deep-gold: #8b6914;
+    --crimson: #8b0000;
+    --saffron: #ff6b00;
+    --cream: #fef9f0;
+    --dark-brown: #2c1810;
+    --lotus-pink: #e8a0a0;
+    --sky: #1a0a00;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Noto Sans Devanagari', sans-serif;
+    background: var(--sky);
+    color: var(--cream);
+    overflow-x: hidden;
+  }
+
+  /* ── Particle Canvas ── */
+  #particles { position: fixed; inset: 0; pointer-events: none; z-index: 0; }
+
+  /* ── Audio Player ── */
+  #audio-bar {
+    position: fixed; bottom: 24px; right: 24px; z-index: 1000;
+    background: linear-gradient(135deg, rgba(139,0,0,0.95), rgba(60,0,0,0.95));
+    border: 1px solid var(--gold);
+    border-radius: 50px;
+    padding: 12px 20px;
+    display: flex; align-items: center; gap: 12px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 30px rgba(201,168,76,0.3);
+    cursor: pointer;
+    transition: transform 0.2s;
+  }
+  #audio-bar:hover { transform: scale(1.05); }
+  #audio-bar .note { font-size: 22px; }
+  #audio-bar span { font-size: 13px; color: var(--gold); font-weight: 600; }
+  #audio-bar .pulse-ring {
+    width: 36px; height: 36px; border-radius: 50%;
+    background: var(--crimson);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px;
+    animation: pulse-glow 2s infinite;
+  }
+  @keyframes pulse-glow {
+    0%,100% { box-shadow: 0 0 0 0 rgba(201,168,76,0.5); }
+    50% { box-shadow: 0 0 0 10px rgba(201,168,76,0); }
+  }
+
+  /* ── HERO ── */
+  .hero {
+    position: relative; z-index: 1;
+    min-height: 100vh;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    text-align: center;
+    padding: 60px 20px;
+    background: radial-gradient(ellipse at 50% 0%, #5a2000 0%, #1a0a00 60%);
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Ccircle cx='30' cy='30' r='1' fill='rgba(201,168,76,0.15)'/%3E%3C/svg%3E");
+    background-size: 60px 60px;
+  }
+
+  .hero-mandala {
+    position: absolute;
+    width: 700px; height: 700px;
+    top: 50%; left: 50%;
+    transform: translate(-50%,-50%);
+    opacity: 0.07;
+    animation: slowspin 60s linear infinite;
+  }
+  @keyframes slowspin { to { transform: translate(-50%,-50%) rotate(360deg); } }
+
+  .badge {
+    display: inline-block;
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    font-size: 12px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    padding: 6px 20px;
+    border-radius: 20px;
+    margin-bottom: 24px;
+    animation: fadeUp 1s ease both;
+  }
+
+  .org-name {
+    font-size: 13px;
+    color: rgba(201,168,76,0.7);
+    letter-spacing: 2px;
+    margin-bottom: 32px;
+    animation: fadeUp 1s 0.1s ease both;
+  }
+
+  .hero h1 {
+    font-family: 'Noto Serif Devanagari', serif;
+    font-size: clamp(36px, 6vw, 72px);
+    font-weight: 900;
+    line-height: 1.2;
+    background: linear-gradient(180deg, #fff8e7 0%, var(--gold) 50%, #c97d00 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: fadeUp 1s 0.2s ease both;
+    text-shadow: none;
+  }
+
+  .hero-subtitle {
+    font-family: 'Noto Serif Devanagari', serif;
+    font-size: clamp(20px, 3vw, 32px);
+    color: var(--saffron);
+    margin: 16px 0 8px;
+    animation: fadeUp 1s 0.3s ease both;
+    font-weight: 700;
+  }
+
+  .hero-date {
+    font-size: clamp(18px, 2.5vw, 26px);
+    color: var(--cream);
+    margin: 0 0 40px;
+    animation: fadeUp 1s 0.4s ease both;
+  }
+
+  .hero-location {
+    display: flex; align-items: center; gap: 8px;
+    font-size: 15px; color: rgba(255,255,255,0.7);
+    margin-bottom: 48px;
+    animation: fadeUp 1s 0.5s ease both;
+  }
+  .hero-location span { color: var(--gold); font-size: 18px; }
+
+  .hero-photo-frame {
+    position: relative;
+    width: 220px; height: 280px;
+    margin: 0 auto 40px;
+    animation: fadeUp 1s 0.2s ease both;
+  }
+  .hero-photo-frame::before {
+    content: '';
+    position: absolute; inset: -8px;
+    border: 2px solid var(--gold);
+    border-radius: 50% 50% 50% 50% / 40% 40% 60% 60%;
+    animation: borderPulse 3s ease-in-out infinite;
+  }
+  .hero-photo-frame::after {
+    content: '🙏';
+    position: absolute; bottom: -16px; left: 50%; transform: translateX(-50%);
+    font-size: 28px;
+  }
+  @keyframes borderPulse {
+    0%,100% { opacity: 0.6; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.02); }
+  }
+
+  .hero-photo-inner {
+    width: 100%; height: 100%;
+    border-radius: 50% 50% 50% 50% / 40% 40% 60% 60%;
+    background: linear-gradient(180deg, #8b3a00 0%, #3a1500 100%);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 90px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.5), inset 0 0 40px rgba(201,168,76,0.1);
+  }
+
+  .hero-img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    border-radius: 50% 50% 50% 50% / 40% 40% 60% 60%;
+  }
+
+  .cta-group { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; animation: fadeUp 1s 0.6s ease both; }
+  .btn {
+    padding: 14px 28px;
+    border-radius: 50px;
+    font-size: 15px;
+    font-family: 'Noto Sans Devanagari', sans-serif;
+    cursor: pointer;
+    border: none;
+    transition: all 0.3s;
+    text-decoration: none;
+    display: inline-flex; align-items: center; gap: 8px;
+    font-weight: 700;
+  }
+  .btn-gold {
+    background: linear-gradient(135deg, var(--gold), #e8b84b);
+    color: var(--dark-brown);
+    box-shadow: 0 4px 20px rgba(201,168,76,0.4);
+  }
+  .btn-gold:hover { transform: translateY(-3px); box-shadow: 0 8px 30px rgba(201,168,76,0.6); }
+  .btn-outline {
+    background: transparent;
+    border: 2px solid var(--gold);
+    color: var(--gold);
+  }
+  .btn-outline:hover { background: var(--gold); color: var(--dark-brown); transform: translateY(-3px); }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── Scroll indicator ── */
+  .scroll-hint {
+    position: absolute; bottom: 30px; left: 50%;
+    transform: translateX(-50%);
+    display: flex; flex-direction: column; align-items: center; gap: 8px;
+    color: rgba(255,255,255,0.4); font-size: 12px;
+    animation: bounce 2s infinite;
+  }
+  .scroll-hint::after { content: '▼'; font-size: 14px; }
+  @keyframes bounce {
+    0%,100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(8px); }
+  }
+
+  /* ── SECTIONS ── */
+  section { position: relative; z-index: 1; }
+
+  .section-header {
+    text-align: center;
+    padding: 80px 20px 40px;
+  }
+  .section-header h2 {
+    font-family: 'Noto Serif Devanagari', serif;
+    font-size: clamp(26px, 4vw, 44px);
+    font-weight: 900;
+    background: linear-gradient(135deg, var(--gold), var(--saffron));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .section-header p { color: rgba(255,255,255,0.6); margin-top: 10px; font-size: 15px; }
+  .divider {
+    width: 60px; height: 3px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    margin: 16px auto;
+    border-radius: 2px;
+  }
+
+  /* ── SCHEDULE ── */
+  .schedule-section {
+    background: linear-gradient(180deg, #1a0a00 0%, #2d1200 50%, #1a0a00 100%);
+    padding-bottom: 80px;
+  }
+  .schedule-grid {
+    max-width: 900px; margin: 0 auto; padding: 0 20px;
+    display: flex; flex-direction: column; gap: 0;
+    position: relative;
+  }
+  .schedule-grid::before {
+    content: '';
+    position: absolute; left: 50%; top: 0; bottom: 0;
+    width: 2px;
+    background: linear-gradient(180deg, transparent, var(--gold), var(--gold), transparent);
+    transform: translateX(-50%);
+  }
+
+  .schedule-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 30px;
+    padding: 24px 0;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.6s ease;
+  }
+  .schedule-item.visible { opacity: 1; transform: translateY(0); }
+  .schedule-item:nth-child(odd) { flex-direction: row; padding-right: calc(50% + 30px); }
+  .schedule-item:nth-child(even) { flex-direction: row-reverse; padding-left: calc(50% + 30px); }
+
+  .schedule-dot {
+    position: absolute;
+    left: 50%; transform: translateX(-50%);
+    width: 14px; height: 14px;
+    border-radius: 50%;
+    background: var(--gold);
+    border: 3px solid #1a0a00;
+    box-shadow: 0 0 0 4px rgba(201,168,76,0.3);
+    margin-top: 8px;
+  }
+
+  .schedule-card {
+    background: linear-gradient(135deg, rgba(139,0,0,0.3), rgba(60,0,0,0.5));
+    border: 1px solid rgba(201,168,76,0.3);
+    border-radius: 16px;
+    padding: 20px 24px;
+    flex: 1;
+    transition: all 0.3s;
+  }
+  .schedule-card:hover {
+    background: linear-gradient(135deg, rgba(139,0,0,0.5), rgba(60,0,0,0.7));
+    border-color: var(--gold);
+    transform: scale(1.02);
+  }
+  .schedule-time {
+    font-size: 13px;
+    color: var(--saffron);
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin-bottom: 6px;
+    display: flex; align-items: center; gap: 6px;
+  }
+  .schedule-title {
+    font-family: 'Noto Serif Devanagari', serif;
+    font-size: 18px; font-weight: 700;
+    color: var(--cream);
+    margin-bottom: 8px;
+  }
+  .schedule-desc { font-size: 13px; color: rgba(255,255,255,0.6); line-height: 1.6; }
+
+  /* ── ATTRACTIONS ── */
+  .attractions-section {
+    background: linear-gradient(180deg, #1a0a00, #0d0500);
+    padding-bottom: 80px;
+  }
+  .attractions-grid {
+    max-width: 1100px; margin: 0 auto; padding: 0 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 24px;
+  }
+  .attraction-card {
+    background: linear-gradient(135deg, rgba(201,168,76,0.08), rgba(139,0,0,0.15));
+    border: 1px solid rgba(201,168,76,0.25);
+    border-radius: 20px;
+    padding: 30px 24px;
+    text-align: center;
+    transition: all 0.4s;
+    cursor: default;
+    opacity: 0;
+    transform: translateY(20px);
+    position: relative; overflow: hidden;
+  }
+  .attraction-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    transform: scaleX(0);
+    transition: transform 0.4s;
+  }
+  .attraction-card:hover::before { transform: scaleX(1); }
+  .attraction-card.visible { opacity: 1; transform: translateY(0); }
+  .attraction-card:hover {
+    transform: translateY(-8px);
+    border-color: var(--gold);
+    background: linear-gradient(135deg, rgba(201,168,76,0.15), rgba(139,0,0,0.25));
+    box-shadow: 0 20px 50px rgba(0,0,0,0.4);
+  }
+  .attraction-icon { font-size: 40px; margin-bottom: 16px; display: block; }
+  .attraction-card h3 {
+    font-family: 'Noto Serif Devanagari', serif;
+    font-size: 18px; color: var(--gold);
+    margin-bottom: 10px; font-weight: 700;
+  }
+  .attraction-card p { font-size: 14px; color: rgba(255,255,255,0.6); line-height: 1.6; }
+
+  /* ── PHOTO GALLERY ── */
+  .gallery-section {
+    background: linear-gradient(180deg, #0d0500, #1a0a00);
+    padding-bottom: 80px;
+  }
+  .gallery-grid {
+    max-width: 1100px; margin: 0 auto; padding: 0 20px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: auto;
+    gap: 16px;
+  }
+  .gallery-item {
+    border-radius: 16px; overflow: hidden;
+    position: relative; cursor: pointer;
+    background: linear-gradient(135deg, #3a1500, #1a0800);
+    aspect-ratio: 4/3;
+    border: 1px solid rgba(201,168,76,0.2);
+    transition: all 0.4s;
+    display: flex; align-items: center; justify-content: center;
+    flex-direction: column; gap: 8px;
+  }
+  .gallery-item:first-child { grid-column: span 2; aspect-ratio: 16/7; }
+  .gallery-item:hover { border-color: var(--gold); transform: scale(1.02); }
+  .gallery-item::after {
+    content: attr(data-label);
+    position: absolute; bottom: 0; left: 0; right: 0;
+    background: linear-gradient(0deg, rgba(0,0,0,0.8), transparent);
+    padding: 20px 16px 12px;
+    font-size: 13px; color: var(--gold); font-weight: 600;
+  }
+  .gallery-emoji { font-size: 48px; }
+  .gallery-item-title { font-size: 14px; color: rgba(255,255,255,0.5); }
+
+  /* ── MAP ── */
+  .map-section {
+    background: linear-gradient(180deg, #1a0a00, #0d0500);
+    padding-bottom: 80px;
+  }
+  .map-container {
+    max-width: 900px; margin: 0 auto; padding: 0 20px;
+  }
+  .map-card {
+    background: linear-gradient(135deg, rgba(139,0,0,0.2), rgba(60,0,0,0.4));
+    border: 1px solid rgba(201,168,76,0.3);
+    border-radius: 24px;
+    overflow: hidden;
+  }
+  .map-header {
+    padding: 24px 30px;
+    display: flex; align-items: center; gap: 16px;
+    border-bottom: 1px solid rgba(201,168,76,0.2);
+  }
+  .map-icon { font-size: 36px; }
+  .map-header h3 {
+    font-family: 'Noto Serif Devanagari', serif;
+    font-size: 20px; color: var(--gold); font-weight: 700;
+  }
+  .map-header p { font-size: 13px; color: rgba(255,255,255,0.6); margin-top: 4px; }
+  .map-iframe-wrap {
+    position: relative;
+    height: 380px;
+    background: #1a1000;
+    display: flex; align-items: center; justify-content: center;
+    flex-direction: column; gap: 16px;
+  }
+  .map-iframe-wrap iframe {
+    width: 100%; height: 100%;
+    border: 0; filter: sepia(0.3) hue-rotate(10deg);
+  }
+  .map-info-row {
+    display: flex; flex-wrap: wrap; gap: 0;
+    border-top: 1px solid rgba(201,168,76,0.2);
+  }
+  .map-info-item {
+    flex: 1; min-width: 200px;
+    padding: 20px 24px;
+    border-right: 1px solid rgba(201,168,76,0.1);
+  }
+  .map-info-item:last-child { border-right: none; }
+  .map-info-item label { font-size: 11px; color: var(--saffron); letter-spacing: 1px; text-transform: uppercase; display: block; margin-bottom: 6px; }
+  .map-info-item span { font-size: 14px; color: var(--cream); }
+
+  /* ── GUESTS ── */
+  .guests-section {
+    background: linear-gradient(180deg, #0d0500, #1a0a00);
+    padding-bottom: 80px;
+  }
+  .guests-grid {
+    max-width: 1000px; margin: 0 auto; padding: 0 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+  }
+  .guest-card {
+    background: linear-gradient(135deg, rgba(201,168,76,0.06), rgba(139,0,0,0.12));
+    border: 1px solid rgba(201,168,76,0.2);
+    border-radius: 20px;
+    padding: 28px 20px;
+    text-align: center;
+    transition: all 0.3s;
+    opacity: 0; transform: scale(0.95);
+  }
+  .guest-card.visible { opacity: 1; transform: scale(1); }
+  .guest-card:hover { border-color: var(--gold); transform: translateY(-5px); }
+  .guest-avatar {
+    width: 70px; height: 70px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--crimson), #4a1200);
+    margin: 0 auto 14px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 28px;
+    border: 2px solid rgba(201,168,76,0.4);
+  }
+  .guest-card h4 {
+    font-family: 'Noto Serif Devanagari', serif;
+    font-size: 15px; color: var(--gold); font-weight: 700; margin-bottom: 6px;
+  }
+  .guest-card .role { font-size: 12px; color: rgba(255,255,255,0.5); line-height: 1.5; }
+  .guest-type-badge {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 3px 12px;
+    border-radius: 10px;
+    font-size: 11px; font-weight: 700;
+    letter-spacing: 1px;
+  }
+  .badge-saint { background: rgba(255,107,0,0.2); color: var(--saffron); }
+  .badge-vip { background: rgba(201,168,76,0.2); color: var(--gold); }
+  .badge-artist { background: rgba(232,160,160,0.2); color: var(--lotus-pink); }
+
+  /* ── INFO CARDS ── */
+  .info-section {
+    background: linear-gradient(180deg, #1a0a00, #0d0500);
+    padding-bottom: 80px;
+  }
+  .info-grid {
+    max-width: 900px; margin: 0 auto; padding: 0 20px;
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px;
+  }
+  .info-card {
+    background: linear-gradient(135deg, rgba(139,0,0,0.25), rgba(60,0,0,0.4));
+    border: 1px solid rgba(201,168,76,0.25);
+    border-radius: 20px; padding: 28px 24px;
+    transition: all 0.3s;
+  }
+  .info-card:hover { border-color: var(--gold); transform: translateY(-4px); }
+  .info-card-icon { font-size: 32px; margin-bottom: 14px; }
+  .info-card h3 { font-family: 'Noto Serif Devanagari', serif; font-size: 18px; color: var(--gold); font-weight: 700; margin-bottom: 10px; }
+  .info-card p { font-size: 14px; color: rgba(255,255,255,0.65); line-height: 1.7; }
+
+  /* ── FOOTER ── */
+  footer {
+    position: relative; z-index: 1;
+    background: #080300;
+    border-top: 1px solid rgba(201,168,76,0.3);
+    text-align: center;
+    padding: 50px 20px 30px;
+  }
+  .footer-logo {
+    font-family: 'Noto Serif Devanagari', serif;
+    font-size: 24px; font-weight: 900;
+    background: linear-gradient(135deg, var(--gold), var(--saffron));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 12px;
+  }
+  footer p { font-size: 13px; color: rgba(255,255,255,0.4); margin-bottom: 6px; }
+  .footer-orgs {
+    display: flex; flex-wrap: wrap; justify-content: center; gap: 16px;
+    margin: 24px 0;
+  }
+  .footer-org {
+    padding: 8px 18px;
+    border: 1px solid rgba(201,168,76,0.2);
+    border-radius: 20px;
+    font-size: 13px; color: rgba(255,255,255,0.6);
+  }
+  .footer-bottom { margin-top: 30px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.06); font-size: 12px; color: rgba(255,255,255,0.25); }
+
+  /* ── MUSIC MODAL ── */
+  #music-modal {
+    position: fixed; inset: 0; z-index: 2000;
+    background: rgba(0,0,0,0.85);
+    backdrop-filter: blur(10px);
+    display: flex; align-items: center; justify-content: center;
+    padding: 20px;
+    opacity: 0; pointer-events: none;
+    transition: opacity 0.4s;
+  }
+  #music-modal.open { opacity: 1; pointer-events: all; }
+  .music-panel {
+    background: linear-gradient(135deg, #3a1000, #1a0800);
+    border: 1px solid var(--gold);
+    border-radius: 28px;
+    padding: 40px;
+    max-width: 480px; width: 100%;
+    text-align: center;
+    transform: scale(0.9);
+    transition: transform 0.4s;
+    position: relative;
+  }
+  #music-modal.open .music-panel { transform: scale(1); }
+  .music-panel h2 {
+    font-family: 'Noto Serif Devanagari', serif;
+    font-size: 24px; color: var(--gold); margin-bottom: 6px;
+  }
+  .music-panel p { color: rgba(255,255,255,0.5); font-size: 14px; margin-bottom: 28px; }
+  .music-track {
+    display: flex; align-items: center; gap: 14px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(201,168,76,0.15);
+    border-radius: 14px; padding: 16px 20px;
+    margin-bottom: 12px; cursor: pointer;
+    transition: all 0.3s; text-align: left;
+  }
+  .music-track:hover { background: rgba(201,168,76,0.1); border-color: var(--gold); }
+  .music-track.playing { background: rgba(201,168,76,0.15); border-color: var(--gold); }
+  .track-icon { font-size: 24px; flex-shrink: 0; }
+  .track-info h4 { font-size: 15px; color: var(--cream); font-weight: 600; }
+  .track-info p { font-size: 12px; color: rgba(255,255,255,0.45); margin-top: 3px; }
+  .track-play { margin-left: auto; color: var(--gold); font-size: 20px; }
+  .modal-close {
+    position: absolute; top: 16px; right: 20px;
+    background: none; border: none; color: rgba(255,255,255,0.4);
+    font-size: 24px; cursor: pointer; transition: color 0.2s;
+  }
+  .modal-close:hover { color: var(--gold); }
+
+  .progress-bar-wrap {
+    background: rgba(255,255,255,0.1); border-radius: 4px; height: 4px;
+    margin: 20px 0; position: relative; cursor: pointer;
+  }
+  .progress-bar-fill {
+    height: 100%; border-radius: 4px;
+    background: linear-gradient(90deg, var(--crimson), var(--gold));
+    width: 0%;
+    transition: width 0.5s;
+  }
+  .player-controls {
+    display: flex; align-items: center; justify-content: center; gap: 20px;
+    margin-top: 16px;
+  }
+  .ctrl-btn {
+    background: none; border: none; color: var(--gold);
+    font-size: 22px; cursor: pointer; transition: transform 0.2s;
+  }
+  .ctrl-btn:hover { transform: scale(1.2); }
+  .ctrl-btn.main {
+    width: 50px; height: 50px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--crimson), #5a0000);
+    border: 2px solid var(--gold); font-size: 20px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .current-track-name {
+    font-size: 14px; color: var(--cream); margin-top: 20px;
+    font-family: 'Noto Serif Devanagari', serif;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 500;
+    background: rgba(10,3,0,0.85);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(201,168,76,0.15);
+    padding: 12px 24px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .nav-brand {
+    font-family: 'Noto Serif Devanagari', serif;
+    font-size: 15px; color: var(--gold); font-weight: 700;
+  }
+  .nav-links { display: flex; gap: 20px; }
+  .nav-links a {
+    font-size: 13px; color: rgba(255,255,255,0.6);
+    text-decoration: none; transition: color 0.2s;
+    font-weight: 500;
+  }
+  .nav-links a:hover { color: var(--gold); }
+  @media(max-width:600px) { .nav-links { display: none; } .gallery-grid { grid-template-columns: 1fr 1fr; } .gallery-item:first-child { grid-column: span 2; } .schedule-grid::before { display: none; } .schedule-item { padding: 0 !important; flex-direction: column !important; } .schedule-dot { display: none; } }
+
+  /* Countdown */
+  .countdown-section {
+    background: linear-gradient(180deg, #2d1200, #1a0a00);
+    padding: 60px 20px;
+    text-align: center;
+  }
+  .countdown-row { display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; margin-top: 30px; }
+  .countdown-box {
+    text-align: center;
+    background: rgba(139,0,0,0.3);
+    border: 1px solid rgba(201,168,76,0.3);
+    border-radius: 16px;
+    padding: 20px 28px;
+    min-width: 100px;
+  }
+  .countdown-box .num {
+    font-size: 48px; font-weight: 900;
+    font-family: 'Cinzel Decorative', serif;
+    background: linear-gradient(180deg, #fff, var(--gold));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    line-height: 1;
+  }
+  .countdown-box .lbl { font-size: 12px; color: rgba(255,255,255,0.5); margin-top: 6px; letter-spacing: 2px; text-transform: uppercase; }
+
+  /* Live badge */
+  .live-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(139,0,0,0.4);
+    border: 1px solid rgba(255,100,100,0.4);
+    border-radius: 20px; padding: 6px 16px;
+    font-size: 13px; color: #ff8888; font-weight: 700;
+    margin-bottom: 20px;
+  }
+  .live-dot { width: 8px; height: 8px; border-radius: 50%; background: #ff4444; animation: blink 1s infinite; }
+  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.2} }
+/* ---- FOOTER ---- */
+footer {
+  position: relative;
+  width: 100%;
+  text-align: center;
+  z-index: 1;
+}
+</style>
+</head>
+<body>
+
+<canvas id="particles"></canvas>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-brand">🙏 महाप्रज्ञ दर्शन</div>
+  <div class="nav-links">
+    <a href="#schedule">कार्यक्रम</a>
+    <a href="#museum">म्यूजियम</a>
+    <a href="#sant-samagam">संत समागम</a>
+    <a href="#mukhya-atithi">मुख्य अतिथि</a>
+    <a href="#sangayak">संगायक</a>
+    <a href="#location">स्थान</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <!-- SVG Mandala -->
+  <svg class="hero-mandala" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="200" cy="200" r="190" stroke="#c9a84c" stroke-width="1"/>
+    <circle cx="200" cy="200" r="160" stroke="#c9a84c" stroke-width="0.5"/>
+    <circle cx="200" cy="200" r="130" stroke="#c9a84c" stroke-width="1"/>
+    <circle cx="200" cy="200" r="100" stroke="#c9a84c" stroke-width="0.5"/>
+    <circle cx="200" cy="200" r="70" stroke="#c9a84c" stroke-width="1"/>
+    <circle cx="200" cy="200" r="40" stroke="#c9a84c" stroke-width="0.5"/>
+    <g transform="rotate(0,200,200)"><line x1="200" y1="10" x2="200" y2="390" stroke="#c9a84c" stroke-width="0.5"/></g>
+    <g transform="rotate(30,200,200)"><line x1="200" y1="10" x2="200" y2="390" stroke="#c9a84c" stroke-width="0.5"/></g>
+    <g transform="rotate(60,200,200)"><line x1="200" y1="10" x2="200" y2="390" stroke="#c9a84c" stroke-width="0.5"/></g>
+    <g transform="rotate(90,200,200)"><line x1="200" y1="10" x2="200" y2="390" stroke="#c9a84c" stroke-width="0.5"/></g>
+    <g transform="rotate(120,200,200)"><line x1="200" y1="10" x2="200" y2="390" stroke="#c9a84c" stroke-width="0.5"/></g>
+    <g transform="rotate(150,200,200)"><line x1="200" y1="10" x2="200" y2="390" stroke="#c9a84c" stroke-width="0.5"/></g>
+    <!-- Lotus petals -->
+    <ellipse cx="200" cy="130" rx="18" ry="40" fill="rgba(201,168,76,0.15)" transform="rotate(0,200,200)"/>
+    <ellipse cx="200" cy="130" rx="18" ry="40" fill="rgba(201,168,76,0.15)" transform="rotate(45,200,200)"/>
+    <ellipse cx="200" cy="130" rx="18" ry="40" fill="rgba(201,168,76,0.15)" transform="rotate(90,200,200)"/>
+    <ellipse cx="200" cy="130" rx="18" ry="40" fill="rgba(201,168,76,0.15)" transform="rotate(135,200,200)"/>
+    <ellipse cx="200" cy="130" rx="18" ry="40" fill="rgba(201,168,76,0.15)" transform="rotate(180,200,200)"/>
+    <ellipse cx="200" cy="130" rx="18" ry="40" fill="rgba(201,168,76,0.15)" transform="rotate(225,200,200)"/>
+    <ellipse cx="200" cy="130" rx="18" ry="40" fill="rgba(201,168,76,0.15)" transform="rotate(270,200,200)"/>
+    <ellipse cx="200" cy="130" rx="18" ry="40" fill="rgba(201,168,76,0.15)" transform="rotate(315,200,200)"/>
+  </svg>
+
+  <div class="badge">🙏 श्रद्धांजलि</div>
+  <div class="org-name">जैन श्वेताम्बर तेरापंथी महासभा · सरदारशहर</div>
+
+  <!-- Photo Frame -->
+  <div class="hero-photo-frame">
+    <img class="hero-img" src="images/hero.jpg" alt="आचार्यश्री महाप्रज्ञ">
+  </div>
+
+  <h1>युगप्रधान आचार्यश्री<br>महाप्रज्ञ</h1>
+  <div class="hero-subtitle">18वाँ महाप्रयाण दिवस</div>
+  <div class="hero-date">📅 2 मई 2027</div>
+  <div class="hero-location">
+    <span>📍</span>
+    अध्यात्म का शांतिपीठ · सरदारशहर
+  </div>
+
+  <div class="cta-group">
+    <a href="#location" class="btn btn-gold">🗺️ लाइव लोकेशन</a>
+    <button class="btn btn-outline" onclick="openMusic()">🎵 भजन सुनें</button>
+    <a href="#schedule" class="btn btn-outline">📋 कार्यक्रम</a>
+  </div>
+
+  <div class="scroll-hint">नीचे देखें</div>
+</section>
+
+<!-- COUNTDOWN -->
+<div class="countdown-section">
+  <div class="live-badge"><span class="live-dot"></span> आयोजन लाइव</div>
+  <!--<h2 style="font-family:'Noto Serif Devanagari',serif; font-size:22px; color:var(--cream);">2 मई 2027</h2>-->
+  <div class="countdown-row">
+    <div class="countdown-box"><div class="num" id="cd-days">--</div><div class="lbl">दिन</div></div>
+    <div class="countdown-box"><div class="num" id="cd-hours">--</div><div class="lbl">घंटे</div></div>
+    <div class="countdown-box"><div class="num" id="cd-mins">--</div><div class="lbl">मिनट</div></div>
+    <div class="countdown-box"><div class="num" id="cd-secs">--</div><div class="lbl">सेकंड</div></div>
+  </div>
+</div>
+
+<!-- SCHEDULE -->
+<section class="schedule-section" id="schedule">
+  <div class="section-header">
+    <h2>कार्यक्रम</h2>
+    <div class="divider"></div>
+    <p>2 मई 2027 का पूरा दिनक्रम</p>
+  </div>
+  <div class="schedule-grid">
+    <div class="schedule-item">
+      <div class="schedule-dot"></div>
+      <div class="schedule-card">
+        <div class="schedule-time">⏰ प्रातः 7:00 बजे</div>
+        <div class="schedule-title">बस सेवा प्रारंभ</div>
+        <div class="schedule-desc">तेरापंथ भवन से समाधि स्थल के लिए विशेष बस सेवा</div>
+      </div>
+    </div>
+    <div class="schedule-item">
+      <div class="schedule-dot"></div>
+      <div class="schedule-card">
+        <div class="schedule-time">⏰ सुबह 9:00 - 10:00</div>
+        <div class="schedule-title">जप और सामायिक</div>
+        <div class="schedule-desc">परम पूज्य आचार्यश्री महाश्रमण जी के सुशिष्य मुनि श्री जयकुमार जी आदि संतवृंद की सान्निध्य में</div>
+      </div>
+    </div>
+    <div class="schedule-item">
+      <div class="schedule-dot"></div>
+      <div class="schedule-card">
+        <div class="schedule-time">⏰ प्रातः 10:00 बजे से</div>
+        <div class="schedule-title">श्रद्धार्पण समारोह</div>
+        <div class="schedule-desc">मुख्य श्रद्धांजलि कार्यक्रम का शुभारंभ</div>
+      </div>
+    </div>
+    <div class="schedule-item">
+      <div class="schedule-dot"></div>
+      <div class="schedule-card">
+        <div class="schedule-time">🕌 संत समागम</div>
+        <div class="schedule-title">संत एवं महंत</div>
+        <div class="schedule-desc">श्रीमद् दण्डी स्वामी शिवेन्द्राश्रमजी महाराज (ऋषिकेश) · संत श्री दयानाथजी (महंत उदासर धाम)</div>
+      </div>
+    </div>
+    <div class="schedule-item">
+      <div class="schedule-dot"></div>
+      <div class="schedule-card">
+        <div class="schedule-time">⭐ मुख्य अतिथि</div>
+        <div class="schedule-title">श्री प्रवेश वर्मा</div>
+        <div class="schedule-desc">उप मुख्यमंत्री, दिल्ली</div>
+      </div>
+    </div>
+    <div class="schedule-item">
+      <div class="schedule-dot"></div>
+      <div class="schedule-card">
+        <div class="schedule-time">⏰ रात्रि 7:30 बजे</div>
+        <div class="schedule-title">🎵 भक्ति संगीत संध्या</div>
+        <div class="schedule-desc">जितेन्द्र सिंह जामवाल (गजल गायक) · मीनाक्षी भूतोडि़या · डाकलिया बंधु · कमल छाजेड़</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MUSEUM -->
+<section class="attractions-section" id="museum">
+  <div class="section-header">
+    <h2>महाप्रज्ञ दर्शन म्यूजियम</h2>
+    <div class="divider"></div>
+    <p>विश्व की अत्याधुनिक तकनीक से सुसज्जित — 2 मई 2027 को निःशुल्क प्रवेश</p>
+  </div>
+  <div class="attractions-grid">
+    <div class="attraction-card">
+      <span class="attraction-icon">🤖</span>
+      <h3>महाप्रज्ञ रोबोटिक्स</h3>
+      <p>आचार्यश्री के जीवन की शिक्षाओं पर आधारित अद्भुत रोबोटिक प्रदर्शनी</p>
+    </div>
+    <div class="attraction-card">
+      <span class="attraction-icon">📖</span>
+      <h3>अहिंसा यात्रा फ्लिपबुक</h3>
+      <p>अहिंसा की यात्रा को डिजिटल फ्लिपबुक के माध्यम से अनुभव करें</p>
+    </div>
+    <div class="attraction-card">
+      <span class="attraction-icon">🖥️</span>
+      <h3>जैन दर्शन टच पैनल</h3>
+      <p>जैन दर्शन को इंटरएक्टिव टच पैनल के द्वारा समझें और जानें</p>
+    </div>
+    <div class="attraction-card">
+      <span class="attraction-icon">🎮</span>
+      <h3>जीवन विज्ञान गेम्स</h3>
+      <p>जीवन विज्ञान के सिद्धांतों पर आधारित शैक्षिक और मनोरंजक गेम्स</p>
+    </div>
+    <div class="attraction-card">
+      <span class="attraction-icon">🌸</span>
+      <h3>मोशन सेंसर फ्लावर</h3>
+      <p>अनूठे मोशन सेंसर से फूल खिलते हैं — एक जादुई अनुभव</p>
+    </div>
+    <div class="attraction-card">
+      <span class="attraction-icon">🧘</span>
+      <h3>प्रेक्षाध्यान प्रयोग</h3>
+      <p>आचार्यश्री की प्रेक्षाध्यान विधि का लाइव अनुभव करें</p>
+    </div>
+    <div class="attraction-card">
+      <span class="attraction-icon">🎬</span>
+      <h3>180 डिग्री फिल्म</h3>
+      <p>आचार्यश्री के जीवन पर आधारित 180 डिग्री इमर्सिव फिल्म</p>
+    </div>
+    <div class="attraction-card">
+      <span class="attraction-icon">💬</span>
+      <h3>जीवंत संवाद</h3>
+      <p>आचार्यप्रवर से डिजिटल जीवंत संवाद का अलौकिक अनुभव</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     SECTION 1 — संत समागम
+══════════════════════════════════════ -->
+<section class="guests-section" id="sant-samagam" style="background:linear-gradient(180deg,#0d0500,#1a0a00);padding-bottom:70px;">
+  <div class="section-header">
+    <div style="display:inline-flex;align-items:center;gap:10px;background:rgba(255,107,0,0.12);border:1px solid rgba(255,107,0,0.35);border-radius:30px;padding:6px 20px;margin-bottom:18px;">
+      <span style="font-size:20px;">🕉️</span>
+      <span style="font-size:13px;color:var(--saffron);letter-spacing:2px;font-weight:700;text-transform:uppercase;">सान्निध्य</span>
+    </div>
+    <h2>संत समागम</h2>
+    <div class="divider"></div>
+    <p>पधारने वाले पूज्य संत </p>
+  </div>
+ 
+  <div style="max-width:900px;margin:0 auto;padding:0 20px;display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px;">
+ 
+    <!-- ── संत कार्ड 1 ── -->
+    <div class="guest-card" style="border-color:rgba(255,107,0,0.3);">
+      <!-- फोटो यहाँ लगाएँ: src में अपनी image का path डालें -->
+      <div class="guest-avatar" style="width:90px;height:90px;border-color:rgba(255,107,0,0.5);overflow:hidden;">
+        <img src="images/j.jpeg" alt="मुनि श्री जयकुमार जी"
+             onerror="this.style.display='none';this.parentNode.innerHTML='🙏';"
+             style="width:100%;height:100%;object-fit:cover;border-radius:50%;">
+      </div>
+      <h4 style="margin-top:14px;">मुनि श्री जयकुमार जी</h4>
+      <div class="role">परम पूज्य आचार्यश्री महाश्रमण जी के सुशिष्य</div>
+      <span class="guest-type-badge badge-saint">🙏 संत</span>
+    </div>
+ 
+    <!-- ── संत कार्ड 2 ── -->
+    <div class="guest-card" style="border-color:rgba(255,107,0,0.3);">
+      <div class="guest-avatar" style="width:90px;height:90px;border-color:rgba(255,107,0,0.5);overflow:hidden;">
+        <img src="" alt="श्रीमद् दण्डी स्वामी शिवेन्द्राश्रमजी"
+             onerror="this.style.display='none';this.parentNode.innerHTML='🕉️';"
+             style="width:100%;height:100%;object-fit:cover;border-radius:50%;">
+      </div>
+      <h4 style="margin-top:14px;">श्रीमद् दण्डी स्वामी शिवेन्द्राश्रमजी</h4>
+      <div class="role">महाराज, ऋषिकेश</div>
+      <span class="guest-type-badge badge-saint">🙏 संत</span>
+    </div>
+ 
+    <!-- ── संत कार्ड 3 ── -->
+    <div class="guest-card" style="border-color:rgba(255,107,0,0.3);">
+      <div class="guest-avatar" style="width:90px;height:90px;border-color:rgba(255,107,0,0.5);overflow:hidden;">
+        <img src="" alt="संत श्री दयानाथजी"
+             onerror="this.style.display='none';this.parentNode.innerHTML='🙏';"
+             style="width:100%;height:100%;object-fit:cover;border-radius:50%;">
+      </div>
+      <h4 style="margin-top:14px;">संत श्री दयानाथजी</h4>
+      <div class="role">महंत उदासर धाम</div>
+      <span class="guest-type-badge badge-saint">🙏 संत</span>
+    </div>
+ 
+  </div>
+</section>
+ 
+<!-- ══════════════════════════════════════
+     SECTION 2 — मुख्य अतिथि
+══════════════════════════════════════ -->
+<section class="guests-section" id="mukhya-atithi" style="background:linear-gradient(180deg,#1a0a00,#2d1200);padding-bottom:70px;">
+  <div class="section-header">
+    <div style="display:inline-flex;align-items:center;gap:10px;background:rgba(201,168,76,0.12);border:1px solid rgba(201,168,76,0.4);border-radius:30px;padding:6px 20px;margin-bottom:18px;">
+      <span style="font-size:20px;">⭐</span>
+      <span style="font-size:13px;color:var(--gold);letter-spacing:2px;font-weight:700;text-transform:uppercase;">सम्मानित अतिथि</span>
+    </div>
+    <h2>मुख्य अतिथि</h2>
+    <div class="divider"></div>
+    <p>श्रद्धार्पण समारोह के विशिष्ट महानुभाव</p>
+  </div>
+ 
+  <!-- बड़ा featured card — मुख्य अतिथि के लिए -->
+  <div style="max-width:500px;margin:0 auto 30px;padding:0 20px;">
+    <div class="guest-card" style="border-color:var(--gold);background:linear-gradient(135deg,rgba(201,168,76,0.12),rgba(139,0,0,0.2));padding:36px 28px;">
+      <!-- फोटो यहाँ लगाएँ -->
+      <div class="guest-avatar" style="width:110px;height:110px;border:3px solid var(--gold);overflow:hidden;margin:0 auto 16px;">
+        <img src="images/p.jpeg" alt="श्री प्रवेश वर्मा"
+             onerror="this.style.display='none';this.parentNode.innerHTML='⭐';"
+             style="width:100%;height:100%;object-fit:cover;border-radius:50%;">
+      </div>
+      <h4 style="font-size:22px;color:var(--gold);">श्री प्रवेश वर्मा</h4>
+      <div class="role" style="font-size:15px;margin-top:8px;">उप मुख्यमंत्री, दिल्ली</div>
+      <span class="guest-type-badge badge-vip" style="margin-top:14px;font-size:13px;padding:5px 18px;">⭐ मुख्य अतिथि</span>
+    </div>
+  </div>
+</section>
+ 
+<!-- ══════════════════════════════════════
+     SECTION 3 — आमंत्रित संगायक
+══════════════════════════════════════ -->
+<section class="guests-section" id="sangayak" style="background:linear-gradient(180deg,#2d1200,#0d0500);padding-bottom:70px;">
+  <div class="section-header">
+    <div style="display:inline-flex;align-items:center;gap:10px;background:rgba(232,160,160,0.12);border:1px solid rgba(232,160,160,0.3);border-radius:30px;padding:6px 20px;margin-bottom:18px;">
+      <span style="font-size:20px;">🎵</span>
+      <span style="font-size:13px;color:var(--lotus-pink);letter-spacing:2px;font-weight:700;text-transform:uppercase;">भक्ति संगीत संध्या</span>
+    </div>
+    <h2>आमंत्रित संगायक</h2>
+    <div class="divider"></div>
+    <p>रात्रि 7:30 बजे — भक्ति संगीत संध्या</p>
+  </div>
+ 
+  <div style="max-width:1000px;margin:0 auto;padding:0 20px;display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:22px;">
+ 
+    <!-- ── गायक कार्ड 1 ── -->
+    <div class="guest-card" style="border-color:rgba(232,160,160,0.3);">
+      <div class="guest-avatar" style="width:90px;height:90px;border-color:rgba(232,160,160,0.5);overflow:hidden;">
+        <img src="" alt="जितेन्द्र सिंह जामवाल"
+             onerror="this.style.display='none';this.parentNode.innerHTML='🎤';"
+             style="width:100%;height:100%;object-fit:cover;border-radius:50%;">
+      </div>
+      <h4 style="margin-top:14px;">जितेन्द्र सिंह जामवाल</h4>
+      <div class="role">गजल गायक</div>
+      <span class="guest-type-badge badge-artist">🎤 गायक</span>
+    </div>
+ 
+    <!-- ── गायक कार्ड 2 ── -->
+    <div class="guest-card" style="border-color:rgba(232,160,160,0.3);">
+      <div class="guest-avatar" style="width:90px;height:90px;border-color:rgba(232,160,160,0.5);overflow:hidden;">
+        <img src="" alt="मीनाक्षी भूतोडि़या"
+             onerror="this.style.display='none';this.parentNode.innerHTML='🎵';"
+             style="width:100%;height:100%;object-fit:cover;border-radius:50%;">
+      </div>
+      <h4 style="margin-top:14px;">मीनाक्षी भूतोडि़या</h4>
+      <div class="role">भक्ति संगीत गायिका</div>
+      <span class="guest-type-badge badge-artist">🎵 गायिका</span>
+    </div>
+ 
+    <!-- ── गायक कार्ड 3 ── -->
+    <div class="guest-card" style="border-color:rgba(232,160,160,0.3);">
+      <div class="guest-avatar" style="width:90px;height:90px;border-color:rgba(232,160,160,0.5);overflow:hidden;">
+        <img src="" alt="डाकलिया बंधु"
+             onerror="this.style.display='none';this.parentNode.innerHTML='🎶';"
+             style="width:100%;height:100%;object-fit:cover;border-radius:50%;">
+      </div>
+      <h4 style="margin-top:14px;">डाकलिया बंधु</h4>
+      <div class="role">लोक संगीत</div>
+      <span class="guest-type-badge badge-artist">🎶 लोक कलाकार</span>
+    </div>
+ 
+    <!-- ── गायक कार्ड 4 ── -->
+    <div class="guest-card" style="border-color:rgba(232,160,160,0.3);">
+      <div class="guest-avatar" style="width:90px;height:90px;border-color:rgba(232,160,160,0.5);overflow:hidden;">
+        <img src="" alt="कमल छाजेड़"
+             onerror="this.style.display='none';this.parentNode.innerHTML='🎸';"
+             style="width:100%;height:100%;object-fit:cover;border-radius:50%;">
+      </div>
+      <h4 style="margin-top:14px;">कमल छाजेड़</h4>
+      <div class="role">भजन गायक</div>
+      <span class="guest-type-badge badge-artist">🎸 भजन गायक</span>
+    </div>
+ 
+  </div>
+</section>
+
+<!-- GALLERY 
+<section class="gallery-section" id="gallery">
+  <div class="section-header">
+    <h2>📸 फोटो गैलरी</h2>
+    <div class="divider"></div>
+    <p>आचार्यश्री महाप्रज्ञ की दिव्य स्मृतियाँ</p>
+  </div>
+  <div class="gallery-grid" style="max-width:1100px;margin:0 auto;padding:0 20px;">
+    <div class="gallery-item" data-label="समाधि स्थल, सरदारशहर">
+      <img src="images/samadhi.jpg" style="width:100%;height:100%;object-fit:cover;">
+      <div class="gallery-item-title">समाधि स्थल</div>
+    </div>
+    <div class="gallery-item" data-label="प्रेक्षाध्यान">
+      <div class="gallery-emoji">🧘</div>
+      <div class="gallery-item-title">ध्यान साधना</div>
+    </div>
+    <div class="gallery-item" data-label="अहिंसा यात्रा">
+      <div class="gallery-emoji">🚶</div>
+      <div class="gallery-item-title">अहिंसा यात्रा</div>
+    </div>
+    <div class="gallery-item" data-label="म्यूजियम दर्शन">
+      <div class="gallery-emoji">🏺</div>
+      <div class="gallery-item-title">महाप्रज्ञ दर्शन</div>
+    </div>
+    <div class="gallery-item" data-label="संत समागम">
+      <div class="gallery-emoji">🕉️</div>
+      <div class="gallery-item-title">संत समागम</div>
+    </div>
+  </div>
+</section>
+-->
+<!-- INFO -->
+<section class="info-section">
+  <div class="section-header">
+    <h2>सुविधाएँ एवं जानकारी</h2>
+    <div class="divider"></div>
+  </div>
+  <div class="info-grid">
+    <div class="info-card">
+      <div class="info-card-icon">🚌</div>
+      <h3>बस सेवा</h3>
+      <p>तेरापंथ भवन से समाधि स्थल तक प्रातः 7 बजे से बस सेवा उपलब्ध रहेगी।</p>
+    </div>
+    <div class="info-card">
+      <div class="info-card-icon">🍽️</div>
+      <h3>भोजन व्यवस्था</h3>
+      <p>समाधि स्थल पर प्रातः अल्पाहार, मध्याह्न व सायंकालीन भोजन की व्यवस्था। सायंकालीन भोजन सूर्यास्त पूर्व तक।</p>
+    </div>
+    <div class="info-card">
+      <div class="info-card-icon">📺</div>
+      <h3>लाइव प्रसारण</h3>
+      <p>भक्ति संगीत संध्या का सीधा प्रसारण <strong style="color:var(--gold)">पारस चैनल</strong> पर रात्रि 7:30 बजे से।</p>
+    </div>
+    <div class="info-card">
+      <div class="info-card-icon">🎫</div>
+      <h3>म्यूजियम निःशुल्क</h3>
+      <p>2 मई 2027 को महाप्रज्ञ दर्शन म्यूजियम का प्रवेश पूर्णतः निःशुल्क रहेगा।</p>
+    </div>
+  </div>
+</section>
+
+<!-- LOCATION / MAP -->
+<section class="map-section" id="location">
+  <div class="section-header">
+    <h2>📍 स्थान</h2>
+    <div class="divider"></div>
+  </div>
+  <div class="map-container">
+    <div class="map-card">
+      <div class="map-header">
+        <div class="map-icon">🗺️</div>
+        <div>
+          <h3>आचार्यश्री महाप्रज्ञ समाधि स्थल</h3>
+          <p>मेगा हाईवे, सरदारशहर, राजस्थान</p>
+        </div>
+        <a href="https://maps.google.com/?q=Sardarshahr+Rajasthan" target="_blank" class="btn btn-gold" style="margin-left:auto;padding:10px 20px;font-size:13px;">🧭 गूगल मैप्स खोलें</a>
+      </div>
+      <div class="map-iframe-wrap">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d56752.34!2d74.47!3d28.44!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3914a1e8f1ab77b7%3A0x0!2sSardarshahr%2C%20Rajasthan!5e0!3m2!1shi!2sin!4v1"
+          allowfullscreen="" loading="lazy">
+        </iframe>
+      </div>
+      <div class="map-info-row">
+        <div class="map-info-item">
+          <label>स्थान</label>
+          <span>सरदारशहर, चूरू जिला</span>
+        </div>
+        <div class="map-info-item">
+          <label>तारीख</label>
+          <span>2 मई 2027</span>
+        </div>
+        <div class="map-info-item">
+          <label>प्रारंभ</label>
+          <span>प्रातः 7:00 बजे</span>
+        </div>
+        <div class="map-info-item">
+          <label>8824646</label>
+          <span>तेरापंथ महासभा</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">🙏 आचार्यश्री महाप्रज्ञ</div>
+  <p>18वाँ महाप्रयाण दिवस · 2 मई 2027</p>
+  <p style="margin-top:6px;color:rgba(255,255,255,0.3);font-size:12px;">अध्यात्म का शांतिपीठ · सरदारशहर</p>
+  <div class="footer-orgs">
+    <div class="footer-org">जैन श्वेताम्बर तेरापंथी महासभा</div>
+    <div class="footer-org">तेरापंथ युवक परिषद</div>
+    <div class="footer-org">तेरापंथ महिला मण्डल</div>
+    <div class="footer-org">अणुव्रत समिति</div>
+    <div class="footer-org">श्री जैन श्वेताम्बर तेरापंथी सभा</div>
+  </div>
+  <div class="footer-bottom">
+    ॐ अर्हम् · जय जिनेन्द्र<br>
+    महाप्रज्ञ दर्शन म्यूजियम · मेगा हाईवे, सरदारशहर<br><br>
+    <span style="font-size:12px;color:rgba(255,255,255,0.45);">Made with ❤️ by <a href="https://instagram.com/gem_invite" target="_blank" style="color:rgba(255,255,255,0.6);text-decoration:none;">@gem_invite</a></span>
+  </div>
+</footer>
+
+<!-- AUDIO BAR -->
+<div id="audio-bar" onclick="openMusic()">
+  <div class="pulse-ring">🎵</div>
+  <span>भजन सुनें</span>
+</div>
+
+<!-- MUSIC MODAL -->
+<div id="music-modal">
+  <div class="music-panel">
+    <button class="modal-close" onclick="closeMusic()">✕</button>
+    <h2>🎵 भक्ति संगीत</h2>
+    <p>आचार्यश्री को समर्पित भजन एवं स्तुतियाँ</p>
+
+    <div class="music-track" onclick="playTrack(0)" id="track-0">
+      <span class="track-icon">🕉️</span>
+      <div class="track-info">
+        <h4>आभारी है दुनिया सारी</h4>
+      </div>
+      <span class="track-play">▶</span>
+    </div>
+    <div class="music-track" onclick="playTrack(1)" id="track-1">
+      <span class="track-icon">🙏</span>
+      <div class="track-info">
+        <h4>महाप्रज्ञ को वंदन</h4>
+      </div>
+      <span class="track-play">▶</span>
+    </div>
+    <div class="music-track" onclick="playTrack(2)" id="track-2">
+      <span class="track-icon">🌸</span>
+      <div class="track-info">
+        <h4>ॐ श्री महाप्रज्ञ गुरवे नमः</h4>
+      </div>
+      <span class="track-play">▶</span>
+    </div>
+    <div class="music-track" onclick="playTrack(3)" id="track-3">
+      <span class="track-icon">🎶</span>
+      <div class="track-info">
+        <h4>महाप्रज्ञ है कितना प्यारा</h4>
+      </div>
+      <span class="track-play">▶</span>
+    </div>
+
+    <div class="current-track-name" id="current-track-name">कोई ट्रैक नहीं चल रहा</div>
+
+    <div class="progress-bar-wrap" onclick="seekTrack(event)">
+      <div class="progress-bar-fill" id="progress-fill"></div>
+    </div>
+
+    <div class="player-controls">
+      <button class="ctrl-btn" onclick="prevTrack()">⏮</button>
+      <button class="ctrl-btn main" id="play-pause-btn" onclick="togglePlay()">▶</button>
+      <button class="ctrl-btn" onclick="nextTrack()">⏭</button>
+    </div>
+
+    <p style="font-size:11px;color:rgba(255,255,255,0.25);margin-top:16px;">भक्ति संगीत संध्या का सीधा प्रसारण पारस चैनल पर रात्रि 7:30 बजे</p>
+  </div>
+</div>
+<script>
+// ── Particles ──
+const canvas = document.getElementById('particles');
+const ctx = canvas.getContext('2d');
+let W, H, dots = [];
+
+function resize() {
+  W = canvas.width = window.innerWidth;
+  H = canvas.height = window.innerHeight;
+}
+resize();
+window.addEventListener('resize', resize);
+
+for (let i = 0; i < 80; i++) {
+  dots.push({
+    x: Math.random() * 2000,
+    y: Math.random() * 2000,
+    r: Math.random() * 2 + 0.5,
+    speed: Math.random() * 0.4 + 0.1,
+    opacity: Math.random() * 0.5 + 0.1,
+    color: Math.random() > 0.5 ? '#c9a84c' : '#ff6b00'
+  });
+}
+
+function animateParticles() {
+  ctx.clearRect(0, 0, W, H);
+  dots.forEach(d => {
+    d.y -= d.speed;
+    if (d.y < -10) { d.y = H + 10; d.x = Math.random() * W; }
+    ctx.beginPath();
+    ctx.arc(d.x % W, d.y % H, d.r, 0, Math.PI * 2);
+    ctx.fillStyle = d.color;
+    ctx.globalAlpha = d.opacity;
+    ctx.fill();
+  });
+  ctx.globalAlpha = 1;
+  requestAnimationFrame(animateParticles);
+}
+animateParticles();
+
+// ── Scroll Reveal ──
+const observer = new IntersectionObserver(entries => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) {
+      setTimeout(() => e.target.classList.add('visible'), i * 80);
+    }
+  });
+}, { threshold: 0.1 });
+document.querySelectorAll('.schedule-item, .attraction-card, .guest-card').forEach(el => observer.observe(el));
+
+// ── Countdown ──
+function updateCountdown() {
+  const target = new Date('2027-05-02T09:00:00+05:30');
+  const now = new Date();
+  let diff = target - now;
+  if (diff < 0) {
+    document.querySelector('.countdown-section').innerHTML = '<h2 style="font-family:\'Noto Serif Devanagari\',serif;font-size:28px;color:var(--gold);padding:40px">पावन दिन है — 2 मई 2027</h2>';
+    return;
+  }
+  const days = Math.floor(diff / 86400000);
+  const hrs = Math.floor((diff % 86400000) / 3600000);
+  const mins = Math.floor((diff % 3600000) / 60000);
+  const secs = Math.floor((diff % 60000) / 1000);
+  document.getElementById('cd-days').textContent = String(days).padStart(2,'0');
+  document.getElementById('cd-hours').textContent = String(hrs).padStart(2,'0');
+  document.getElementById('cd-mins').textContent = String(mins).padStart(2,'0');
+  document.getElementById('cd-secs').textContent = String(secs).padStart(2,'0');
+}
+updateCountdown();
+setInterval(updateCountdown, 1000);
+
+// ── Music ──
+let currentTrack = -1;
+let isPlaying = false;
+let progressInterval = null;
+let progress = 0;
+
+const trackNames = [
+  'आभारी है दुनिया सारी',
+  'महाप्रज्ञ को वंदन',
+  'ॐ श्री महाप्रज्ञ गुरवे नमः',
+  'महाप्रज्ञ है कितना प्यारा'
+];
+const audioFiles = [
+  'music/mahap.mp3',   // ट्रैक 0 की फाइल
+  'music/vandan.mp3',   // ट्रैक 1 की फाइल
+  'music/jaap.mp3',   // ट्रैक 2 की फाइल
+  'music/yaad.mp3'    // ट्रैक 3 की फाइल
+];
+let audio = new Audio();
+
+function openMusic() {
+  document.getElementById('music-modal').classList.add('open');
+}
+function closeMusic() {
+  document.getElementById('music-modal').classList.remove('open');
+}
+document.getElementById('music-modal').addEventListener('click', function(e) {
+  if (e.target === this) closeMusic();
+});
+
+function playTrack(i) {
+  // अगर same track पर दोबारा click — तो pause/resume करें
+  if (currentTrack === i && isPlaying) {
+    isPlaying = false;
+    audio.pause();
+    clearInterval(progressInterval);
+    document.getElementById('play-pause-btn').textContent = '▶';
+    document.querySelectorAll('.music-track')[i].querySelector('.track-play').textContent = '▶';
+    document.getElementById('current-track-name').textContent = '⏸ ' + trackNames[i];
+    return;
+  }
+
+  // नया track बजाएँ
+  audio.pause();
+  audio.src = audioFiles[i];
+  audio.play();
+
+  document.querySelectorAll('.music-track').forEach((t, idx) => {
+    t.classList.toggle('playing', idx === i);
+    t.querySelector('.track-play').textContent = idx === i ? '⏸' : '▶';
+  });
+  currentTrack = i;
+  isPlaying = true;
+  progress = 0;
+  document.getElementById('current-track-name').textContent = '▶ ' + trackNames[i];
+  document.getElementById('play-pause-btn').textContent = '⏸';
+  startProgress();
+}
+
+function togglePlay() {
+  if (currentTrack === -1) { playTrack(0); return; }
+  isPlaying = !isPlaying;
+  document.getElementById('play-pause-btn').textContent = isPlaying ? '⏸' : '▶';
+  if (isPlaying) {
+    audio.play();
+    startProgress();
+  } else {
+    audio.pause();
+    clearInterval(progressInterval);
+  }
+}
+
+function startProgress() {
+  clearInterval(progressInterval);
+  progressInterval = setInterval(() => {
+    progress += 0.5;
+    if (progress >= 100) { nextTrack(); return; }
+    document.getElementById('progress-fill').style.width = progress + '%';
+  }, 150);
+}
+
+function nextTrack() {
+  playTrack((currentTrack + 1) % 4);
+}
+function prevTrack() {
+  playTrack((currentTrack + 3) % 4);
+}
+function seekTrack(e) {
+  const rect = e.currentTarget.getBoundingClientRect();
+  progress = ((e.clientX - rect.left) / rect.width) * 100;
+  document.getElementById('progress-fill').style.width = progress + '%';
+}
+</script>
+</body>
+</html>

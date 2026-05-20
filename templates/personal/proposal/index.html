@@ -1,0 +1,950 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Will You Be Mine? 💍</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Lato:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  /* ===== EASY CUSTOMIZATION SECTION ===== */
+  :root {
+    --girl-name: "Priya";       /* Change girlfriend's name */
+    --boy-name: "Aryan";        /* Change boyfriend's name */
+    --primary: #c0395b;
+    --light: #fff0f3;
+    --gold: #d4a843;
+    --dark: #1a0a0f;
+    --petal: #f9c6d0;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Lato', sans-serif;
+    background: #0d0509;
+    color: #fff;
+    overflow-x: hidden;
+    cursor: default;
+  }
+
+  /* ===== FLOATING PETALS ===== */
+  #petals-canvas {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* ===== PAGES ===== */
+  .page {
+    display: none;
+    min-height: 100vh;
+    position: relative;
+    z-index: 1;
+  }
+  .page.active { display: flex; }
+
+  /* ===== PAGE 1: INTRO ===== */
+  #page1 {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 2rem;
+    background: radial-gradient(ellipse at center, #2a0818 0%, #0d0509 70%);
+  }
+
+  .envelope-wrap {
+    position: relative;
+    margin-bottom: 2rem;
+    cursor: pointer;
+  }
+
+  .envelope {
+    width: 120px;
+    height: 80px;
+    background: var(--primary);
+    border-radius: 4px;
+    position: relative;
+    box-shadow: 0 8px 32px rgba(192,57,91,0.5);
+    transition: transform 0.3s;
+  }
+  .envelope:hover { transform: scale(1.05); }
+  .envelope::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 52px;
+    background: #a02e4a;
+    clip-path: polygon(0 0, 50% 60%, 100% 0);
+    border-radius: 4px 4px 0 0;
+    transition: transform 0.6s ease;
+    transform-origin: top center;
+  }
+  .envelope.open::before {
+    transform: rotateX(180deg);
+  }
+  .envelope::after {
+    content: '💌';
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 28px;
+    margin-top: 8px;
+  }
+
+  .tap-hint {
+    font-size: 12px;
+    color: rgba(255,255,255,0.4);
+    margin-top: 8px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse { 0%,100%{opacity:.4} 50%{opacity:1} }
+
+  #page1 h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 6vw, 4rem);
+    color: #fff;
+    line-height: 1.2;
+    margin-bottom: 1rem;
+  }
+  #page1 h1 span { color: var(--gold); font-style: italic; }
+  #page1 p {
+    font-size: 1rem;
+    color: rgba(255,255,255,0.55);
+    letter-spacing: 0.1em;
+    margin-bottom: 2.5rem;
+  }
+
+  .btn-start {
+    background: var(--primary);
+    color: #fff;
+    border: none;
+    padding: 14px 44px;
+    border-radius: 50px;
+    font-size: 1rem;
+    font-family: 'Lato', sans-serif;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    cursor: pointer;
+    box-shadow: 0 4px 24px rgba(192,57,91,0.5);
+    transition: all 0.3s;
+    display: none;
+  }
+  .btn-start:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(192,57,91,0.7); }
+
+  /* ===== PAGE 2: MEMORIES / LOVE LETTER ===== */
+  #page2 {
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 4rem 2rem;
+    background: radial-gradient(ellipse at top, #1f0a14 0%, #0d0509 60%);
+  }
+
+  .memories-header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+  .memories-header .eyebrow {
+    font-size: 11px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1rem;
+  }
+  .memories-header h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 5vw, 3rem);
+    color: #fff;
+    line-height: 1.3;
+  }
+  .memories-header h2 em { color: var(--primary); font-style: italic; }
+
+  .memories-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem;
+    max-width: 900px;
+    width: 100%;
+    margin-bottom: 3rem;
+  }
+
+  .memory-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(192,57,91,0.25);
+    border-radius: 16px;
+    padding: 1.5rem;
+    text-align: center;
+    transition: all 0.4s;
+    cursor: default;
+  }
+  .memory-card:hover {
+    background: rgba(192,57,91,0.1);
+    border-color: rgba(192,57,91,0.5);
+    transform: translateY(-4px);
+  }
+  .memory-card .icon { font-size: 2rem; margin-bottom: 0.75rem; }
+  .memory-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    color: #fff;
+    margin-bottom: 0.4rem;
+  }
+  .memory-card p { font-size: 0.85rem; color: rgba(255,255,255,0.5); line-height: 1.6; }
+
+  .love-letter {
+    max-width: 640px;
+    width: 100%;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(212,168,67,0.2);
+    border-radius: 20px;
+    padding: 2.5rem;
+    margin-bottom: 3rem;
+    text-align: center;
+  }
+  .love-letter .quote-mark {
+    font-family: 'Playfair Display', serif;
+    font-size: 5rem;
+    color: var(--primary);
+    opacity: 0.3;
+    line-height: 0.5;
+    display: block;
+    margin-bottom: 1rem;
+  }
+  .love-letter p {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    font-style: italic;
+    color: rgba(255,255,255,0.8);
+    line-height: 1.9;
+  }
+  .love-letter .signature {
+    margin-top: 1.5rem;
+    font-family: 'Playfair Display', serif;
+    color: var(--gold);
+    font-size: 1rem;
+  }
+
+  .btn-next {
+    background: transparent;
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    padding: 12px 40px;
+    border-radius: 50px;
+    font-size: 0.9rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+  .btn-next:hover { background: var(--gold); color: var(--dark); }
+
+  /* ===== PAGE 3: THE PROPOSAL ===== */
+  #page3 {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 3rem 2rem;
+    background: radial-gradient(ellipse at center, #200b15 0%, #0d0509 70%);
+    min-height: 100vh;
+  }
+
+  .ring-container {
+    position: relative;
+    margin-bottom: 3rem;
+    animation: float 4s ease-in-out infinite;
+  }
+  @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-14px)} }
+
+  .ring-svg { filter: drop-shadow(0 4px 24px rgba(212,168,67,0.6)); }
+
+  .proposal-text {
+    max-width: 600px;
+    margin-bottom: 3rem;
+  }
+  .proposal-text .to-name {
+    font-size: 11px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--primary);
+    margin-bottom: 1rem;
+  }
+  .proposal-text h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 6vw, 4rem);
+    color: #fff;
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+  }
+  .proposal-text h2 span { color: var(--gold); font-style: italic; }
+  .proposal-text p {
+    font-size: 1rem;
+    color: rgba(255,255,255,0.6);
+    line-height: 1.8;
+    margin-bottom: 1rem;
+  }
+
+  .answer-buttons {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .btn-yes {
+    background: var(--primary);
+    color: #fff;
+    border: none;
+    padding: 18px 60px;
+    border-radius: 50px;
+    font-size: 1.1rem;
+    font-family: 'Lato', sans-serif;
+    font-weight: 400;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    cursor: pointer;
+    box-shadow: 0 4px 24px rgba(192,57,91,0.6);
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+  .btn-yes::after {
+    content: '';
+    position: absolute;
+    top: 50%; left: 50%;
+    width: 0; height: 0;
+    background: rgba(255,255,255,0.2);
+    border-radius: 50%;
+    transform: translate(-50%,-50%);
+    transition: width 0.6s, height 0.6s;
+  }
+  .btn-yes:hover::after { width: 300px; height: 300px; }
+  .btn-yes:hover { transform: scale(1.08); box-shadow: 0 8px 40px rgba(192,57,91,0.8); }
+
+  .btn-no {
+    background: transparent;
+    color: rgba(255,255,255,0.3);
+    border: 1px solid rgba(255,255,255,0.15);
+    padding: 18px 40px;
+    border-radius: 50px;
+    font-size: 0.9rem;
+    font-family: 'Lato', sans-serif;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.2s;
+    position: absolute;
+  }
+
+  /* ===== PAGE 4: CELEBRATION ===== */
+  #page4 {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 3rem 2rem;
+    background: radial-gradient(ellipse at center, #1f0a14 0%, #0d0509 70%);
+  }
+
+  .celebration-icon { font-size: 5rem; margin-bottom: 1.5rem; animation: bounce 1s infinite; }
+  @keyframes bounce { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-12px)} }
+
+  #page4 h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 6vw, 4rem);
+    color: #fff;
+    margin-bottom: 1rem;
+  }
+  #page4 h2 span { color: var(--gold); font-style: italic; }
+  #page4 p {
+    font-size: 1rem;
+    color: rgba(255,255,255,0.6);
+    line-height: 1.8;
+    max-width: 480px;
+    margin-bottom: 2rem;
+  }
+  .confetti-msg {
+    font-size: 0.8rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--primary);
+    animation: pulse 1.5s infinite;
+  }
+
+  /* The "notify" button – hidden link for the boy */
+  .notify-link {
+    margin-top: 3rem;
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.15);
+    text-decoration: none;
+    cursor: pointer;
+    border: none;
+    background: none;
+    display: block;
+    transition: color 0.3s;
+  }
+  .notify-link:hover { color: rgba(255,255,255,0.4); }
+
+  /* ===== NOTIFICATION MODAL ===== */
+  #notify-modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.85);
+    z-index: 100;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+  }
+  #notify-modal.show { display: flex; }
+  .modal-box {
+    background: #1a0a0f;
+    border: 1px solid rgba(192,57,91,0.4);
+    border-radius: 20px;
+    padding: 2.5rem;
+    max-width: 440px;
+    width: 100%;
+    text-align: center;
+  }
+  .modal-box h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    color: #fff;
+    margin-bottom: 0.5rem;
+  }
+  .modal-box p { font-size: 0.9rem; color: rgba(255,255,255,0.5); margin-bottom: 2rem; line-height: 1.7; }
+  .modal-input {
+    width: 100%;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 10px;
+    padding: 12px 16px;
+    color: #fff;
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+    font-family: 'Lato', sans-serif;
+    outline: none;
+    transition: border 0.3s;
+  }
+  .modal-input:focus { border-color: var(--primary); }
+  .modal-btn {
+    width: 100%;
+    background: var(--primary);
+    color: #fff;
+    border: none;
+    padding: 13px;
+    border-radius: 10px;
+    font-size: 0.9rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    cursor: pointer;
+    margin-bottom: 0.75rem;
+    transition: all 0.3s;
+  }
+  .modal-btn:hover { background: #a02e4a; }
+  .modal-close {
+    background: none;
+    border: none;
+    color: rgba(255,255,255,0.3);
+    font-size: 0.8rem;
+    cursor: pointer;
+    letter-spacing: 0.1em;
+  }
+  .success-msg {
+    display: none;
+    background: rgba(40,180,100,0.15);
+    border: 1px solid rgba(40,180,100,0.3);
+    border-radius: 10px;
+    padding: 12px;
+    font-size: 0.85rem;
+    color: #5de89a;
+    margin-bottom: 1rem;
+  }
+
+  /* ===== PROGRESS DOTS ===== */
+  .progress-dots {
+    position: fixed;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    z-index: 10;
+  }
+  .dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.2);
+    transition: all 0.3s;
+  }
+  .dot.active { background: var(--primary); transform: scale(1.4); }
+
+  /* ===== ANIMATIONS ===== */
+  .fade-in { animation: fadeIn 1s ease forwards; }
+  @keyframes fadeIn { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
+
+  .stagger > * { opacity: 0; animation: fadeIn 0.7s ease forwards; }
+  .stagger > *:nth-child(1) { animation-delay: 0.1s; }
+  .stagger > *:nth-child(2) { animation-delay: 0.25s; }
+  .stagger > *:nth-child(3) { animation-delay: 0.4s; }
+  .stagger > *:nth-child(4) { animation-delay: 0.55s; }
+  .stagger > *:nth-child(5) { animation-delay: 0.7s; }
+  .stagger > *:nth-child(6) { animation-delay: 0.85s; }
+
+  /* ===== MUSIC NOTE ===== */
+  .music-btn {
+    position: fixed;
+    bottom: 20px; right: 20px;
+    width: 44px; height: 44px;
+    background: rgba(192,57,91,0.2);
+    border: 1px solid rgba(192,57,91,0.4);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px;
+    cursor: pointer;
+    z-index: 20;
+    transition: all 0.3s;
+    backdrop-filter: blur(4px);
+  }
+  .music-btn:hover { background: rgba(192,57,91,0.4); }
+
+  /* MOBILE */
+  @media (max-width: 500px) {
+    .memories-grid { grid-template-columns: 1fr 1fr; }
+    .love-letter { padding: 1.5rem; }
+    .btn-yes { padding: 16px 44px; }
+  }
+/* ---- FOOTER ---- */
+footer {
+  position: fixed;
+  bottom: 10px;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  z-index: 199;
+}
+.footer-copy {
+  font-size: 12px;
+  color: #ffffff;
+  letter-spacing: 1px;
+}  
+</style>
+</head>
+<body>
+
+<canvas id="petals-canvas"></canvas>
+
+<!-- Progress dots -->
+<div class="progress-dots" id="progress">
+  <div class="dot active"></div>
+  <div class="dot"></div>
+  <div class="dot"></div>
+  <div class="dot"></div>
+</div>
+
+<!-- Music toggle -->
+<div class="music-btn" id="music-btn" title="Toggle music">♪</div>
+
+<!-- Hidden audio (looping soft piano) -->
+<audio id="bg-music" loop>
+    <source src ="song.mp3" type="audio/mpeg">
+</audio>
+
+<!-- ====== PAGE 1: INTRO ====== -->
+<div class="page active" id="page1">
+  <div class="stagger" style="display:flex;flex-direction:column;align-items:center;gap:0.5rem">
+    <p style="font-size:11px;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:1.5rem">A message just for you</p>
+
+    <div class="envelope-wrap" id="envelope-wrap">
+      <div class="envelope" id="envelope"></div>
+      <p class="tap-hint">tap to open</p>
+    </div>
+
+    <h1 id="hero-title" style="opacity:0">
+      Dear <span id="name-display">Priya</span>
+    </h1>
+    <p id="hero-sub" style="opacity:0">There's something I've been wanting to tell you…</p>
+    <button class="btn-start" id="btn-start">Continue →</button>
+  </div>
+</div>
+
+<!-- ====== PAGE 2: MEMORIES ====== -->
+<div class="page" id="page2">
+  <div class="memories-header stagger" style="display:flex;flex-direction:column;align-items:center">
+    <p class="eyebrow">Our story</p>
+    <h2>All the little moments<br>that made me fall for <em id="name2">Priya</em></h2>
+  </div>
+
+  <!-- EDIT THESE CARDS FOR EACH CLIENT -->
+  <div class="memories-grid stagger" id="memories-grid">
+    <div class="memory-card">
+      <div class="icon">☕</div>
+      <h3>That first coffee</h3>
+      <p>The day everything changed, when you smiled at me over your cup.</p>
+    </div>
+    <div class="memory-card">
+      <div class="icon">🌧️</div>
+      <h3>Getting caught in rain</h3>
+      <p>We laughed so hard running for shelter. I knew then.</p>
+    </div>
+    <div class="memory-card">
+      <div class="icon">🌅</div>
+      <h3>Our sunset walk</h3>
+      <p>You said the sky looked like a painting. You were more beautiful than any painting.</p>
+    </div>
+    <div class="memory-card">
+      <div class="icon">🎵</div>
+      <h3>Your favourite song</h3>
+      <p>How you sing along without realising. It's my favourite sound in the world.</p>
+    </div>
+    <div class="memory-card">
+      <div class="icon">🍕</div>
+      <h3>Late night pizza</h3>
+      <p>Talking about everything and nothing until 2 AM. I never wanted it to end.</p>
+    </div>
+    <div class="memory-card">
+      <div class="icon">⭐</div>
+      <h3>Every single day</h3>
+      <p>Waking up knowing you exist in this world makes me endlessly grateful.</p>
+    </div>
+  </div>
+
+  <!-- EDIT THIS LETTER FOR EACH CLIENT -->
+  <div class="love-letter">
+    <span class="quote-mark">"</span>
+    <p id="love-letter-text">
+      From the moment you walked into my life, everything felt different — brighter, warmer, more alive.
+      You have this way of making ordinary days feel extraordinary just by being in them.
+      I've kept this feeling close to my heart for so long, and today, I finally want you to know.<br><br>
+      You are the person I want to laugh with, grow with, and be completely myself with — forever.
+    </p>
+    <p class="signature" id="letter-sig">— With all my love, Aryan</p>
+  </div>
+
+  <button class="btn-next" onclick="goToPage(3)">I have something to ask you →</button>
+  <br><br>
+</div>
+
+<!-- ====== PAGE 3: THE PROPOSAL ====== -->
+<div class="page" id="page3">
+
+  <!-- RING SVG -->
+  <div class="ring-container">
+    <svg class="ring-svg" width="160" height="160" viewBox="0 0 160 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- Ring band -->
+      <circle cx="80" cy="95" r="38" stroke="#d4a843" stroke-width="9" fill="none"/>
+      <circle cx="80" cy="95" r="38" stroke="rgba(255,255,255,0.08)" stroke-width="12" fill="none"/>
+      <!-- Diamond -->
+      <polygon points="80,8 100,38 80,54 60,38" fill="#d4a843"/>
+      <polygon points="80,8 100,38 80,30" fill="#f0cc70"/>
+      <polygon points="80,8 60,38 80,30" fill="#b8902e"/>
+      <polygon points="100,38 80,54 80,30" fill="#c49a35"/>
+      <polygon points="60,38 80,54 80,30" fill="#e0b84a"/>
+      <!-- Shine -->
+      <circle cx="73" cy="22" r="4" fill="rgba(255,255,255,0.55)" />
+      <circle cx="67" cy="30" r="2" fill="rgba(255,255,255,0.3)" />
+      <!-- Ring highlight -->
+      <path d="M 50 80 A 38 38 0 0 1 110 80" stroke="rgba(255,255,255,0.2)" stroke-width="4" fill="none" stroke-linecap="round"/>
+    </svg>
+  </div>
+
+  <div class="proposal-text stagger">
+    <p class="to-name">For <span id="name3">Priya</span>, with everything I have</p>
+    <h2>Will you <span>marry me?</span></h2>
+    <p id="proposal-body">
+      You are my best friend, my greatest adventure, and the love I never knew I was looking for.
+      I promise to choose you every single day — in every season, every storm, every sunrise.
+    </p>
+    <p id="proposal-body2" style="font-size:0.85rem;opacity:0.45">
+      — <span id="name-from">Aryan</span>
+    </p>
+  </div>
+
+  <div class="answer-buttons" style="position:relative;min-height:70px;justify-content:center;align-items:center">
+    <button class="btn-yes" id="btn-yes">Yes, I will! 💍</button>
+    <button class="btn-no" id="btn-no">No</button>
+  </div>
+
+</div>
+
+<!-- ====== PAGE 4: CELEBRATION ====== -->
+<div class="page" id="page4">
+  <div class="stagger" style="display:flex;flex-direction:column;align-items:center">
+    <div class="celebration-icon">💍</div>
+    <h2>She said <span>Yes!</span></h2>
+    <p id="congrats-msg">
+      <span id="name4">Priya</span> said yes! The most beautiful chapter is just beginning.
+      Every dream you've ever had is about to come true together. ✨
+    </p>
+    <p class="confetti-msg">💕 Forever begins today 💕</p>
+
+    <!-- Hidden notification button for the boy -->
+    <button class="notify-link" id="notify-btn">🔔 she said yes — notify me</button>
+  </div>
+</div>
+
+<!-- ====== NOTIFICATION MODAL ====== -->
+<div id="notify-modal">
+  <div class="modal-box">
+    <h3>💌 Notify the Sender</h3>
+    <p>Enter your WhatsApp number or email so <span id="modal-boy-name">Aryan</span> gets a notification when she answers.</p>
+    <div id="success-msg" class="success-msg">✅ Notification sent! She said YES! 🎉</div>
+    <input class="modal-input" type="text" id="notify-contact" placeholder="WhatsApp number or email" />
+    <button class="modal-btn" id="send-notify-btn">Send Notification</button>
+    <button class="modal-close" onclick="closeModal()">Close</button>
+  </div>
+</div>
+<footer>
+  <p class="footer-copy" style="color:#ffffff;">Made with ❤️ by <a href="https://instagram.com/gem_invite" target="_blank" style="color:#ffffff !important; text-decoration:none;">@gem_invite</a></p>
+</footer>
+<script>
+  /* =============================================
+     EASY CONFIG — change for each client
+  ============================================= */
+  const CONFIG = {
+    girlName: "Priya",
+    boyName: "Aryan",
+    // WhatsApp number to auto-notify (with country code, no +)
+    // Leave empty to disable auto-notify
+    notifyWhatsApp: "",   // e.g. "919876543210"
+    notifyEmail: "",      // e.g. "aryan@gmail.com"
+  };
+
+  /* ====== Apply names everywhere ====== */
+  function applyNames() {
+    document.querySelectorAll('[id^="name"]').forEach(el => {
+      el.textContent = CONFIG.girlName;
+    });
+    document.getElementById('letter-sig').textContent = `— With all my love, ${CONFIG.boyName}`;
+    document.getElementById('proposal-body2').innerHTML = `— <span>${CONFIG.boyName}</span>`;
+    document.getElementById('modal-boy-name').textContent = CONFIG.boyName;
+    document.getElementById('hero-title').innerHTML = `Dear <span style="color:var(--gold);font-style:italic">${CONFIG.girlName}</span>`;
+  }
+  applyNames();
+
+  /* ====== Pages ====== */
+  let currentPage = 1;
+  function goToPage(n) {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.getElementById('page' + n).classList.add('active');
+    document.querySelectorAll('.dot').forEach((d, i) => {
+      d.classList.toggle('active', i === n - 1);
+    });
+    currentPage = n;
+    window.scrollTo(0, 0);
+  }
+
+  /* ====== Envelope open ====== */
+  let envelopeOpened = false;
+  document.getElementById('envelope-wrap').addEventListener('click', function() {
+    if (envelopeOpened) return;
+    envelopeOpened = true;
+    document.getElementById('envelope').classList.add('open');
+    setTimeout(() => {
+      const title = document.getElementById('hero-title');
+      const sub = document.getElementById('hero-sub');
+      const btn = document.getElementById('btn-start');
+      title.style.animation = 'fadeIn 0.8s ease forwards';
+      title.style.opacity = '1';
+      sub.style.animation = 'fadeIn 0.8s 0.4s ease forwards';
+      sub.style.opacity = '1';
+      btn.style.display = 'inline-block';
+      btn.style.animation = 'fadeIn 0.8s 0.8s ease forwards';
+    }, 700);
+    tryPlayMusic();
+  });
+
+  document.getElementById('btn-start').addEventListener('click', () => goToPage(2));
+
+  /* ====== NO button runs away ====== */
+  const noBtn = document.getElementById('btn-no');
+  let noMoves = 0;
+  function moveNoBtn() {
+    const wrap = noBtn.parentElement;
+    const wrapRect = wrap.getBoundingClientRect();
+    const maxX = Math.max(0, wrapRect.width - 120);
+    const maxY = Math.max(0, wrapRect.height - 50);
+    const x = (Math.random() * maxX) - maxX/2;
+    const y = (Math.random() * 100) - 50;
+    noBtn.style.transform = `translate(${x}px, ${y}px)`;
+    noMoves++;
+    if (noMoves > 5) {
+      noBtn.style.display = 'none';
+    }
+  }
+  noBtn.addEventListener('mouseover', moveNoBtn);
+  noBtn.addEventListener('touchstart', moveNoBtn);
+
+  /* ====== YES! ====== */
+  document.getElementById('btn-yes').addEventListener('click', function() {
+    launchConfetti();
+    goToPage(4);
+    triggerNotification('YES');
+  });
+
+  /* ====== Notification modal ====== */
+  document.getElementById('notify-btn').addEventListener('click', () => {
+    document.getElementById('notify-modal').classList.add('show');
+  });
+  function closeModal() {
+    document.getElementById('notify-modal').classList.remove('show');
+  }
+  document.getElementById('notify-modal').addEventListener('click', function(e) {
+    if (e.target === this) closeModal();
+  });
+
+  document.getElementById('send-notify-btn').addEventListener('click', function() {
+    const contact = document.getElementById('notify-contact').value.trim();
+    if (!contact) return;
+    // Try WhatsApp link
+    const msg = encodeURIComponent(`💍 ${CONFIG.girlName} said YES to your proposal! 🎉🥹`);
+    if (/^\d{7,}$/.test(contact.replace(/[\s\-]/g, ''))) {
+      const num = contact.replace(/[\s\-\+]/g, '');
+      window.open(`https://wa.me/${num}?text=${msg}`, '_blank');
+    } else if (contact.includes('@')) {
+      window.open(`mailto:${contact}?subject=${encodeURIComponent(CONFIG.girlName + ' said YES! 💍')}&body=${decodeURIComponent(msg)}`, '_blank');
+    }
+    document.getElementById('success-msg').style.display = 'block';
+    document.getElementById('send-notify-btn').style.display = 'none';
+  });
+
+  /* ====== Auto-trigger notification if configured ====== */
+  function triggerNotification(answer) {
+    if (answer !== 'YES') return;
+    const msg = encodeURIComponent(`💍 ${CONFIG.girlName} said YES to your proposal! 🎉`);
+    if (CONFIG.notifyWhatsApp) {
+      setTimeout(() => window.open(`https://wa.me/${CONFIG.notifyWhatsApp}?text=${msg}`, '_blank'), 1500);
+    }
+  }
+
+  /* ====== Floating petals canvas ====== */
+  const canvas = document.getElementById('petals-canvas');
+  const ctx = canvas.getContext('2d');
+  let petals = [];
+
+  function resizeCanvas() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+  resizeCanvas();
+  window.addEventListener('resize', resizeCanvas);
+
+  function createPetal() {
+    return {
+      x: Math.random() * canvas.width,
+      y: -20,
+      size: 5 + Math.random() * 10,
+      speedY: 0.5 + Math.random() * 1.5,
+      speedX: (Math.random() - 0.5) * 0.8,
+      angle: Math.random() * Math.PI * 2,
+      spin: (Math.random() - 0.5) * 0.04,
+      opacity: 0.3 + Math.random() * 0.5,
+      color: `hsl(${340 + Math.random() * 30}, 70%, ${70 + Math.random() * 15}%)`,
+    };
+  }
+
+  for (let i = 0; i < 30; i++) {
+    const p = createPetal();
+    p.y = Math.random() * canvas.height;
+    petals.push(p);
+  }
+
+  function drawPetal(p) {
+    ctx.save();
+    ctx.translate(p.x, p.y);
+    ctx.rotate(p.angle);
+    ctx.globalAlpha = p.opacity;
+    ctx.fillStyle = p.color;
+    ctx.beginPath();
+    ctx.ellipse(0, 0, p.size * 0.5, p.size, 0, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.restore();
+  }
+
+  function animatePetals() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    petals.forEach(p => {
+      p.y += p.speedY;
+      p.x += p.speedX + Math.sin(p.y * 0.02) * 0.5;
+      p.angle += p.spin;
+      if (p.y > canvas.height + 20) {
+        Object.assign(p, createPetal());
+      }
+      drawPetal(p);
+    });
+    requestAnimationFrame(animatePetals);
+  }
+  animatePetals();
+
+  /* ====== Confetti burst on YES ====== */
+  function launchConfetti() {
+    const colors = ['#c0395b','#d4a843','#f9c6d0','#fff','#ff6b9e','#ffd700'];
+    for (let i = 0; i < 80; i++) {
+      petals.push({
+        x: window.innerWidth / 2,
+        y: window.innerHeight / 2,
+        size: 6 + Math.random() * 10,
+        speedY: -8 + Math.random() * 16,
+        speedX: -10 + Math.random() * 20,
+        angle: Math.random() * Math.PI * 2,
+        spin: (Math.random() - 0.5) * 0.2,
+        opacity: 0.9,
+        color: colors[Math.floor(Math.random() * colors.length)],
+        gravity: 0.15,
+      });
+    }
+  }
+
+  // Override animation for confetti gravity
+  const origAnimate = animatePetals;
+  function animatePetals2() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    petals.forEach(p => {
+      if (p.gravity) {
+        p.speedY += p.gravity;
+        p.opacity -= 0.005;
+        if (p.opacity <= 0) { p.y = canvas.height + 50; p.gravity = 0; }
+      }
+      p.y += p.speedY;
+      p.x += p.speedX + Math.sin(p.y * 0.02) * 0.5;
+      p.angle += p.spin;
+      if (!p.gravity && p.y > canvas.height + 20) {
+        Object.assign(p, createPetal());
+      }
+      if (p.opacity > 0) drawPetal(p);
+    });
+    requestAnimationFrame(animatePetals2);
+  }
+  // Restart with gravity-aware loop
+  requestAnimationFrame(animatePetals2);
+
+  /* ====== Music ====== */
+  const music = document.getElementById('bg-music');
+  const musicBtn = document.getElementById('music-btn');
+  let musicOn = false;
+
+  function tryPlayMusic() {
+    music.volume = 0.25;
+    music.play().then(() => { musicOn = true; musicBtn.textContent = '♪'; })
+    .catch(() => {});
+  }
+
+  musicBtn.addEventListener('click', () => {
+    if (musicOn) { music.pause(); musicOn = false; musicBtn.textContent = '♩'; }
+    else { tryPlayMusic(); }
+  });
+
+  document.addEventListener('click', () => {
+    if (!musicOn) tryPlayMusic();
+  }, { once: true });
+</script>
+</body>
+</html>

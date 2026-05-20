@@ -1,0 +1,1133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Athai Tap Parna Mahotsav — Jai Jinendra</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Noto+Sans+Devanagari:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #c9933a;
+    --gold-light: #e8bf7a;
+    --gold-pale: #f5e6c8;
+    --cream: #fdf8f0;
+    --deep: #1a0e05;
+    --maroon: #6b1a1a;
+    --maroon-light: #9b2b2b;
+    --saffron: #e07b39;
+    --ivory: #faf6ee;
+    --text-dark: #2d1a0a;
+    --text-mid: #5a3820;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--cream);
+    color: var(--text-dark);
+    font-family: 'Cormorant Garamond', serif;
+    overflow-x: hidden;
+  }
+
+  /* ── MUSIC TOGGLE ── */
+  #music-toggle {
+    position: fixed;
+    top: 18px; right: 22px;
+    z-index: 1000;
+    background: rgba(201,147,58,0.18);
+    border: 1.5px solid var(--gold);
+    color: var(--gold);
+    font-size: 1.3rem;
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    backdrop-filter: blur(8px);
+    transition: all .3s;
+  }
+  #music-toggle:hover { background: var(--gold); color: #fff; }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0;
+    z-index: 900;
+    display: flex; justify-content: center; gap: 2rem;
+    padding: 14px 0 10px;
+    background: rgba(253,248,240,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(201,147,58,0.2);
+  }
+  nav a {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: .85rem;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: var(--maroon);
+    text-decoration: none;
+    opacity: .8;
+    transition: opacity .2s, color .2s;
+  }
+  nav a:hover { opacity: 1; color: var(--gold); }
+
+  /* ── DIVIDER ── */
+  .ornament {
+    text-align: center;
+    color: var(--gold);
+    font-size: 1.4rem;
+    letter-spacing: .5em;
+    margin: .5rem 0;
+    opacity: .7;
+  }
+
+  /* ── MAHAVIR BANNER ── */
+  #mahavir {
+    position: relative;
+    min-height: 100vh;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    overflow: hidden;
+    padding-top: 70px;
+    background: linear-gradient(175deg, #1a0e05 0%, #3b1a08 45%, #6b2e10 100%);
+  }
+
+  .mandala-bg {
+    position: absolute; inset: 0;
+    background-image:
+      radial-gradient(circle at 50% 50%, rgba(201,147,58,.12) 0%, transparent 65%),
+      radial-gradient(circle at 20% 80%, rgba(201,147,58,.07) 0%, transparent 40%),
+      radial-gradient(circle at 80% 20%, rgba(201,147,58,.07) 0%, transparent 40%);
+    pointer-events: none;
+  }
+
+  /* Geometric mandala rings */
+  .ring {
+    position: absolute; top: 50%; left: 50%;
+    border: 1px solid rgba(201,147,58,.15);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    animation: spin linear infinite;
+  }
+  .ring:nth-child(1){ width:500px;height:500px;animation-duration:80s; }
+  .ring:nth-child(2){ width:700px;height:700px;animation-duration:120s;animation-direction:reverse; }
+  .ring:nth-child(3){ width:900px;height:900px;animation-duration:160s; border-style: dashed; }
+  @keyframes spin { to { transform: translate(-50%,-50%) rotate(360deg); } }
+
+  .mahavir-image-wrap {
+    position: relative;
+    z-index: 2;
+    width: 280px; height: 280px;
+    border-radius: 50%;
+    border: 3px solid var(--gold);
+    box-shadow: 0 0 0 8px rgba(201,147,58,.12), 0 0 60px rgba(201,147,58,.3);
+    overflow: hidden;
+    margin-bottom: 1.5rem;
+    animation: glow-pulse 3s ease-in-out infinite;
+  }
+  @keyframes glow-pulse {
+    0%,100% { box-shadow: 0 0 0 8px rgba(201,147,58,.12), 0 0 40px rgba(201,147,58,.25); }
+    50%      { box-shadow: 0 0 0 12px rgba(201,147,58,.2), 0 0 80px rgba(201,147,58,.45); }
+  }
+  .mahavir-image-wrap img {
+    width: 100%; height: 100%; object-fit: cover;
+    object-position: center top;
+    filter: sepia(20%) brightness(1.05);
+  }
+
+  .om-symbol {
+    font-size: 2rem;
+    color: var(--gold-light);
+    display: block;
+    margin-bottom: .5rem;
+    z-index: 2;
+    position: relative;
+    opacity: .9;
+    animation: fadeUp 1.2s ease both;
+  }
+
+  .mahavir-title {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: clamp(1.1rem, 2.5vw, 1.6rem);
+    color: var(--gold-light);
+    letter-spacing: .2em;
+    z-index: 2; position: relative;
+    text-align: center;
+    animation: fadeUp 1.4s ease both;
+  }
+  .mahavir-quote {
+    font-style: italic;
+    color: rgba(245,230,200,.75);
+    font-size: 1.05rem;
+    margin-top: .8rem;
+    z-index: 2; position: relative;
+    letter-spacing: .05em;
+    animation: fadeUp 1.6s ease both;
+  }
+
+  /* Floating petals */
+  .petal {
+    position: absolute;
+    font-size: 1.2rem;
+    animation: floatPetal linear infinite;
+    opacity: 0;
+    pointer-events: none;
+  }
+  @keyframes floatPetal {
+    0%   { opacity:0; transform: translateY(0) rotate(0deg); }
+    10%  { opacity:.6; }
+    90%  { opacity:.3; }
+    100% { opacity:0; transform: translateY(-100vh) rotate(720deg); }
+  }
+
+  @keyframes fadeUp {
+    from { opacity:0; transform:translateY(24px); }
+    to   { opacity:1; transform:translateY(0); }
+  }
+
+  /* ── SECTIONS ── */
+  section {
+    padding: 80px 24px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .section-label {
+    font-size: .75rem;
+    letter-spacing: .35em;
+    text-transform: uppercase;
+    color: var(--gold);
+    text-align: center;
+    display: block;
+    margin-bottom: .6rem;
+  }
+
+  h2 {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: clamp(1.4rem, 3.5vw, 2.2rem);
+    color: var(--maroon);
+    text-align: center;
+    line-height: 1.3;
+    margin-bottom: 1rem;
+  }
+
+  .lead {
+    text-align: center;
+    font-size: 1.2rem;
+    line-height: 1.9;
+    color: var(--text-mid);
+    font-style: italic;
+    max-width: 680px;
+    margin: 0 auto 1.5rem;
+  }
+
+  /* Gold horizontal rule */
+  hr.gold {
+    border: none;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    margin: 2.5rem auto;
+    max-width: 300px;
+  }
+
+  /* ── HERO INVITE ── */
+  #hero {
+    background: linear-gradient(160deg, #fdf8f0 0%, #f5e6c8 50%, #fdf8f0 100%);
+    text-align: center;
+    padding: 90px 24px 60px;
+    position: relative;
+    overflow: hidden;
+  }
+  #hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23c9933a' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    pointer-events: none;
+  }
+
+  .tapasvi-name {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: clamp(1.6rem, 4vw, 2.8rem);
+    color: var(--maroon);
+    margin: 1rem 0 .5rem;
+    position: relative;
+    display: inline-block;
+  }
+  .tapasvi-name::after {
+    content: '';
+    display: block;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    margin-top: 6px;
+  }
+
+  /* ── ABOUT ── */
+  #about {
+    background: var(--ivory);
+    border-radius: 2px;
+    position: relative;
+    padding: 70px 40px;
+    max-width: 100%;
+    box-shadow: 0 2px 40px rgba(0,0,0,.04);
+  }
+  #about-inner { max-width: 820px; margin: 0 auto; }
+
+  .pillars {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2.5rem;
+  }
+  .pillar {
+    background: linear-gradient(135deg, #fff 0%, #fdf3e3 100%);
+    border: 1px solid rgba(201,147,58,.25);
+    border-radius: 2px;
+    padding: 1.6rem 1.2rem;
+    text-align: center;
+    transition: transform .25s, box-shadow .25s;
+  }
+  .pillar:hover { transform: translateY(-4px); box-shadow: 0 8px 30px rgba(201,147,58,.12); }
+  .pillar-icon { font-size: 2rem; margin-bottom: .6rem; display: block; }
+  .pillar h4 {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: .8rem;
+    color: var(--maroon);
+    letter-spacing: .1em;
+    margin-bottom: .4rem;
+  }
+  .pillar p { font-size: .9rem; color: var(--text-mid); line-height: 1.6; font-style: italic; }
+
+  /* ── GALLERY ── */
+  #gallery {
+    background: var(--deep);
+    color: var(--gold-pale);
+    padding: 80px 24px;
+    max-width: 100%;
+  }
+  #gallery-inner { max-width: 1000px; margin: 0 auto; }
+  #gallery h2 { color: var(--gold-light); }
+  #gallery .section-label { color: rgba(232,191,122,.7); }
+  #gallery .lead { color: rgba(245,230,200,.7); }
+
+  /* ── EVENT PROGRAM ── */
+  #event {
+    background: linear-gradient(135deg, #fff 0%, #fdf3e3 100%);
+    padding: 80px 24px;
+    max-width: 100%;
+  }
+  #event-inner { max-width: 820px; margin: 0 auto; }
+
+  /* ── MAP ── */
+  #map-section {
+    background: var(--cream);
+    padding: 80px 24px;
+    max-width: 100%;
+  }
+  #map-section-inner { max-width: 820px; margin: 0 auto; }
+  .map-wrapper {
+    margin-top: 2rem;
+    border: 2px solid rgba(201,147,58,.3);
+    overflow: hidden;
+    position: relative;
+  }
+  .map-wrapper iframe {
+    width: 100%; height: 380px; border: none; display: block;
+    filter: sepia(15%) saturate(0.9);
+  }
+  .map-btn {
+    display: inline-flex; align-items: center; gap: .5rem;
+    margin-top: 1.2rem;
+    background: var(--maroon);
+    color: #fff;
+    padding: .7rem 1.6rem;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1rem;
+    letter-spacing: .1em;
+    border: none; cursor: pointer;
+    text-decoration: none;
+    transition: background .2s;
+  }
+  .map-btn:hover { background: var(--maroon-light); }
+
+  /* ── BLESSINGS ── */
+  #blessings {
+    background: linear-gradient(160deg, #1a0e05 0%, #2e1508 100%);
+    color: var(--gold-pale);
+    padding: 80px 24px;
+    max-width: 100%;
+  }
+  #blessings-inner { max-width: 820px; margin: 0 auto; }
+  #blessings h2 { color: var(--gold-light); }
+  #blessings .lead { color: rgba(245,230,200,.75); }
+
+  .blessings-existing {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.2rem;
+    margin: 2rem 0;
+  }
+  .blessing-card {
+    background: rgba(255,255,255,.05);
+    border: 1px solid rgba(201,147,58,.2);
+    padding: 1.4rem;
+    position: relative;
+    font-style: italic;
+    font-size: 1rem;
+    line-height: 1.8;
+    color: rgba(245,230,200,.85);
+  }
+  .blessing-card::before {
+    content: '"';
+    position: absolute; top: -10px; left: 14px;
+    font-size: 4rem; color: var(--gold); opacity: .2;
+    font-family: 'Cinzel Decorative', serif;
+    line-height: 1;
+  }
+  .blessing-author {
+    display: block;
+    margin-top: .8rem;
+    font-style: normal;
+    font-size: .8rem;
+    letter-spacing: .15em;
+    color: var(--gold);
+    text-transform: uppercase;
+  }
+
+  /* Blessing form */
+  .blessing-form {
+    margin-top: 2.5rem;
+    background: rgba(255,255,255,.04);
+    border: 1px solid rgba(201,147,58,.2);
+    padding: 2rem;
+  }
+  .blessing-form h3 {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 1rem;
+    color: var(--gold-light);
+    margin-bottom: 1.2rem;
+    letter-spacing: .1em;
+  }
+  .form-row { margin-bottom: 1rem; }
+  .form-row input, .form-row textarea {
+    width: 100%;
+    background: rgba(255,255,255,.06);
+    border: 1px solid rgba(201,147,58,.25);
+    color: var(--gold-pale);
+    padding: .75rem 1rem;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1rem;
+    outline: none;
+    transition: border-color .2s;
+    resize: vertical;
+  }
+  .form-row input::placeholder, .form-row textarea::placeholder { color: rgba(245,230,200,.35); }
+  .form-row input:focus, .form-row textarea:focus { border-color: var(--gold); }
+
+  .submit-btn {
+    background: linear-gradient(135deg, var(--gold), var(--saffron));
+    color: var(--deep);
+    border: none;
+    padding: .75rem 2rem;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.05rem;
+    letter-spacing: .1em;
+    cursor: pointer;
+    font-weight: 500;
+    transition: opacity .2s;
+  }
+  .submit-btn:hover { opacity: .85; }
+
+  #blessings-list { margin-top: 1.5rem; }
+  .new-blessing {
+    background: rgba(201,147,58,.06);
+    border-left: 3px solid var(--gold);
+    padding: 1rem 1.2rem;
+    margin-bottom: .8rem;
+    font-style: italic;
+    color: rgba(245,230,200,.85);
+    animation: fadeUp .5s ease both;
+  }
+  .new-blessing strong { color: var(--gold-light); font-style: normal; font-size: .85rem; display: block; margin-bottom: .3rem; }
+
+  /* ── FAMILY ── */
+  #family {
+    background: var(--ivory);
+    padding: 80px 24px;
+    max-width: 100%;
+    text-align: center;
+  }
+  #family-inner { max-width: 680px; margin: 0 auto; }
+  .family-names {
+    margin-top: 2rem;
+    display: flex; flex-direction: column; gap: .4rem;
+  }
+  .family-name {
+    font-size: 1.25rem;
+    color: var(--maroon);
+    font-style: italic;
+  }
+  .family-sep { color: var(--gold); font-size: 1rem; opacity: .6; }
+
+  /* ── WHATSAPP ── */
+  .whatsapp-btn {
+    display: inline-flex; align-items: center; gap: .6rem;
+    background: #25d366;
+    color: #fff;
+    padding: .75rem 1.6rem;
+    border-radius: 2px;
+    text-decoration: none;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1rem;
+    margin-top: 1.5rem;
+    transition: background .2s;
+  }
+  .whatsapp-btn:hover { background: #1ebe5d; }
+
+  /* ── CLOSING ── */
+  #closing {
+    background: linear-gradient(160deg, #3b1a08 0%, #1a0e05 100%);
+    color: var(--gold-pale);
+    text-align: center;
+    padding: 90px 24px 60px;
+    max-width: 100%;
+  }
+  .jai-jinendra {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: clamp(1.4rem, 4vw, 2.4rem);
+    color: var(--gold-light);
+    letter-spacing: .15em;
+    margin-top: 1.5rem;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--deep);
+    text-align: center;
+    padding: 1.2rem;
+    font-size: .8rem;
+    color: rgba(245,230,200,.35);
+    letter-spacing: .1em;
+  }
+
+  /* ── CINEMATIC CAROUSEL ── */
+  .carousel-scene {
+    position: relative;
+    width: 100%;
+    height: 520px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    perspective: 1200px;
+    margin-top: 2.5rem;
+    overflow: hidden;
+  }
+  .carousel-track {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .c-slide {
+    position: absolute;
+    border-radius: 4px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all .55s cubic-bezier(.4,0,.2,1);
+    border: 2px solid rgba(201,147,58,.3);
+    box-shadow: 0 8px 40px rgba(0,0,0,.6);
+  }
+  .c-slide img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: filter .55s, transform .55s;
+  }
+  .c-slide .c-caption {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    background: linear-gradient(0deg, rgba(10,5,0,.9) 0%, transparent 100%);
+    padding: 1.4rem 1rem .8rem;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 1rem;
+    color: var(--gold-light);
+    letter-spacing: .08em;
+    opacity: 0;
+    transition: opacity .4s;
+    text-align: center;
+  }
+  /* States: center, left-1, left-2, right-1, right-2, hidden */
+  .c-slide[data-pos="center"] {
+    width: 320px; height: 430px;
+    transform: translateX(0) translateZ(0) rotateY(0deg);
+    z-index: 5;
+    border-color: var(--gold);
+    box-shadow: 0 0 0 4px rgba(201,147,58,.15), 0 20px 80px rgba(0,0,0,.8);
+  }
+  .c-slide[data-pos="center"] img { filter: brightness(1); }
+  .c-slide[data-pos="center"] .c-caption { opacity: 1; }
+
+  .c-slide[data-pos="left-1"] {
+    width: 200px; height: 310px;
+    transform: translateX(-260px) translateZ(-120px) rotateY(18deg);
+    z-index: 4;
+    opacity: .85;
+    filter: brightness(.75);
+  }
+  .c-slide[data-pos="right-1"] {
+    width: 200px; height: 310px;
+    transform: translateX(260px) translateZ(-120px) rotateY(-18deg);
+    z-index: 4;
+    opacity: .85;
+    filter: brightness(.75);
+  }
+  .c-slide[data-pos="left-2"] {
+    width: 130px; height: 200px;
+    transform: translateX(-440px) translateZ(-260px) rotateY(28deg);
+    z-index: 3;
+    opacity: .45;
+    filter: brightness(.5);
+  }
+  .c-slide[data-pos="right-2"] {
+    width: 130px; height: 200px;
+    transform: translateX(440px) translateZ(-260px) rotateY(-28deg);
+    z-index: 3;
+    opacity: .45;
+    filter: brightness(.5);
+  }
+  .c-slide[data-pos="hidden"] {
+    width: 80px; height: 130px;
+    transform: translateX(0) translateZ(-400px);
+    z-index: 1;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .c-btn {
+    position: absolute;
+    top: 50%; transform: translateY(-50%);
+    z-index: 10;
+    width: 50px; height: 50px;
+    border-radius: 50%;
+    background: rgba(201,147,58,.15);
+    border: 1.5px solid var(--gold);
+    color: var(--gold);
+    font-size: 1.3rem;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: all .25s;
+    backdrop-filter: blur(6px);
+  }
+  .c-btn:hover { background: var(--gold); color: var(--deep); }
+  .c-btn.prev { left: 10px; }
+  .c-btn.next { right: 10px; }
+
+  .c-dots {
+    display: flex; justify-content: center; gap: .5rem; margin-top: 1.2rem;
+  }
+  .c-dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: rgba(201,147,58,.3);
+    border: 1px solid var(--gold);
+    cursor: pointer;
+    transition: background .25s, transform .25s;
+  }
+  .c-dot.active { background: var(--gold); transform: scale(1.3); }
+
+  /* ── LIGHTBOX ── */
+  #lightbox {
+    display: none;
+    position: fixed; inset: 0;
+    z-index: 2000;
+    background: rgba(10,5,0,.92);
+    align-items: center; justify-content: center;
+    cursor: pointer;
+  }
+  #lightbox.open { display: flex; }
+  #lightbox img {
+    max-width: 90vw; max-height: 85vh;
+    object-fit: contain;
+    border: 1px solid rgba(201,147,58,.3);
+  }
+  #lightbox-close {
+    position: absolute; top: 20px; right: 28px;
+    color: var(--gold); font-size: 2rem; cursor: pointer;
+    line-height: 1;
+  }
+
+  /* ── PROGRAM TIMELINE ── */
+  .program-day {
+    margin-bottom: 2.5rem;
+  }
+  .day-label {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: .85rem;
+    color: var(--gold);
+    letter-spacing: .25em;
+    text-transform: uppercase;
+    border-bottom: 1px solid rgba(201,147,58,.25);
+    padding-bottom: .5rem;
+    margin-bottom: 1.4rem;
+  }
+  .timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    position: relative;
+    padding-left: 2rem;
+  }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 12px; bottom: 12px;
+    width: 2px;
+    background: linear-gradient(180deg, var(--gold), var(--saffron), transparent);
+  }
+  .t-item {
+    position: relative;
+    padding: 0 0 1.8rem 1.5rem;
+    display: grid;
+    grid-template-columns: 110px 1fr;
+    gap: 1rem;
+    align-items: start;
+  }
+  .t-item::before {
+    content: '';
+    position: absolute;
+    left: -5px; top: 10px;
+    width: 12px; height: 12px;
+    border-radius: 50%;
+    background: var(--gold);
+    box-shadow: 0 0 10px rgba(201,147,58,.5);
+  }
+  .t-time {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: .78rem;
+    color: var(--gold);
+    letter-spacing: .08em;
+    padding-top: 2px;
+    line-height: 1.4;
+  }
+  .t-body h4 {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: .9rem;
+    color: var(--maroon);
+    margin-bottom: .25rem;
+    letter-spacing: .05em;
+  }
+  .t-body p {
+    font-size: .95rem;
+    color: var(--text-mid);
+    font-style: italic;
+    line-height: 1.5;
+  }
+  .t-tag {
+    display: inline-block;
+    background: rgba(107,26,26,.08);
+    border: 1px solid rgba(107,26,26,.2);
+    color: var(--maroon);
+    font-size: .7rem;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    padding: 2px 8px;
+    margin-top: .4rem;
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 600px) {
+    nav { gap: 1rem; font-size: .72rem; }
+    section { padding: 50px 16px; }
+    .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+</style>
+</head>
+<body>
+
+<!-- Music -->
+<audio id="bg-music" loop>
+  <source src="song.mp3" type="audio/mpeg">
+</audio>
+<button id="music-toggle" title="Toggle Music">🔇</button>
+
+<!-- Nav -->
+<nav>
+  <a href="#hero">Invitation</a>
+  <a href="#about">About Tap</a>
+  <a href="#gallery">Gallery</a>
+  <a href="#event">Event</a>
+  <a href="#map-section">Venue</a>
+  <a href="#blessings">Blessings</a>
+</nav>
+
+<!-- Mahavir Banner -->
+<section id="mahavir">
+  <div class="mandala-bg"></div>
+  <div class="ring"></div>
+  <div class="ring"></div>
+  <div class="ring"></div>
+
+  <div class="mahavir-image-wrap">
+    <img src="images/b_mahavir.png"
+         alt="Bhagwan Mahavir"
+         style="object-position: center top;">
+  </div>
+
+  <span class="om-symbol">🕉️</span>
+  <h1 class="mahavir-title">Bhagwan Mahavir Ki Jai</h1>
+  <p class="mahavir-quote">"Live and let live." — Mahavira</p>
+</section>
+
+<!-- Hero Invite -->
+<section id="hero">
+  <span class="section-label">Auspicious Occasion</span>
+  <h2>🌼 Athai Tap Parna Mahotsav 🌼</h2>
+  <div class="ornament">✦ ✦ ✦</div>
+  <p class="lead">
+    With immense joy, devotion, and gratitude,<br>
+    our family humbly invites you and your family<br>
+    to grace the auspicious occasion of the<br>
+    successful completion of the sacred <strong>Athai Tap</strong><br>
+    performed by our beloved Tapasvi.
+  </p>
+  <hr class="gold">
+  <span class="tapasvi-name">✨ Tapasvi Ku. Neha ✨</span>
+  <p class="lead" style="margin-top:1.2rem; font-size:1rem;">
+    "Tap purifies the soul just as fire purifies gold."
+  </p>
+  <a href="https://wa.me/91XXXXXXXXXX?text=Jai+Jinendra!+We+will+attend+the+Parna+Mahotsav." 
+     class="whatsapp-btn" target="_blank">
+    💬 RSVP via WhatsApp
+  </a>
+</section>
+
+<!-- About -->
+<section id="about" style="max-width:100%; padding:80px 0;">
+<div id="about-inner">
+  <span class="section-label">The Sacred Practice</span>
+  <h2>What is Athai Tap?</h2>
+  <p class="lead">
+    Athai Tap is a sacred Jain austerity of <em>eight days</em> of spiritual discipline —
+    devotion, prayer, self-restraint, and inner purification. It symbolises the path
+    toward inner peace and liberation of the soul.
+  </p>
+<!-- Gallery -->
+<section id="gallery" style="padding:80px 0;">
+<div id="gallery-inner">
+  <span class="section-label">Sacred Journey</span>
+  <h2>Tapasvi Photo Gallery</h2>
+  <p class="lead">📸 Moments of devotion, discipline, and spiritual strength.</p>
+
+  <div class="carousel-scene">
+    <button class="c-btn prev" onclick="carousel(-1)">‹</button>
+    <div class="carousel-track" id="carouselTrack"></div>
+    <button class="c-btn next" onclick="carousel(1)">›</button>
+  </div>
+  <div class="c-dots" id="cDots"></div>
+</div>
+</section>
+
+<!-- Event Details -->
+<section id="event" style="max-width:100%; padding:80px 0;">
+<div id="event-inner">
+  <span class="section-label">You Are Invited</span>
+  <h2>Program Details</h2>
+  <p class="lead">
+    We cordially invite you to attend the Parna Mahotsav<br>
+    and bless the Tapasvi on this divine occasion.
+  </p>
+
+  <!-- Day 1 -->
+  <div class="program-day">
+    <div class="day-label">📅 15 September 2026 — Athai Day</div>
+    <div class="timeline">
+
+      <div class="t-item">
+        <div class="t-time">9:15 AM</div>
+        <div class="t-body">
+          <h4>Athai Pratyakhyan</h4>
+          <p>Sacred vow-taking ceremony of Athai Tap — the formal beginning of the auspicious fast.</p>
+          <span class="t-tag">📍 Terapanth Bhawan</span>
+        </div>
+      </div>
+
+      <div class="t-item">
+        <div class="t-time">2:15 PM</div>
+        <div class="t-body">
+          <h4>Ladies Bachaa</h4>
+          <p>Auspicious gathering of ladies — blessings, Samayik, devotional songs, and Swadhyay.</p>
+          <span class="t-tag">📍 At Home</span>
+        </div>
+      </div>
+
+      <div class="t-item">
+        <div class="t-time">8:15 PM</div>
+        <div class="t-body">
+          <h4>Gents Bachaa</h4>
+          <p>Evening spiritual gathering for gents — Navkar Mantra recitation, discourse, and blessings.</p>
+          <span class="t-tag">📍 At Home</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Day 2 -->
+  <div class="program-day">
+    <div class="day-label">🌸 16 September 2026 — Parna Mahotsav</div>
+    <div class="timeline">
+
+      <div class="t-item">
+        <div class="t-time">7:45 AM</div>
+        <div class="t-body">
+          <h4>Parna Ceremony</h4>
+          <p>The sacred breaking of the eight-day fast — Swamivatsalya, family blessings, and joyful celebration of the Tapasvi's divine accomplishment.</p>
+          <span class="t-tag">📍 At Home</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+</section>
+
+<!-- Map -->
+<section id="map-section" style="max-width:100%; padding:80px 0;">
+<div id="map-section-inner" style="max-width:820px; margin:0 auto;">
+  <span class="section-label">Find Us</span>
+  <h2>Venue Location</h2>
+  <p class="lead">📍 Navigate easily to the celebration venue.</p>
+
+  <div class="map-wrapper">
+    <!-- Replace the src below with your actual Google Maps embed URL -->
+    <iframe
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d228060.89247647604!2d75.6491786!3d26.8505309!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x396c4adf4c57e281%3A0xce1c63a0cf22e09!2sJaipur%2C+Rajasthan!5e0!3m2!1sen!2sin!4v1620000000000"
+      allowfullscreen="" loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade">
+    </iframe>
+  </div>
+
+  <div style="display:flex; gap:1rem; flex-wrap:wrap; margin-top:1rem;">
+    <a href="https://maps.google.com/?q=Jaipur,Rajasthan" target="_blank" class="map-btn">
+      📍 Open in Google Maps
+    </a>
+    <a href="https://wa.me/?text=Join+us+for+the+Parna+Mahotsav!+Venue:+[Your+Address]+%F0%9F%99%8F" 
+       class="map-btn" target="_blank" style="background: #25d366;">
+      📤 Share Location
+    </a>
+  </div>
+</div>
+</section>
+
+<!-- Blessings -->
+<section id="blessings" style="padding:80px 0;">
+<div id="blessings-inner">
+  <span class="section-label">Share Your Love</span>
+  <h2>Blessings & Shubhkamnayen</h2>
+  <p class="lead">💬 Offer your heartfelt blessings for the Tapasvi.</p>
+
+  <div class="blessings-existing">
+    <div class="blessing-card">
+      May this sacred Tap bring eternal peace and spiritual prosperity to your entire life's journey.
+      <span class="blessing-author">— The Jain Sangh</span>
+    </div>
+ </div>
+
+  <!-- Blessing form -->
+  <div class="blessing-form">
+    <h3>✍️ Leave Your Blessings</h3>
+    <div class="form-row">
+      <input type="text" id="bl-name" placeholder="Your Name / Aapka Naam" maxlength="60">
+    </div>
+    <div class="form-row">
+      <textarea id="bl-msg" rows="4" placeholder="Write your blessings or shubhkamnayen here... 🙏"></textarea>
+    </div>
+    <button class="submit-btn" onclick="submitBlessing()">🙏 Send Blessings</button>
+    <p id="bl-thanks" style="display:none; color:var(--gold-light); margin-top:.8rem; font-style:italic;">
+      ✨ Thank you for your blessings! Jai Jinendra 🙏
+    </p>
+  </div>
+  <div id="blessings-list"></div>
+</div>
+</section>
+
+<!-- Family -->
+<section id="family" style="max-width:100%; padding:80px 0;">
+<div id="family-inner">
+  <span class="section-label">Invited By</span>
+  <h2>✨ Jain Parivar ✨</h2>
+  <div class="family-names">
+    <span class="family-name">Shri B L Jain</span>
+    <span class="family-sep">·</span>
+    <span class="family-name">Shrimati Suma Jain</span>
+    <span class="family-sep">·</span>
+  </div>
+  <p class="lead" style="margin-top:1.5rem; font-size:1rem; font-style:italic;">
+    "With blessings from Gurudev, elders, and the entire Jain Sangh."
+  </p>
+</div>
+</section>
+
+<!-- Closing -->
+<section id="closing">
+  <div class="ornament" style="color:var(--gold-light); font-size:1.6rem; letter-spacing:.6em;">🌸</div>
+  <p class="lead" style="color:rgba(245,230,200,.8); max-width:640px; margin:1.2rem auto;">
+    May this sacred occasion inspire purity, positivity, compassion, and peace in every soul.<br><br>
+    Let us gather together to celebrate devotion, discipline, and spiritual strength.
+  </p>
+  <hr class="gold">
+  <p style="color:rgba(245,230,200,.7); font-style:italic; font-size:1.1rem;">
+    🙏 We eagerly await your gracious presence. 🙏
+  </p>
+  <div class="jai-jinendra">Jai Jinendra</div>
+</section>
+
+<footer>
+  <p>Made with ❤️ </p>
+  <p>
+    <a href="https://instagram.com/gem_invite" target="_blank">@gem_invite</a>
+  </p>
+</footer>
+
+<!-- Lightbox -->
+<div id="lightbox" onclick="closeLightbox()">
+  <span id="lightbox-close">✕</span>
+  <img id="lightbox-img" src="" alt="">
+</div>
+
+<script>
+  /* ── FLOATING PETALS ── */
+  const petals = ['🪷'];
+  const mahavir = document.getElementById('mahavir');
+  for(let i=0;i<18;i++){
+    const p = document.createElement('span');
+    p.className = 'petal';
+    p.textContent = petals[i%petals.length];
+    p.style.left = Math.random()*100+'%';
+    p.style.bottom = '-30px';
+    const dur = 10+Math.random()*14;
+    p.style.animationDuration = dur+'s';
+    p.style.animationDelay = (Math.random()*dur)+'s';
+    mahavir.appendChild(p);
+  }
+
+  /* ── MUSIC TOGGLE ── */
+  const audio = document.getElementById('bg-music');
+  const btn = document.getElementById('music-toggle');
+  let playing = false;
+  btn.addEventListener('click', ()=>{
+    if(playing){ audio.pause(); btn.textContent='🔇'; }
+    else { audio.play().catch(()=>{}); btn.textContent='🔊'; }
+    playing = !playing;
+  });
+
+  /* ── CINEMATIC CAROUSEL ── */
+  const slides = [
+    { src: 'images/first.png', caption: '' },
+    { src: 'images/sec.png', caption: '' },
+    { src: 'images/third.png', caption: '' },
+    { src: 'images/four.png', caption: '' },
+    { src: 'images/five.png', caption: '' },
+    { src: 'images/six.png', caption: '' },
+  ];
+
+  const positions = ['left-2','left-1','center','right-1','right-2','hidden'];
+  let current = 0;
+  const track = document.getElementById('carouselTrack');
+  const dotsEl = document.getElementById('cDots');
+
+  // Build slides
+  slides.forEach((s, i) => {
+    const el = document.createElement('div');
+    el.className = 'c-slide';
+    el.dataset.index = i;
+    el.innerHTML = `<img src="${s.src}" alt="${s.caption}" onerror="this.src='https://via.placeholder.com/320x430/1a0e05/c9933a?text=📸'"><div class="c-caption">${s.caption}</div>`;
+    el.addEventListener('click', () => {
+      const diff = (i - current + slides.length) % slides.length;
+      if(diff === 1 || (diff === slides.length-1)) carousel(diff === 1 ? 1 : -1);
+      else if(diff !== 0) openLightbox(el);
+    });
+    track.appendChild(el);
+
+    const dot = document.createElement('div');
+    dot.className = 'c-dot' + (i===0?' active':'');
+    dot.addEventListener('click', () => goTo(i));
+    dotsEl.appendChild(dot);
+  });
+
+  function getPos(idx) {
+    const rel = (idx - current + slides.length) % slides.length;
+    const map = {0:'center', 1:'right-1', 2:'right-2', [slides.length-1]:'left-1', [slides.length-2]:'left-2'};
+    return map[rel] || 'hidden';
+  }
+
+  function render() {
+    document.querySelectorAll('.c-slide').forEach((el) => {
+      const i = parseInt(el.dataset.index);
+      el.dataset.pos = getPos(i);
+    });
+    document.querySelectorAll('.c-dot').forEach((d,i) => {
+      d.classList.toggle('active', i === current);
+    });
+  }
+
+  function carousel(dir) {
+    current = (current + dir + slides.length) % slides.length;
+    render();
+  }
+
+  function goTo(idx) { current = idx; render(); }
+
+  render();
+
+  // Auto-advance
+  setInterval(() => carousel(1), 4000);
+
+  /* ── LIGHTBOX ── */
+  function openLightbox(el){
+    const img = el.querySelector('img');
+    if(!img) return;
+    document.getElementById('lightbox-img').src = img.src;
+    document.getElementById('lightbox').classList.add('open');
+  }
+  function closeLightbox(){
+    document.getElementById('lightbox').classList.remove('open');
+  }
+
+  /* ── BLESSINGS ── */
+  function submitBlessing(){
+    const name = document.getElementById('bl-name').value.trim();
+    const msg  = document.getElementById('bl-msg').value.trim();
+    if(!msg){ alert('Please write your blessings first 🙏'); return; }
+    const list = document.getElementById('blessings-list');
+    const div  = document.createElement('div');
+    div.className = 'new-blessing';
+    div.innerHTML = `<strong>— ${name||'A well-wisher'}</strong>${msg}`;
+    list.prepend(div);
+    document.getElementById('bl-name').value = '';
+    document.getElementById('bl-msg').value  = '';
+    const thanks = document.getElementById('bl-thanks');
+    thanks.style.display = 'block';
+    setTimeout(()=>{ thanks.style.display='none'; }, 4000);
+  }
+
+  /* ── SCROLL REVEAL ── */
+  const observer = new IntersectionObserver(entries=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        e.target.style.opacity = '1';
+        e.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.pillar, .t-item, .blessing-card').forEach(el=>{
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(20px)';
+    el.style.transition = 'opacity .6s ease, transform .6s ease';
+    observer.observe(el);
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wedding Invitation</title>
+
+<style>
+body{
+    margin:0;
+    font-family:Georgia;
+    text-align:center;
+    background:linear-gradient(#fff5e6,#ffe4c4);
+    overflow-x:hidden;
+}
+
+/* LOCK SCREEN */
+#lock{
+    position:fixed;
+    width:100%;
+    height:100%;
+    background:black;
+    color:white;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+}
+
+input{
+    padding:10px;
+    border-radius:10px;
+    border:none;
+    margin:5px;
+}
+
+button{
+    padding:10px 20px;
+    border:none;
+    border-radius:20px;
+    background:#b8860b;
+    color:white;
+    cursor:pointer;
+}
+
+/* MAIN */
+#main{ display:none; padding:20px; }
+
+/* WELCOME */
+#welcome{
+    font-size:22px;
+    color:#b8860b;
+    margin-bottom:15px;
+}
+
+/* BOX */
+.box{
+    background:white;
+    margin:15px auto;
+    padding:15px;
+    border-radius:15px;
+    max-width:500px;
+    box-shadow:0 5px 15px rgba(0,0,0,0.2);
+}
+
+/* SLIDESHOW */
+#slide{
+    width:90%;
+    max-width:350px;
+    border-radius:15px;
+}
+
+/* FLOWERS */
+.flower{
+    position:fixed;
+    top:-20px;
+    animation:fall linear forwards;
+}
+@keyframes fall{
+    to{ transform:translateY(100vh); opacity:0;}
+}
+
+/* FIREWORK */
+.fire{
+    position:fixed;
+    width:6px;
+    height:6px;
+    background:rgb(255, 0, 8);
+    border-radius:50%;
+}
+
+/* CREDIT */
+#credit{
+    position:fixed;
+    bottom:10px;
+    right:10px;
+    color:#b8860b;
+    font-weight:bold;
+    font-size:13px;
+}
+/* ---- FOOTER ---- */
+footer {
+  position: fixed;
+  bottom: 10px;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  z-index: 199;
+}
+.footer-copy {
+  font-size: 12px;
+  color: #ffffff;
+  letter-spacing: 1px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- LOCK SCREEN -->
+<div id="lock">
+<h2>Enter Your Name 💖</h2>
+<input type="text" id="guestName" placeholder="Your Name">
+
+<h3>Enter Password 🔐</h3>
+<input type="password" id="pass">
+
+<button onclick="unlock()">Open Invitation</button>
+</div>
+
+<!-- MUSIC -->
+<audio id="music" loop>
+    <source src="music/wed.mp3" type="audio/mp3">
+</audio>
+
+<!-- MAIN CONTENT -->
+<div id="main">
+
+<div id="welcome"></div>
+
+<h2>💍 Wedding Invitation 💍</h2>
+
+<div class="box">
+<p style="color: #e91e63; font-weight: bold;">By the infinite blessings of the Supreme God</p>
+
+<h2>Renu</h2>
+<p>Daughter of - Smt. Saroj Devi & Shri B M Jain</p>
+
+<h3>❤️</h3>
+
+<h2>Tanuj</h2>
+<p>Son of - Smt. Sita Devi & Shri Mahesh Kumar Daga</p>
+</div>
+
+<!-- SLIDESHOW -->
+<img id="slide" src="images/bride1.jpg">
+
+<div class="box">
+<h3>📅 Programs</h3>
+<p>Ban Ceremony - 17 March 2026 (2:15 PM)</p>
+<p>Haldi/Mehendi - 18 March 2026 (10:15 AM)</p>
+<p>Sangeet - 19 March 2026 (6:15 PM)</p>
+<p>Wedding - 20 March 2026</p>
+</div>
+
+<div class="box">
+<h3>📍 Location</h3>
+<a href="https://maps.google.com" target="_blank">
+<button>Open Map</button>
+</a>
+</div>
+
+<div class="box">
+<h3>📱 Share</h3>
+<a href="https://wa.me/?text=You're invited to Shivani & Tushar Wedding https://yourlink.com">
+<button>Share on WhatsApp</button>
+</a>
+</div>
+
+</div>
+
+<!-- CREATOR CREDIT -->
+<div id="credit">
+Made With ❤️ | 
+<a href="https://instagram.com/gem_invite" target="_blank">@gem_invite</a>
+</div>
+
+<script>
+
+// UNLOCK FUNCTION
+function unlock(){
+    let name = document.getElementById("guestName").value;
+    let password = document.getElementById("pass").value;
+
+    if(name.trim()===""){
+        alert("Please enter your name 😊");
+        return;
+    }
+
+    if(password==="123456"){
+        document.getElementById("lock").style.display="none";
+        document.getElementById("main").style.display="block";
+        document.getElementById("music").play().catch(()=>{});
+
+        // PERSONALIZED NAME
+        document.getElementById("welcome").innerHTML =
+        "Welcome <b>"+name+"</b> 🙏<br>to the wedding of Renu & Tanuj";
+
+        flowers();
+        fireworks();
+    } 
+    else{
+        alert("Wrong Password ❌");
+    }
+}
+
+// SLIDESHOW
+let images=["images/bride1.jpg","images/bride2.jpg","images/groom1.jpg","images/groom2.jpg"];
+let i=0;
+
+setInterval(()=>{
+    i=(i+1)%images.length;
+    document.getElementById("slide").src=images[i];
+},2500);
+
+// FLOWERS 🌸
+function flowers(){
+    setInterval(()=>{
+        let f=document.createElement("div");
+        f.className="flower";
+        f.innerHTML="🌸";
+        f.style.left=Math.random()*100+"vw";
+        f.style.fontSize=(15+Math.random()*20)+"px";
+        f.style.animationDuration=(3+Math.random()*4)+"s";
+        document.body.appendChild(f);
+        setTimeout(()=>f.remove(),7000);
+    },300);
+}
+
+// FIREWORKS 🎆
+function fireworks(){
+    setInterval(()=>{
+        for(let i=0;i<20;i++){
+            let f=document.createElement("div");
+            f.className="fire";
+            f.style.left=Math.random()*100+"vw";
+            f.style.top=Math.random()*50+"vh";
+            document.body.appendChild(f);
+            setTimeout(()=>f.remove(),800);
+        }
+    },2000);
+}
+
+</script>
+
+</body>
+</html>

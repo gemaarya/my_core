@@ -1,0 +1,26 @@
+per client changes near: 1140 to 1244
+
+for RSVP: 1048 to 1088
+
+
+for google form sheet:
+Step 1 — Create/fix your Google Form:
+
+Go to forms.google.com
+Create a new form with these 7 fields (Short answer type): Name, Email, Phone, Attendance, Guests, Meal, Note
+Click Send → make sure it's set to "Anyone can respond" (not restricted to your org)
+
+Step 2 — Get the correct URL + entry IDs:
+
+Open your form → click the eye icon (Preview)
+Right-click the page → Inspect → Network tab
+Fill the form and click Submit — look for a POST request to formResponse
+Copy the form URL and all entry.XXXXXXX numbers from that request
+
+Step 3 — Paste them into the file in the CLIENT config block:
+googleFormUrl: 'https://docs.google.com/forms/d/e/YOUR_NEW_ID/formResponse',
+formEntries: {
+  name:   'entry.XXXXXXX',
+  email:  'entry.XXXXXXX',
+  ...
+}

@@ -1,0 +1,1107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Farewell Bash 2025 — Class of Legends</title>
+
+  <!-- ============================================================
+    🎯 CUSTOMIZATION GUIDE — LINE NUMBERS FOR FUTURE CHANGES
+    ============================================================
+    LINE 42   → School Name (displayed in nav/logo)
+    LINE 43   → Junior Batch Year (e.g. "Class of 2026")
+    LINE 44   → Senior Batch Year (e.g. "Class of 2025")
+    LINE 45   → Event Date (e.g. "Saturday, 24th May 2025")
+    LINE 46   → Event Time (e.g. "5:00 PM – 10:00 PM")
+    LINE 47   → Venue Name (e.g. "School Auditorium")
+    LINE 48   → Venue Address (e.g. "123 Main Street, City")
+    LINE 49   → RSVP / WhatsApp Link or Phone Number
+    LINE 50   → Theme Color 1 – Primary Gold (#f5c842 by default) → CSS line 90
+    LINE 51   → Theme Color 2 – Accent Pink (#ff6eb4 by default) → CSS line 91
+    LINE 52   → Theme Color 3 – Deep Purple background (#0d0720)  → CSS line 92
+    LINE 53   → Hero headline (big title) → HTML line ~270
+    LINE 54   → Hero sub-tagline → HTML line ~272
+    LINE 55   → Music/Playlist section band names → HTML lines ~380-400
+    LINE 56   → Event Schedule timings → HTML lines ~450-490
+    LINE 57   → Countdown target date → JS line ~680
+    LINE 58   → Gallery / Memories section images (src URLs) → HTML lines ~530-560
+    LINE 59   → Footer message → HTML line ~610
+    LINE 60   → Social media handles → HTML lines ~615-625
+  ============================================================ -->
+
+  <!-- FONTS -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+
+  <style>
+    /* =====================================================
+       CSS VARIABLES — THEME COLORS
+       ▶ LINE 90 : Primary Gold
+       ▶ LINE 91 : Accent Pink
+       ▶ LINE 92 : Dark BG
+    ===================================================== */
+    :root {
+      --gold:    #f5c842;   /* LINE 90 — Primary accent color  */
+      --pink:    #ff6eb4;   /* LINE 91 — Secondary accent color */
+      --purple:  #0d0720;   /* LINE 92 — Background dark color  */
+      --deep:    #150a2e;
+      --mid:     #1e1040;
+      --text:    #f0e8ff;
+      --muted:   #9b84cc;
+      --white:   #ffffff;
+      --card-bg: rgba(255,255,255,0.04);
+      --glow-gold: 0 0 30px rgba(245,200,66,0.5);
+      --glow-pink: 0 0 30px rgba(255,110,180,0.5);
+    }
+
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Rajdhani', sans-serif;
+      background: var(--purple);
+      color: var(--text);
+      overflow-x: hidden;
+      cursor: default;
+    }
+
+    /* ── CUSTOM CURSOR ── */
+    body { cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24'%3E%3Ccircle cx='12' cy='12' r='5' fill='%23f5c842' opacity='0.9'/%3E%3C/svg%3E") 12 12, auto; }
+
+    /* ── STAR CANVAS ── */
+    #stars-canvas { position:fixed; top:0; left:0; width:100%; height:100%; z-index:0; pointer-events:none; }
+
+    /* ── SCROLLBAR ── */
+    ::-webkit-scrollbar { width:6px; }
+    ::-webkit-scrollbar-track { background: var(--deep); }
+    ::-webkit-scrollbar-thumb { background: var(--gold); border-radius:3px; }
+
+    /* ══════════════════════════════════
+       NAVBAR
+    ══════════════════════════════════ */
+    nav {
+      position: fixed; top:0; width:100%; z-index:1000;
+      display: flex; justify-content:space-between; align-items:center;
+      padding: 18px 5%;
+      background: rgba(13,7,32,0.85);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(245,200,66,0.2);
+      animation: slideDown 0.8s ease;
+    }
+    @keyframes slideDown { from{transform:translateY(-100%);opacity:0} to{transform:translateY(0);opacity:1} }
+
+    .nav-logo {
+      font-family: 'Cinzel Decorative', serif;
+      font-size: 1.1rem;
+      color: var(--gold);
+      text-shadow: var(--glow-gold);
+      letter-spacing: 2px;
+    }
+    /* ▶ LINE 42 — School Name is inside .nav-logo in HTML (~line 195) */
+
+    .nav-links { display:flex; gap:30px; list-style:none; }
+    .nav-links a {
+      font-family: 'Rajdhani', sans-serif;
+      font-weight:600; font-size:0.95rem;
+      color: var(--muted); text-decoration:none;
+      letter-spacing:1px; text-transform:uppercase;
+      transition: color 0.3s, text-shadow 0.3s;
+    }
+    .nav-links a:hover { color: var(--gold); text-shadow: var(--glow-gold); }
+
+    .nav-rsvp {
+      padding: 9px 22px;
+      background: linear-gradient(135deg, var(--gold), var(--pink));
+      color: var(--purple); font-weight:700; font-size:0.9rem;
+      border:none; border-radius:30px; cursor:pointer;
+      text-decoration:none; letter-spacing:1px; text-transform:uppercase;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .nav-rsvp:hover { transform:scale(1.07); box-shadow: var(--glow-gold); }
+
+    /* ══════════════════════════════════
+       HERO SECTION
+    ══════════════════════════════════ */
+    #hero {
+      position:relative; min-height:100vh;
+      display:flex; flex-direction:column;
+      justify-content:center; align-items:center;
+      text-align:center; padding: 120px 5% 60px;
+      overflow:hidden; z-index:1;
+    }
+
+    .hero-bg-gradient {
+      position:absolute; inset:0; z-index:-1;
+      background:
+        radial-gradient(ellipse 80% 60% at 50% 0%, rgba(245,200,66,0.12) 0%, transparent 70%),
+        radial-gradient(ellipse 60% 50% at 80% 80%, rgba(255,110,180,0.1) 0%, transparent 60%),
+        radial-gradient(ellipse 50% 40% at 20% 90%, rgba(100,60,220,0.15) 0%, transparent 60%);
+    }
+
+    .floating-notes {
+      position:absolute; width:100%; height:100%;
+      top:0; left:0; pointer-events:none; z-index:0;
+    }
+    .note {
+      position:absolute; font-size:1.8rem;
+      animation: floatNote linear infinite;
+      opacity:0.15;
+    }
+
+    @keyframes floatNote {
+      0%   { transform: translateY(110vh) rotate(0deg); opacity:0; }
+      10%  { opacity: 0.2; }
+      90%  { opacity: 0.15; }
+      100% { transform: translateY(-10vh) rotate(720deg); opacity:0; }
+    }
+
+    .hero-badge {
+      display:inline-block;
+      padding: 6px 20px;
+      border: 1px solid var(--gold);
+      border-radius:30px; color: var(--gold);
+      font-size:0.8rem; letter-spacing:3px;
+      text-transform:uppercase; margin-bottom:24px;
+      animation: fadeInUp 1s ease 0.3s both;
+    }
+
+    /* ▶ LINE 270 — Hero Headline (h1) */
+    .hero-title {
+      font-family: 'Cinzel Decorative', serif;
+      font-size: clamp(2.5rem, 7vw, 6rem);
+      font-weight: 900;
+      line-height: 1.1;
+      margin-bottom: 20px;
+      background: linear-gradient(135deg, var(--white) 0%, var(--gold) 40%, var(--pink) 80%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: fadeInUp 1s ease 0.5s both;
+      text-shadow: none;
+    }
+
+    /* ▶ LINE 272 — Hero Tagline (p.hero-sub) */
+    .hero-sub {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: clamp(1rem, 2.5vw, 1.5rem);
+      color: var(--muted);
+      max-width: 600px;
+      margin-bottom: 40px;
+      animation: fadeInUp 1s ease 0.7s both;
+    }
+
+    .hero-cta-group {
+      display:flex; gap:16px; flex-wrap:wrap;
+      justify-content:center;
+      animation: fadeInUp 1s ease 0.9s both;
+    }
+
+    .btn-primary {
+      padding: 14px 36px;
+      background: linear-gradient(135deg, var(--gold), #e8a800);
+      color: var(--purple); font-weight:700; font-size:1rem;
+      border:none; border-radius:50px; cursor:pointer;
+      text-decoration:none; letter-spacing:1px;
+      transition: transform 0.3s, box-shadow 0.3s;
+      box-shadow: 0 4px 20px rgba(245,200,66,0.4);
+    }
+    .btn-primary:hover { transform:translateY(-3px) scale(1.04); box-shadow: 0 8px 30px rgba(245,200,66,0.6); }
+
+    .btn-secondary {
+      padding: 14px 36px;
+      background: transparent;
+      color: var(--pink); font-weight:700; font-size:1rem;
+      border: 2px solid var(--pink); border-radius:50px;
+      cursor:pointer; text-decoration:none; letter-spacing:1px;
+      transition: transform 0.3s, background 0.3s, color 0.3s;
+    }
+    .btn-secondary:hover { transform:translateY(-3px); background:var(--pink); color:var(--white); }
+
+    @keyframes fadeInUp {
+      from { opacity:0; transform:translateY(30px); }
+      to   { opacity:1; transform:translateY(0); }
+    }
+
+    /* ══════════════════════════════════
+       COUNTDOWN
+    ══════════════════════════════════ */
+    #countdown-section {
+      position:relative; z-index:1;
+      padding: 80px 5%;
+      background: linear-gradient(180deg, transparent, rgba(21,10,46,0.9) 30%, rgba(21,10,46,0.9) 70%, transparent);
+      text-align:center;
+    }
+
+    .section-label {
+      font-size:0.8rem; letter-spacing:4px;
+      text-transform:uppercase; color:var(--gold);
+      margin-bottom:12px;
+    }
+
+    .section-title {
+      font-family: 'Cinzel Decorative', serif;
+      font-size: clamp(1.8rem, 4vw, 3rem);
+      margin-bottom: 50px;
+      background: linear-gradient(90deg, var(--white), var(--muted));
+      -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+      background-clip:text;
+    }
+
+    .countdown-grid {
+      display:flex; justify-content:center; gap:20px; flex-wrap:wrap;
+    }
+
+    .count-box {
+      background: var(--card-bg);
+      border: 1px solid rgba(245,200,66,0.25);
+      border-radius:20px; padding:30px 40px;
+      min-width:130px;
+      backdrop-filter:blur(10px);
+      transition: transform 0.3s, border-color 0.3s;
+    }
+    .count-box:hover { transform:translateY(-8px); border-color: var(--gold); box-shadow: var(--glow-gold); }
+
+    .count-number {
+      font-family: 'Cinzel Decorative', serif;
+      font-size: 3rem; font-weight:900;
+      color: var(--gold);
+      text-shadow: var(--glow-gold);
+      display:block;
+    }
+
+    .count-label {
+      font-size:0.75rem; letter-spacing:3px;
+      text-transform:uppercase; color:var(--muted);
+      margin-top:6px;
+    }
+
+    /* ══════════════════════════════════
+       EVENT DETAILS
+    ══════════════════════════════════ */
+    #details {
+      position:relative; z-index:1;
+      padding: 100px 5%;
+    }
+
+    .details-grid {
+      display:grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px,1fr));
+      gap:24px; max-width:1100px; margin:0 auto;
+    }
+
+    .detail-card {
+      background: var(--card-bg);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius:24px; padding:36px 30px;
+      text-align:center;
+      backdrop-filter:blur(12px);
+      transition: transform 0.4s, border-color 0.4s, box-shadow 0.4s;
+      position:relative; overflow:hidden;
+    }
+    .detail-card::before {
+      content:''; position:absolute; top:0; left:0; right:0; height:3px;
+      background: linear-gradient(90deg, var(--gold), var(--pink));
+      transform:scaleX(0); transform-origin:left;
+      transition: transform 0.4s;
+    }
+    .detail-card:hover::before { transform:scaleX(1); }
+    .detail-card:hover { transform:translateY(-10px); border-color:rgba(245,200,66,0.3); box-shadow: var(--glow-gold); }
+
+    .detail-icon { font-size:2.5rem; margin-bottom:16px; display:block; }
+
+    .detail-title {
+      font-family:'Playfair Display', serif;
+      font-size:1.3rem; color:var(--gold); margin-bottom:10px;
+    }
+
+    .detail-text {
+      font-size:1rem; color:var(--muted); line-height:1.6;
+    }
+
+    /* ══════════════════════════════════
+       MUSIC SECTION
+    ══════════════════════════════════ */
+    #music {
+      position:relative; z-index:1;
+      padding: 100px 5%;
+      background: radial-gradient(ellipse at center, rgba(255,110,180,0.07) 0%, transparent 70%);
+    }
+
+    .music-visualizer {
+      display:flex; align-items:flex-end;
+      gap:5px; height:100px; justify-content:center;
+      margin-bottom:36px;
+    }
+    .bar {
+      width:8px; background:linear-gradient(to top, var(--gold), var(--pink));
+      border-radius:4px 4px 0 0;
+      animation: dance var(--dur) ease-in-out infinite alternate;
+      transition: height 0.05s linear;
+    }
+    @keyframes dance {
+      0%   { height:8px;  opacity:0.4; }
+      100% { height:var(--h); opacity:1; }
+    }
+
+    /* ── PLAYER CONTROLS ── */
+    .music-player-wrap {
+      display: flex; align-items: center; gap: 20px;
+      max-width: 700px; margin: 0 auto;
+      background: var(--card-bg);
+      border: 1px solid rgba(255,110,180,0.25);
+      border-radius: 20px; padding: 20px 28px;
+      backdrop-filter: blur(12px);
+    }
+
+    .play-pause-btn {
+      width: 52px; height: 52px; flex-shrink: 0;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--gold), var(--pink));
+      border: none; cursor: pointer;
+      font-size: 1.3rem; color: var(--purple);
+      display: flex; align-items: center; justify-content: center;
+      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 0 20px rgba(255,110,180,0.4);
+    }
+    .play-pause-btn:hover { transform: scale(1.1); box-shadow: var(--glow-pink); }
+
+    .player-track-info {
+      flex: 1; min-width: 0;
+    }
+    #track-name {
+      display: block;
+      font-size: 1rem; font-weight: 600; color: var(--white);
+      margin-bottom: 10px; white-space: nowrap;
+      overflow: hidden; text-overflow: ellipsis;
+    }
+
+    .player-progress-wrap { width: 100%; }
+    .seek-bar {
+      width: 100%; -webkit-appearance: none; appearance: none;
+      height: 4px; border-radius: 2px;
+      background: rgba(255,255,255,0.12);
+      outline: none; cursor: pointer;
+      accent-color: var(--pink);
+    }
+    .time-labels {
+      display: flex; justify-content: space-between;
+      font-size: 0.75rem; color: var(--muted); margin-top: 5px;
+    }
+
+    .volume-wrap {
+      display: flex; align-items: center; gap: 8px;
+      font-size: 0.95rem; color: var(--muted); flex-shrink: 0;
+    }
+    .vol-bar {
+      width: 80px; -webkit-appearance: none; appearance: none;
+      height: 4px; border-radius: 2px;
+      background: rgba(255,255,255,0.12);
+      outline: none; cursor: pointer;
+      accent-color: var(--gold);
+    }
+
+    @media (max-width: 600px) {
+      .music-player-wrap { flex-wrap: wrap; }
+      .volume-wrap { display: none; }
+    }
+
+    /* ══════════════════════════════════
+       SCHEDULE
+    ══════════════════════════════════ */
+    #schedule {
+      position:relative; z-index:1;
+      padding: 100px 5%;
+    }
+
+    /* ▶ LINES ~450-490 — Schedule timeline items */
+    .timeline {
+      max-width:700px; margin:0 auto;
+      position:relative;
+    }
+    .timeline::before {
+      content:''; position:absolute; left:50%; top:0; bottom:0;
+      width:2px;
+      background:linear-gradient(to bottom, var(--gold), var(--pink), var(--gold));
+      transform:translateX(-50%);
+    }
+
+    .timeline-item {
+      display:flex; gap:30px; margin-bottom:48px;
+      align-items:center;
+    }
+    .timeline-item:nth-child(odd)  { flex-direction:row; }
+    .timeline-item:nth-child(even) { flex-direction:row-reverse; }
+
+    .tl-time {
+      flex:1; text-align:right;
+      font-family:'Cinzel Decorative', serif;
+      font-size:1rem; color:var(--gold);
+    }
+    .timeline-item:nth-child(even) .tl-time { text-align:left; }
+
+    .tl-dot {
+      width:18px; height:18px; flex-shrink:0;
+      border-radius:50%;
+      background:linear-gradient(135deg, var(--gold), var(--pink));
+      box-shadow: var(--glow-gold);
+      position:relative; z-index:2;
+    }
+
+    .tl-content {
+      flex:1;
+      background:var(--card-bg);
+      border:1px solid rgba(245,200,66,0.15);
+      border-radius:16px; padding:20px 24px;
+      transition: transform 0.3s, border-color 0.3s;
+    }
+    .tl-content:hover { transform:scale(1.03); border-color:var(--gold); }
+
+    .tl-content h4 { font-size:1.05rem; color:var(--white); margin-bottom:5px; }
+    .tl-content p  { font-size:0.9rem; color:var(--muted); }
+
+    /* ══════════════════════════════════
+       MEMORIES / GALLERY
+    ══════════════════════════════════ */
+    #gallery {
+      position:relative; z-index:1;
+      padding: 100px 5%;
+      background: radial-gradient(ellipse at 70% 50%, rgba(245,200,66,0.06) 0%, transparent 60%);
+    }
+
+    /* ▶ LINES ~530-560 — Gallery image URLs */
+    .gallery-grid {
+      display:grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap:16px; max-width:1100px; margin:0 auto;
+    }
+
+    .gallery-item {
+      border-radius:20px; overflow:hidden;
+      aspect-ratio:4/3;
+      background: var(--mid);
+      border:1px solid rgba(255,255,255,0.07);
+      position:relative;
+      cursor:pointer;
+      transition: transform 0.4s;
+    }
+    .gallery-item:hover { transform:scale(1.04); z-index:2; }
+    .gallery-item:hover .gallery-overlay { opacity:1; }
+
+    .gallery-item img {
+      width:100%; height:100%; object-fit:cover;
+      transition: transform 0.5s;
+      filter: saturate(0.8) brightness(0.85);
+    }
+    .gallery-item:hover img { transform:scale(1.08); filter:saturate(1.1) brightness(1); }
+
+    .gallery-overlay {
+      position:absolute; inset:0;
+      background:linear-gradient(to top, rgba(13,7,32,0.9), transparent);
+      display:flex; align-items:flex-end;
+      padding:16px; opacity:0; transition:opacity 0.3s;
+    }
+    .gallery-overlay span { font-size:0.9rem; color:var(--gold); font-weight:600; }
+
+    /* Placeholder gallery cards */
+    .gallery-placeholder {
+      width:100%; height:100%;
+      display:flex; flex-direction:column;
+      align-items:center; justify-content:center;
+      gap:10px; color:var(--muted);
+      font-size:2.5rem;
+    }
+    .gallery-placeholder p { font-size:0.85rem; letter-spacing:1px; }
+
+    /* ══════════════════════════════════
+       RSVP / CTA
+    ══════════════════════════════════ */
+    #rsvp {
+      position:relative; z-index:1;
+      padding: 100px 5%;
+      text-align:center;
+    }
+
+    .rsvp-glow {
+      position:absolute; top:50%; left:50%;
+      transform:translate(-50%,-50%);
+      width:500px; height:500px; border-radius:50%;
+      background:radial-gradient(circle, rgba(245,200,66,0.08), transparent 70%);
+      pointer-events:none;
+    }
+
+    .rsvp-box {
+      max-width:600px; margin:0 auto;
+      background:var(--card-bg);
+      border:1px solid rgba(245,200,66,0.2);
+      border-radius:30px; padding:60px 50px;
+      backdrop-filter:blur(16px);
+      position:relative;
+    }
+
+    .rsvp-emoji { font-size:4rem; margin-bottom:20px; display:block; animation:pulse 2s ease infinite; }
+    @keyframes pulse { 0%,100%{transform:scale(1)} 50%{transform:scale(1.15)} }
+
+    .rsvp-title {
+      font-family:'Cinzel Decorative', serif;
+      font-size:clamp(1.5rem,3vw,2.2rem);
+      color:var(--white); margin-bottom:16px;
+    }
+
+    .rsvp-desc { color:var(--muted); font-size:1.05rem; line-height:1.7; margin-bottom:36px; }
+
+    /* ▶ LINE 49 — RSVP WhatsApp link / phone number in HTML (~line 568) */
+    .btn-rsvp {
+      display:inline-block;
+      padding:16px 50px;
+      background:linear-gradient(135deg, var(--gold), var(--pink));
+      color:var(--purple); font-weight:800; font-size:1.1rem;
+      border-radius:50px; text-decoration:none;
+      letter-spacing:1px; text-transform:uppercase;
+      box-shadow: 0 6px 30px rgba(245,200,66,0.4);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .btn-rsvp:hover { transform:translateY(-4px) scale(1.05); box-shadow:0 12px 40px rgba(245,200,66,0.6); }
+
+    /* ══════════════════════════════════
+       FOOTER
+    ══════════════════════════════════ */
+    footer {
+      position:relative; z-index:1;
+      padding:50px 5% 30px;
+      border-top:1px solid rgba(255,255,255,0.06);
+      text-align:center;
+    }
+
+    /* ▶ LINE 610 — Footer message */
+    .footer-msg {
+      font-family:'Playfair Display', serif;
+      font-style:italic; font-size:1.1rem;
+      color:var(--muted); margin-bottom:24px;
+    }
+
+    /* ▶ LINES 615-625 — Social media handles */
+    .social-links { display:flex; justify-content:center; gap:20px; margin-bottom:30px; flex-wrap:wrap; }
+    .social-link {
+      padding:8px 20px;
+      border:1px solid rgba(245,200,66,0.25); border-radius:30px;
+      color:var(--gold); text-decoration:none; font-size:0.9rem;
+      transition: background 0.3s, color 0.3s;
+    }
+    .social-link:hover { background:var(--gold); color:var(--purple); }
+
+    .footer-copy { font-size:0.8rem; color:rgba(155,132,204,0.5); letter-spacing:1px; }
+
+    /* ══════════════════════════════════
+       SECTION SHARED
+    ══════════════════════════════════ */
+    .section-header { text-align:center; margin-bottom:60px; }
+
+    /* ══════════════════════════════════
+       RESPONSIVE
+    ══════════════════════════════════ */
+    @media(max-width:768px){
+      nav { padding:14px 5%; }
+      .nav-links { display:none; }
+      .timeline::before { left:20px; }
+      .timeline-item, .timeline-item:nth-child(even) { flex-direction:column; align-items:flex-start; padding-left:50px; }
+      .tl-time { text-align:left; }
+      .tl-dot { position:absolute; left:12px; }
+      .timeline-item { position:relative; }
+    }
+
+    /* Scroll reveal */
+    .reveal { opacity:0; transform:translateY(40px); transition: opacity 0.7s, transform 0.7s; }
+    .reveal.visible { opacity:1; transform:translateY(0); }
+  </style>
+</head>
+<body>
+
+<!-- Stars canvas background -->
+<canvas id="stars-canvas"></canvas>
+
+<!-- ══════════════════════════════════
+     NAVBAR
+     ▶ LINE 42  : School Name
+     ▶ LINE 43  : Junior Year
+     ▶ LINE 44  : Senior Year
+══════════════════════════════════ -->
+<nav>
+  <div class="nav-logo">🎓 Sunrise Public School</div>  <!-- LINE 42: Change School Name here -->
+  <ul class="nav-links">
+    <li><a href="#details">Details</a></li>
+    <li><a href="#music">Music</a></li>
+    <li><a href="#schedule">Schedule</a></li>
+    <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#rsvp">RSVP</a></li>
+  </ul>
+  <a href="#rsvp" class="nav-rsvp">RSVP Now</a>
+</nav>
+
+<!-- ══════════════════════════════════
+     HERO SECTION
+══════════════════════════════════ -->
+<section id="hero">
+  <div class="hero-bg-gradient"></div>
+  <div style="position:absolute;inset:0;background:url('images/school.png') center/cover no-repeat;opacity:0.25;z-index:-1;"></div>
+
+  <!-- Floating Musical Notes -->
+  <div class="floating-notes" id="floatingNotes"></div>
+
+  <span class="hero-badge">✨ Class of 2026 · A Night to Remember</span>  <!-- LINE 44: Senior batch year -->
+
+  <!-- ▶ LINE 270 — Main hero headline -->
+  <h1 class="hero-title">Farewell,<br/>Our Legends</h1>  <!-- LINE 270 -->
+
+  <!-- ▶ LINE 272 — Hero sub-tagline -->
+  <p class="hero-sub">"Every goodbye is the birth of a memory. Tonight, we celebrate yours."</p>  <!-- LINE 272 -->
+
+  <div class="hero-cta-group">
+    <a href="#details" class="btn-primary">🎉 Event Details</a>
+    <a href="#rsvp" class="btn-secondary">💌 RSVP Now</a>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════
+     COUNTDOWN SECTION
+     ▶ JS LINE ~680 : Target date
+══════════════════════════════════ -->
+<section id="countdown-section">
+  <p class="section-label">⏳ Counting Down</p>
+  <h2 class="section-title">The Big Night Is Near</h2>
+  <div class="countdown-grid">
+    <div class="count-box"><span class="count-number" id="cd-days">00</span><span class="count-label">Days</span></div>
+    <div class="count-box"><span class="count-number" id="cd-hours">00</span><span class="count-label">Hours</span></div>
+    <div class="count-box"><span class="count-number" id="cd-mins">00</span><span class="count-label">Minutes</span></div>
+    <div class="count-box"><span class="count-number" id="cd-secs">00</span><span class="count-label">Seconds</span></div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════
+     EVENT DETAILS
+     ▶ LINE 45 : Event Date
+     ▶ LINE 46 : Event Time
+     ▶ LINE 47 : Venue Name
+     ▶ LINE 48 : Venue Address
+══════════════════════════════════ -->
+<section id="details">
+  <div class="section-header reveal">
+    <p class="section-label">📍 The Details</p>
+    <h2 class="section-title">When & Where</h2>
+  </div>
+  <div class="details-grid">
+
+    <div class="detail-card reveal">
+      <span class="detail-icon">📅</span>
+      <h3 class="detail-title">Date</h3>
+      <p class="detail-text">Saturday, 24th December 2026</p>  <!-- LINE 45: Change Event Date here -->
+    </div>
+
+    <div class="detail-card reveal">
+      <span class="detail-icon">⏰</span>
+      <h3 class="detail-title">Time</h3>
+      <p class="detail-text">5:00 PM – 10:00 PM</p>  <!-- LINE 46: Change Event Time here -->
+    </div>
+
+    <div class="detail-card reveal">
+      <span class="detail-icon">🏛️</span>
+      <h3 class="detail-title">Venue</h3>
+      <p class="detail-text">School Auditorium</p>  <!-- LINE 47: Change Venue Name here -->
+    </div>
+
+    <div class="detail-card reveal">
+      <span class="detail-icon">📌</span>
+      <h3 class="detail-title">Address</h3>
+      <p class="detail-text">123 School Road, Jaipur, Rajasthan</p>  <!-- LINE 48: Change Address here -->
+    </div>
+
+    <div class="detail-card reveal">
+      <span class="detail-icon">👗</span>
+      <h3 class="detail-title">Dress Code</h3>
+      <p class="detail-text">Smart Formals / Traditional Fusion</p>
+    </div>
+
+    <div class="detail-card reveal">
+      <span class="detail-icon">🎟️</span>
+      <h3 class="detail-title">Entry</h3>
+      <p class="detail-text">By Invitation Only</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════════════════════════
+     MUSIC SECTION — Visualizer only
+     ▶ Change "songs/music.mp3" below to your actual MP3 filename
+══════════════════════════════════ -->
+<section id="music">
+  <div class="section-header reveal">
+    <p class="section-label">🎵 Live Music & DJ</p>
+    <h2 class="section-title">Feel the Beat</h2>
+  </div>
+
+  <!-- Real-audio visualizer -->
+  <div class="music-visualizer" id="visualizer"></div>
+
+  <!-- Player controls -->
+  <div class="music-player-wrap">
+    <!-- ▶ Change src below to your MP3 file path -->
+    <audio id="main-audio" src="song.mp3" preload="auto" crossorigin="anonymous"></audio>
+    <button id="play-pause-btn" class="play-pause-btn" aria-label="Play / Pause">
+      <span id="play-icon">▶</span>
+    </button>
+    <div class="player-track-info">
+      <span id="track-name">🎶 Party Music</span>
+      <div class="player-progress-wrap">
+        <input type="range" id="seek-bar" class="seek-bar" value="0" min="0" step="0.1">
+        <div class="time-labels">
+          <span id="cur-time">0:00</span>
+          <span id="dur-time">0:00</span>
+        </div>
+      </div>
+    </div>
+    <div class="volume-wrap">
+      🔊
+      <input type="range" id="vol-bar" class="vol-bar" value="80" min="0" max="100">
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════
+     SCHEDULE / TIMELINE
+     ▶ LINES ~450-490 — Event timings
+══════════════════════════════════ -->
+<section id="schedule">
+  <div class="section-header reveal">
+    <p class="section-label">📋 Program</p>
+    <h2 class="section-title">Evening Schedule</h2>
+  </div>
+
+  <div class="timeline">
+
+    <div class="timeline-item reveal">
+      <div class="tl-time">5:00 PM</div>  <!-- LINE ~450: Change timing -->
+      <div class="tl-dot"></div>
+      <div class="tl-content">
+        <h4>🚪 Gates Open & Welcome</h4>
+        <p>Red carpet welcome, photo booth, refreshments</p>
+      </div>
+    </div>
+
+    <div class="timeline-item reveal">
+      <div class="tl-time">5:30 PM</div>  <!-- LINE ~458: Change timing -->
+      <div class="tl-dot"></div>
+      <div class="tl-content">
+        <h4>🎙️ Opening Ceremony</h4>
+        <p>Welcome speech by Junior Class President</p>
+      </div>
+    </div>
+
+    <div class="timeline-item reveal">
+      <div class="tl-time">6:00 PM</div>  <!-- LINE ~466: Change timing -->
+      <div class="tl-dot"></div>
+      <div class="tl-content">
+        <h4>🎭 Cultural Performances</h4>
+        <p>Dance, drama, and musical acts by juniors</p>
+      </div>
+    </div>
+
+    <div class="timeline-item reveal">
+      <div class="tl-time">7:00 PM</div>  <!-- LINE ~474: Change timing -->
+      <div class="tl-dot"></div>
+      <div class="tl-content">
+        <h4>🏆 Awards & Superlatives</h4>
+        <p>Most Likely to Succeed, Best Dressed, and more!</p>
+      </div>
+    </div>
+
+    <div class="timeline-item reveal">
+      <div class="tl-time">7:45 PM</div>  <!-- LINE ~482: Change timing -->
+      <div class="tl-dot"></div>
+      <div class="tl-content">
+        <h4>🍽️ Dinner</h4>
+        <p>Buffet dinner — Veg & Non-Veg options available</p>
+      </div>
+    </div>
+
+    <div class="timeline-item reveal">
+      <div class="tl-time">9:00 PM</div>  <!-- LINE ~490: Change timing -->
+      <div class="tl-dot"></div>
+      <div class="tl-content">
+        <h4>🎧 DJ Night & Dance Floor</h4>
+        <p>Non-stop music, dance, and memories!</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════════════════════════
+     GALLERY / MEMORIES
+     ▶ LINES ~530-560 — Image URLs or placeholders
+══════════════════════════════════ -->
+<section id="gallery">
+  <div class="section-header reveal">
+    <p class="section-label">📸 Memories</p>
+    <h2 class="section-title">Our Journey Together</h2>
+  </div>
+
+  <div class="gallery-grid">
+
+    <!-- ▶ LINE ~530: Replace src with actual photo URL or keep placeholder -->
+    <div class="gallery-item reveal">
+      <img src="images/f.png" > <!-- LINE ~530 -->
+    </div>
+
+    <!-- ▶ LINE ~536: Replace with photo -->
+    <div class="gallery-item reveal" >
+      <img src="images/s.png"> <!-- LINE ~536 -->
+    </div>
+
+    <!-- ▶ LINE ~542 -->
+    <div class="gallery-item reveal">
+      <img src="images/t.png"   <!-- LINE ~542 -->
+    </div>
+
+    <!-- ▶ LINE ~548 -->
+    <div class="gallery-item reveal">
+      <img src="images/fo.png">  <!-- LINE ~548 -->
+    </div>
+
+    <!-- ▶ LINE ~554 -->
+    <div class="gallery-item reveal">
+      <img src="images/fi.png">  <!-- LINE ~554 -->
+    </div>
+
+    <!-- ▶ LINE ~560 -->
+    <div class="gallery-item reveal">
+      <img src="images/si.png">  <!-- LINE ~560 -->
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════════════════════════
+     RSVP / CTA
+     ▶ LINE ~568 : WhatsApp / RSVP link (LINE 49)
+══════════════════════════════════ -->
+<section id="rsvp">
+  <div class="rsvp-glow"></div>
+  <div class="rsvp-box reveal">
+    <span class="rsvp-emoji">💌</span>
+    <h2 class="rsvp-title">Join the Celebration</h2>
+    <p class="rsvp-desc">
+      Dear Seniors — our beloved Class of 2026 — this evening is crafted with love by your juniors.<br/>
+      Your presence will make it truly magical. Please confirm your attendance.
+    </p>
+    <!-- ▶ LINE ~568 — Change WhatsApp number or link here (LINE 49) -->
+    <a href="https://wa.me/91XXXXXXXXXX?text=I%20will%20attend%20the%20Farewell%20Party!" class="btn-rsvp" target="_blank">  <!-- LINE ~568: RSVP link -->
+      ✅ Confirm Attendance via WhatsApp
+    </a>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════
+     FOOTER
+     ▶ LINE ~610 : Footer message
+     ▶ LINES ~615-625 : Social handles
+══════════════════════════════════ -->
+<footer>
+  <!-- ▶ LINE 610 — Footer message -->
+  <p class="footer-msg">"Not a goodbye, but a see-you-at-the-top. With all our love — The Juniors 💛"</p>  <!-- LINE 610 -->
+
+  <p class="footer-copy">Made with ❤️ by <a href="https://instagram.com/gem_invite" target="_blank" style="color:var(--pink);text-decoration:none">@gem_invite</a></p>
+</footer>
+
+<!-- ══════════════════════════════════
+     JAVASCRIPT
+══════════════════════════════════ -->
+<script>
+  /* ── STAR CANVAS ── */
+  (function(){
+    const canvas = document.getElementById('stars-canvas');
+    const ctx = canvas.getContext('2d');
+    let stars = [];
+    function resize(){ canvas.width = innerWidth; canvas.height = innerHeight; }
+    resize(); window.addEventListener('resize', resize);
+    for(let i=0;i<200;i++){
+      stars.push({
+        x: Math.random()*innerWidth,
+        y: Math.random()*innerHeight,
+        r: Math.random()*1.5+0.3,
+        a: Math.random(),
+        s: Math.random()*0.005+0.001
+      });
+    }
+    function draw(){
+      ctx.clearRect(0,0,canvas.width,canvas.height);
+      stars.forEach(s=>{
+        s.a += s.s; if(s.a>1||s.a<0) s.s*=-1;
+        ctx.beginPath();
+        ctx.arc(s.x,s.y,s.r,0,Math.PI*2);
+        ctx.fillStyle = `rgba(255,255,240,${s.a})`;
+        ctx.fill();
+      });
+      requestAnimationFrame(draw);
+    }
+    draw();
+  })();
+
+  /* ── FLOATING MUSICAL NOTES ── */
+  (function(){
+    const notes = ['♩','♪','♫','♬','🎵','🎶','🎸','🎤'];
+    const container = document.getElementById('floatingNotes');
+    for(let i=0;i<18;i++){
+      const el = document.createElement('span');
+      el.className = 'note';
+      el.textContent = notes[Math.floor(Math.random()*notes.length)];
+      el.style.left  = Math.random()*100+'%';
+      el.style.animationDuration = (8+Math.random()*12)+'s';
+      el.style.animationDelay   = (Math.random()*10)+'s';
+      el.style.fontSize = (1.2+Math.random()*1.5)+'rem';
+      container.appendChild(el);
+    }
+  })();
+
+  /* ── MUSIC VISUALIZER BARS (static CSS fallback — overridden by Web Audio when playing) ── */
+  (function(){
+    const viz = document.getElementById('visualizer');
+    for(let i=0;i<48;i++){
+      const bar = document.createElement('div');
+      bar.className = 'bar';
+      const h = (12+Math.random()*70)+'px';
+      bar.style.setProperty('--h', h);
+      bar.style.setProperty('--dur', (0.35+Math.random()*0.65)+'s');
+      bar.style.animationDelay = (Math.random()*0.5)+'s';
+      viz.appendChild(bar);
+    }
+  })();
+
+  /* ── REAL AUDIO PLAYER + WEB AUDIO VISUALIZER ── */
+  (function(){
+    const audio   = document.getElementById('main-audio');
+    const btn     = document.getElementById('play-pause-btn');
+    const icon    = document.getElementById('play-icon');
+    const seekBar = document.getElementById('seek-bar');
+    const volBar  = document.getElementById('vol-bar');
+    const curTime = document.getElementById('cur-time');
+    const durTime = document.getElementById('dur-time');
+    const bars    = document.querySelectorAll('#visualizer .bar');
+
+    let audioCtx, analyser, source, dataArr, rafId;
+    let vizActive = false;
+
+    function fmt(s){
+      const m = Math.floor(s/60), sec = Math.floor(s%60);
+      return m+':'+(sec<10?'0':'')+sec;
+    }
+
+    function initAudio(){
+      if(audioCtx) return;
+      audioCtx  = new (window.AudioContext || window.webkitAudioContext)();
+      analyser  = audioCtx.createAnalyser();
+      analyser.fftSize = 128;
+      source    = audioCtx.createMediaElementSource(audio);
+      source.connect(analyser);
+      analyser.connect(audioCtx.destination);
+      dataArr   = new Uint8Array(analyser.frequencyBinCount);
+    }
+
+    function drawViz(){
+      rafId = requestAnimationFrame(drawViz);
+      analyser.getByteFrequencyData(dataArr);
+      const step = Math.floor(dataArr.length / bars.length);
+      bars.forEach((bar, i) => {
+        const val = dataArr[i * step] || 0;
+        const h   = 8 + (val / 255) * 90;
+        bar.style.animation = 'none';
+        bar.style.height    = h + 'px';
+        bar.style.opacity   = 0.4 + (val/255)*0.6;
+      });
+    }
+
+    function stopViz(){
+      if(rafId) cancelAnimationFrame(rafId);
+      bars.forEach(bar => {
+        bar.style.animation = '';
+        bar.style.height    = '';
+        bar.style.opacity   = '';
+      });
+    }
+
+    btn.addEventListener('click', () => {
+      initAudio();
+      if(audioCtx.state === 'suspended') audioCtx.resume();
+      if(audio.paused){
+        audio.play().then(()=>{ icon.textContent='⏸'; drawViz(); })
+             .catch(()=>{ icon.textContent='▶'; });
+      } else {
+        audio.pause(); icon.textContent='▶'; stopViz();
+      }
+    });
+
+    audio.addEventListener('ended', () => { icon.textContent='▶'; stopViz(); });
+
+    audio.addEventListener('timeupdate', () => {
+      if(!isNaN(audio.duration)){
+        seekBar.max   = audio.duration;
+        seekBar.value = audio.currentTime;
+        curTime.textContent = fmt(audio.currentTime);
+        durTime.textContent = fmt(audio.duration);
+      }
+    });
+
+    audio.addEventListener('loadedmetadata', () => {
+      seekBar.max = audio.duration;
+      durTime.textContent = fmt(audio.duration);
+      // Set track name from filename
+      const src = audio.src || '';
+      const name = src.split('/').pop().replace(/\.[^.]+$/, '').replace(/[-_]/g,' ') || 'Party Music';
+      document.getElementById('track-name').textContent = '🎶 ' + decodeURIComponent(name);
+    });
+
+    seekBar.addEventListener('input', () => { audio.currentTime = seekBar.value; });
+
+    volBar.addEventListener('input', () => { audio.volume = volBar.value / 100; });
+    audio.volume = volBar.value / 100;
+  })();
+
+  /* ── COUNTDOWN TIMER ──
+     ▶ LINE 680 — Change target date here (LINE 57)  */
+  (function(){
+    const target = new Date('2026-12-24T17:00:00');  /* LINE 680: Target event date & time */
+    function update(){
+      const diff = target - new Date();
+      if(diff<=0){
+        document.getElementById('cd-days').textContent  = '00';
+        document.getElementById('cd-hours').textContent = '00';
+        document.getElementById('cd-mins').textContent  = '00';
+        document.getElementById('cd-secs').textContent  = '00';
+        return;
+      }
+      const d = Math.floor(diff/864e5);
+      const h = Math.floor((diff%864e5)/36e5);
+      const m = Math.floor((diff%36e5)/6e4);
+      const s = Math.floor((diff%6e4)/1e3);
+      document.getElementById('cd-days').textContent  = String(d).padStart(2,'0');
+      document.getElementById('cd-hours').textContent = String(h).padStart(2,'0');
+      document.getElementById('cd-mins').textContent  = String(m).padStart(2,'0');
+      document.getElementById('cd-secs').textContent  = String(s).padStart(2,'0');
+    }
+    update(); setInterval(update, 1000);
+  })();
+
+  /* ── SCROLL REVEAL ── */
+  (function(){
+    const obs = new IntersectionObserver(entries=>{
+      entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('visible'); });
+    },{ threshold:0.1 });
+    document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+  })();
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Raksha Bandhan 💖</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Nunito:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --rose:   #ff4d6d;
+  --blush:  #fad0c4;
+  --petal:  #ff9a9e;
+  --glass:  rgba(255,255,255,0.18);
+  --border: rgba(255,255,255,0.35);
+  --shadow: rgba(255, 77, 109, 0.25);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Nunito', sans-serif;
+  background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 45%, #ffecd2 100%);
+  color: white;
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  flex-direction: column;
+  text-align: center;
+  padding: 24px 20px;
+}
+.hidden { display: none !important; }
+
+/* Lock Screen */
+#lockScreen {
+  background: var(--glass);
+  backdrop-filter: blur(22px);
+  border-radius: 28px;
+  padding: 44px 32px;
+  border: 1px solid var(--border);
+  box-shadow: 0 24px 60px var(--shadow);
+  max-width: 360px;
+  width: 92%;
+}
+#lockScreen h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+#lockScreen p {
+  font-size: 0.88rem;
+  opacity: 0.8;
+  margin-bottom: 4px;
+}
+
+/* Inputs */
+input[type="password"],
+input[type="text"],
+textarea {
+  width: 100%;
+  padding: 13px 18px;
+  border-radius: 14px;
+  border: 1.5px solid rgba(255,255,255,0.6);
+  outline: none;
+  margin-top: 12px;
+  background: rgba(255,255,255,0.25);
+  color: white;
+  font-family: 'Nunito', sans-serif;
+  font-size: 0.97rem;
+  transition: border 0.25s, background 0.25s;
+}
+input::placeholder, textarea::placeholder { color: rgba(255,255,255,0.85); }
+input:focus, textarea:focus {
+  border-color: rgba(255,255,255,0.9);
+  background: rgba(255,255,255,0.32);
+}
+
+/* Buttons */
+.primary-btn {
+  margin-top: 16px;
+  padding: 13px 0;
+  width: 100%;
+  border: none;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #ff4d6d, #c9184a);
+  color: white;
+  cursor: pointer;
+  font-family: 'Nunito', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 6px 22px rgba(201,24,74,0.4);
+}
+.primary-btn:hover  { transform: translateY(-2px); box-shadow: 0 10px 28px rgba(201,24,74,0.5); }
+.primary-btn:active { transform: translateY(0); }
+.primary-btn:disabled { opacity: 0.6; cursor: default; transform: none; }
+
+.ghost-btn {
+  margin-top: 12px;
+  padding: 10px 24px;
+  border: 1.5px solid var(--border);
+  border-radius: 12px;
+  background: rgba(255,255,255,0.18);
+  color: white;
+  cursor: pointer;
+  font-family: 'Nunito', sans-serif;
+  font-size: 0.88rem;
+  font-weight: 600;
+  transition: background 0.2s;
+}
+.ghost-btn:hover { background: rgba(255,255,255,0.28); }
+
+/* Main Content */
+#mainContent {
+  flex-direction: column;
+  padding: 36px 20px 56px;
+}
+
+#mainContent h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(1.7rem, 5.5vw, 2.6rem);
+  font-weight: 600;
+  text-shadow: 0 2px 12px rgba(0,0,0,0.12);
+  margin-bottom: 6px;
+}
+
+.ornament {
+  width: 80px;
+  height: 2px;
+  background: rgba(255,255,255,0.5);
+  border-radius: 2px;
+  margin: 10px auto 16px;
+  position: relative;
+}
+.ornament::before, .ornament::after {
+  content: '✦';
+  position: absolute;
+  top: -8px;
+  font-size: 10px;
+  opacity: 0.7;
+}
+.ornament::before { left: -18px; }
+.ornament::after  { right: -18px; }
+
+#typingText {
+  white-space: pre-line;
+  border-right: 2px solid rgba(255,255,255,0.8);
+  padding-right: 4px;
+  animation: blink 1s infinite;
+  font-size: 0.97rem;
+  line-height: 1.75;
+  max-width: 480px;
+  margin: 0 auto 22px;
+  min-height: 60px;
+}
+@keyframes blink { 50% { border-color: transparent; } }
+
+/* Slideshow */
+.slideshow {
+  width: 80vw;
+  max-width: 270px;
+  margin: 0 auto 30px;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.18);
+  border: 3px solid rgba(255,255,255,0.45);
+}
+.slideshow img {
+  width: 100%;
+  display: block;
+  transition: opacity 0.45s;
+}
+
+/* Card panel */
+.card {
+  background: rgba(180, 40, 75, 0.72);
+  backdrop-filter: blur(18px);
+  border-radius: 26px;
+  padding: 30px 26px;
+  margin: 0 auto 22px;
+  max-width: 480px;
+  width: 92%;
+  border: 1.5px solid rgba(255,255,255,0.55);
+  box-shadow: 0 12px 44px rgba(150, 20, 55, 0.45);
+  animation: slideUp 0.55s ease forwards;
+  position: relative;
+  z-index: 1;
+  text-align: left;
+}
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.card-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.55rem;
+  font-weight: 600;
+  margin-bottom: 4px;
+  text-align: center;
+  letter-spacing: 0.4px;
+}
+.card-divider {
+  width: 50px;
+  height: 2px;
+  background: rgba(255,255,255,0.45);
+  border-radius: 2px;
+  margin: 8px auto 6px;
+}
+.card-sub {
+  font-size: 0.83rem;
+  opacity: 0.72;
+  margin-bottom: 14px;
+  font-style: italic;
+  text-align: center;
+}
+
+#replySuccess {
+  background: rgba(255,255,255,0.18);
+  border: 1px solid rgba(255,255,255,0.38);
+  border-radius: 12px;
+  padding: 12px 16px;
+  margin-top: 14px;
+  font-size: 0.9rem;
+  display: none;
+  line-height: 1.5;
+  text-align: center;
+}
+
+/* Reply bubble */
+.reply-bubble {
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255,255,255,0.4);
+  border-radius: 18px;
+  padding: 18px 20px;
+  margin-top: 4px;
+}
+.reply-bubble-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+.reply-avatar {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #ff4d6d, #fad0c4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  flex-shrink: 0;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+  color: white;
+}
+.reply-sender {
+  font-weight: 700;
+  font-size: 0.88rem;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+}
+.reply-time {
+  font-size: 0.76rem;
+  opacity: 0.62;
+  margin-top: 2px;
+}
+.reply-text {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 1.1rem;
+  line-height: 1.7;
+}
+
+#noReplyYet {
+  opacity: 0.7;
+  font-size: 0.9rem;
+  font-style: italic;
+  padding: 8px 0;
+  text-align: center;
+}
+
+/* Hearts */
+.hearts {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  top: 0;
+  z-index: 0;
+}
+.heart {
+  position: absolute;
+  animation: floatUp 6s linear infinite;
+}
+@keyframes floatUp {
+  0%   { transform: translateY(100vh); opacity: 1; }
+  100% { transform: translateY(-10vh); opacity: 0; }
+}
+footer {
+  position: fixed;
+  bottom: 10px;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  z-index: 199;
+}
+.footer-copy {
+  font-size: 12px;
+  color: #ffffff;
+  letter-spacing: 1px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- Password Screen -->
+<div id="lockScreen" class="center">
+  <h2>Enter Password 🔐</h2>
+  <p>A special surprise awaits you 🌸</p>
+  <input type="password" id="password" placeholder="Enter password" onkeydown="if(event.key==='Enter') checkPassword()">
+  <button class="primary-btn" onclick="checkPassword()">✦ Open Surprise ✦</button>
+  <p id="error" style="color:#ffe08a; margin-top:12px; font-size:0.88rem;"></p>
+</div>
+
+<!-- Main Content -->
+<div id="mainContent" class="hidden center">
+
+  <h1>Happy Rakhi Dear Sister ❤️</h1>
+  <div class="ornament"></div>
+
+  <p id="typingText"></p>
+
+  <div class="slideshow">
+    <img id="slide" src="images/first.jpg" alt="Memory">
+  </div>
+
+  <!-- Send wish back -->
+  <div class="card" id="replySection">
+    <p class="card-title">Send Your Love 💌</p>
+    <div class="card-divider"></div>
+    <p class="card-sub">Share your blessings — she will see them on this page</p>
+
+    <input type="text" id="replyName" placeholder="Your Name *" maxlength="50">
+    <textarea id="replyText" placeholder="Your heartfelt wish or blessing... 🌸" maxlength="400"
+      style="resize:none; height:96px; margin-top:12px;"></textarea>
+
+    <button class="primary-btn" id="sendReplyBtn" onclick="sendReply()">✦ Send Blessings ✦</button>
+    <div id="replySuccess">✅ Your message has been sent! She'll see it when she opens her surprise 🌸</div>
+
+    <!-- Submitted messages display -->
+    <div id="replyContent" style="margin-top: 16px;"></div>
+    <div id="noReplyYet"></div>
+  </div>
+</div>
+
+<!-- Hearts -->
+<div class="hearts"></div>
+
+<!-- Music -->
+<audio id="bgMusic" loop>
+  <source src="song.mp3" type="audio/mp3">
+</audio>
+<footer>
+  <p class="footer-copy" style="color:#b62771;">Made with ❤️ by <a href="https://instagram.com/gem_invite" target="_blank" style="color:#b62771 !important; text-decoration:none;">@gem_invite</a></p>
+</footer>
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+<script>
+const correctPassword = "123456";
+const STORAGE_KEY = "rakhi_reply_2025";
+
+function checkPassword() {
+  const v = document.getElementById("password").value;
+  if (v === correctPassword) {
+    document.getElementById("lockScreen").style.display = "none";
+    document.getElementById("mainContent").classList.remove("hidden");
+    document.getElementById("bgMusic").play().catch(() => {});
+    typeWriter();
+    loadReply();
+  } else {
+    document.getElementById("error").innerText = "Wrong password ❌ Try again!";
+    document.getElementById("password").value = "";
+  }
+}
+
+const message = "My dearest sister, thank you for being the light of my life. 💖\nThis Raksha Bandhan, I tie this thread of love around your wrist, ✨\nknowing you will always be my home.\n\nHappy Raksha Bandhan To My Rasmalai 🌸";
+let i = 0;
+function typeWriter() {
+  if (i < message.length) {
+    document.getElementById("typingText").innerHTML += message.charAt(i++);
+    setTimeout(typeWriter, 45);
+  } else {
+    document.getElementById("typingText").style.borderRight = "none";
+    document.getElementById("typingText").style.animation = "none";
+  }
+}
+
+const images = ["images/f.png","images/s.png","images/t.png","images/fo.png","images/fi.png","images/si.png"];
+let idx = 0;
+setInterval(() => {
+  const s = document.getElementById("slide");
+  s.style.opacity = 0;
+  setTimeout(() => { s.src = images[idx = (idx + 1) % images.length]; s.style.opacity = 1; }, 350);
+}, 2500);
+
+const emojis = ["💖","💕","✨","💝","🎀"];
+function createHeart() {
+  const h = document.createElement("div");
+  h.classList.add("heart");
+  h.innerHTML = emojis[Math.floor(Math.random() * emojis.length)];
+  h.style.left = Math.random() * 100 + "vw";
+  h.style.fontSize = (Math.random() * 14 + 14) + "px";
+  h.style.animationDuration = (Math.random() * 3 + 4) + "s";
+  document.querySelector(".hearts").appendChild(h);
+  setTimeout(() => h.remove(), 7000);
+}
+setInterval(createHeart, 420);
+
+function sendReply() {
+  const name = document.getElementById("replyName").value.trim();
+  const text = document.getElementById("replyText").value.trim();
+  if (!text) { alert("Please write a message first 💌"); return; }
+
+  const data = {
+    name: name || "Your Sister",
+    message: text,
+    time: new Date().toLocaleString("en-IN", { dateStyle: "medium", timeStyle: "short" })
+  };
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+
+  document.getElementById("replySuccess").style.display = "block";
+  const btn = document.getElementById("sendReplyBtn");
+  btn.disabled = true;
+  btn.innerText = "✦ Sent with Love ✦";
+  confetti({ particleCount: 90, spread: 65, origin: { y: 0.65 } });
+  displayReply(data);
+}
+
+function loadReply() {
+  const saved = localStorage.getItem(STORAGE_KEY);
+  if (saved) { try { displayReply(JSON.parse(saved)); } catch(e) {} }
+}
+
+function displayReply(data) {
+  const initial = data.name.trim().charAt(0).toUpperCase();
+  document.getElementById("replyContent").innerHTML = `
+    <div class="reply-bubble">
+      <div class="reply-bubble-header">
+        <div class="reply-avatar">${esc(initial)}</div>
+        <div>
+          <div class="reply-sender">${esc(data.name)}</div>
+          <div class="reply-time">${esc(data.time)}</div>
+        </div>
+      </div>
+      <div class="reply-text">"${esc(data.message)}"</div>
+    </div>`;
+}
+
+function esc(s) {
+  return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
+}
+
+document.addEventListener("contextmenu", e => e.preventDefault());
+</script>
+</body>
+</html>
