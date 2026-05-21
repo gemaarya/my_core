@@ -206,7 +206,7 @@ function sendEnquiryWhatsApp() {
   const product = currentProduct ? currentProduct.name  : 'a product';
   const price   = currentProduct ? currentProduct.price : '';
 
-  let msg = `Hi Joy&Celebrate! 🎉\n\nI'm interested in: *${product}* (${price})\n\nMy Name: ${name}`;
+  let msg = `Hi geminvite! 🎉\n\nI'm interested in: *${product}* (${price})\n\nMy Name: ${name}`;
   if (date) msg += `\nEvent Date: ${date}`;
   if (note) msg += `\n\nSpecial Requirements:\n${note}`;
   msg += `\n\nPlease share more details. Thank you!`;
