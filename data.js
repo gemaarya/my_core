@@ -279,6 +279,10 @@ const FAQS = [
     a: 'Simply click "Enquire Now" on any product, send us your event details on WhatsApp — name, date, venue, and any customization preferences — and we\'ll get started right away!',
   },
   {
+    q: 'Some demo invitations are asking for a password. How do I access them?',
+    a: 'Some of our demo invitations are password-protected to keep them exclusive. You can access any protected demo using the password: 123456. Just enter this password when prompted, and you\'ll be able to view the full demo experience.',
+  },
+  {
     q: 'How long does delivery take?',
     a: 'We typically deliver within 48–72 hours max 7 working days after receiving all your details and confirmation. For urgent orders, we offer express delivery in 12–24 hours for a small additional fee.',
   },
