@@ -141,6 +141,15 @@ const CATEGORIES = [
         thumb:     '',
       },
       {
+        name:      'Roj Ki Kamai',
+        desc:      'A way to soul prepare for the spiritual journey ahead.',
+        price:     '₹349',
+        origPrice: '₹499',
+        emoji:     '🧘',
+        demo:      'templates/Religious/Roj/index.html',
+        thumb:     '',
+      },
+      {
         name:      'Tap Anumodana',
         desc:      'Reverential and spiritually designed invitations for Tap Anumodana ceremonies with sacred motifs.',
         price:     '₹149',
