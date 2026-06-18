@@ -765,23 +765,6 @@
      Ask your developer to wire up the sendWish() function
      to POST to one of these services.
      ================================================ -->
-<section class="sec-wishes">
-  <div class="inner">
-    <p class="sec-label">Share Your Love</p>
-    <h2 class="sec-title">Memory <em>Wall</em> 💕</h2>
-    <div class="sec-div"></div>
-    <p style="text-align:center;color:var(--subtext);font-size:0.9rem;margin-bottom:30px;font-style:italic;">
-      These wishes will stay here forever — a little memory book for baby 🌸
-    </p>
-    <div class="wish-form">
-      <input type="text"  id="wName" placeholder="Your name 💖" maxlength="60"/>
-      <textarea id="wText" rows="4" placeholder="Write your sweetest wish for baby..."></textarea>
-      <button class="wish-submit" onclick="sendWish()">Send My Wish 🌸</button>
-      <p class="wish-ok" id="wishOk">Your wish has been saved forever! 💞</p>
-    </div>
-    <div class="wish-board" id="wishBoard"></div>
-  </div>
-</section>
 
 <!-- ================================================
      🌸 FOOTER
@@ -878,48 +861,6 @@ function closeLightbox(){
 }
 document.addEventListener('keydown',e=>{ if(e.key==='Escape') closeLightbox(); });
 
-/* ── WISHES — PERMANENT MEMORY WALL ── */
-/* Wishes use localStorage — they persist FOREVER on that browser/device.
-   The event date does not clear them. They accumulate as a memory book. */
-const WISH_KEY='babyShower_wishes_v2';
-let wishes=[];
-try{ wishes=JSON.parse(localStorage.getItem(WISH_KEY)||'[]'); }catch(e){ wishes=[]; }
-
-function renderWishes(){
-  const board=document.getElementById('wishBoard');
-  if(wishes.length===0){
-    board.innerHTML='<div class="wish-empty">No wishes yet — be the first to send your love! 💕</div>';
-    return;
-  }
-  board.innerHTML=wishes.slice().reverse().map(w=>`
-    <div class="wish-card">
-      <div class="wname">💕 ${escHtml(w.n)}</div>
-      <div class="wtext">${escHtml(w.t)}</div>
-      <div class="wish-date">📅 ${w.d||''}</div>
-    </div>`).join('');
-}
-
-function escHtml(s){
-  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
-}
-
-renderWishes();
-
-function sendWish(){
-  const n=document.getElementById('wName').value.trim();
-  const t=document.getElementById('wText').value.trim();
-  if(!n||!t){alert('Please enter your name and a wish! 💕');return;}
-  const now=new Date();
-  const d=now.toLocaleDateString('en-IN',{day:'numeric',month:'long',year:'numeric'});
-  wishes.push({n,t,d});
-  try{ localStorage.setItem(WISH_KEY,JSON.stringify(wishes)); }catch(e){}
-  document.getElementById('wName').value='';
-  document.getElementById('wText').value='';
-  const ok=document.getElementById('wishOk');
-  ok.style.display='block';
-  setTimeout(()=>ok.style.display='none',3500);
-  renderWishes();
-}
 
 /* ── PHOTO SLIDESHOW ── */
 (function(){

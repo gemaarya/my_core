@@ -5,6 +5,30 @@
 // ============================================================
 
 
+// ── FIREBASE CONFIG ───────────────────────────────────────
+// STEP 1: Replace these values with YOUR Firebase project config
+// (See setup guide below to get these values)
+const FIREBASE_CONFIG = {
+  apiKey:            "AIzaSyBC20dJgQbQeHnoTPNJhavfnJIEwpcjuic",
+  authDomain:        "geminvite-2d105.firebaseapp.com",
+  projectId:         "geminvite-2d105",
+  storageBucket:     "geminvite-2d105.firebasestorage.app",
+  messagingSenderId: "691943878450",
+  appId:             "1:691943878450:web:cdfb89f3667d2119c2712b",
+};
+// ─────────────────────────────────────────────────────────
+
+
+// ── FIREBASE INIT ─────────────────────────────────────────
+import { initializeApp }                        from 'https://www.gstatic.com/firebasejs/12.15.0/firebase-app.js';
+import { getFirestore, collection, addDoc,
+         getDocs, orderBy, query, Timestamp }   from 'https://www.gstatic.com/firebasejs/12.15.0/firebase-firestore.js';
+
+const firebaseApp = initializeApp(FIREBASE_CONFIG);
+const db          = getFirestore(firebaseApp);
+const REVIEWS_COL = 'geminvite_reviews';   // Firestore collection name
+
+
 // ── NAV: shrink on scroll ──────────────────────────────────
 window.addEventListener('scroll', () => {
   document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 40);
@@ -28,7 +52,7 @@ function cycleMorph() {
   const el = document.getElementById('morphWord');
   el.style.animation = 'none';
   el.textContent = MORPH_WORDS[morphIdx];
-  void el.offsetWidth; // force reflow to restart animation
+  void el.offsetWidth;
   el.style.animation = 'morphWord 2s ease-in-out infinite';
 }
 setInterval(cycleMorph, 2000);
@@ -70,7 +94,6 @@ function switchTab(id) {
 
 
 // ── PRODUCTS: render product cards ───────────────────────
-// Background colors for emoji thumbnails
 const THUMB_BG = {
   '🎂':'#1a0a2e','💑':'#1a0a1a','🎊':'#0a1a2e','🤝':'#0a1a0a','🥳':'#1a1a0a',
   '🎓':'#0a0a1a','🏫':'#1a0a0a','💍':'#1a0a1a','🪔':'#1a0a00','✨':'#0a0a1a',
@@ -86,19 +109,16 @@ function renderProducts() {
   const container = document.getElementById('productsGrid');
 
   container.innerHTML = cat.products.map(p => {
-    // Thumbnail: image if provided, otherwise emoji
     const thumbContent = p.thumb
       ? `<img src="${p.thumb}" alt="${p.name}" style="width:100%;height:100%;object-fit:cover;position:relative;z-index:1">`
       : `<span style="position:relative;z-index:1;font-size:56px">${p.emoji}</span>`;
 
     const bg = THUMB_BG[p.emoji] || '#0d0a1a';
 
-    // View Demo button: active if demo link exists, disabled if not
     const demoBtn = p.demo
       ? `<button class="btn-sm-outline" onclick="window.open('${p.demo}','_blank')">View Demo</button>`
       : `<button class="btn-sm-outline" disabled title="Demo coming soon">View Demo</button>`;
 
-    // Price display: show original crossed out + discount %
     let priceHTML = '';
     if (p.origPrice) {
       const origNum = parseInt(p.origPrice.replace(/[^\d]/g,''));
@@ -138,10 +158,11 @@ function renderProducts() {
 }
 
 
-// ── REVIEWS: render review cards ──────────────────────────
-function renderReviews() {
-  const container = document.getElementById('reviewsGrid');
-  container.innerHTML = REVIEWS.map(r => `
+// ── REVIEWS: render cards from array ──────────────────────
+function renderReviews(reviewsArray) {
+  const allReviews = [...reviewsArray, ...REVIEWS]; // Firebase first, then hardcoded
+  const container  = document.getElementById('reviewsGrid');
+  container.innerHTML = allReviews.map(r => `
     <div class="review-card fade-in">
       <div class="stars">${'★'.repeat(r.stars)}${'☆'.repeat(5 - r.stars)}</div>
       <p class="review-quote">"${r.quote}"</p>
@@ -154,6 +175,23 @@ function renderReviews() {
       </div>
     </div>
   `).join('');
+  observeFadeIns();
+}
+
+
+// ── REVIEWS: load from Firestore ──────────────────────────
+let firestoreReviews = []; // holds reviews fetched from Firebase
+
+async function loadFirestoreReviews() {
+  try {
+    const q      = query(collection(db, REVIEWS_COL), orderBy('createdAt', 'desc'));
+    const snap   = await getDocs(q);
+    firestoreReviews = snap.docs.map(doc => doc.data());
+    renderReviews(firestoreReviews);
+  } catch (err) {
+    console.warn('Firebase load failed, showing default reviews only.', err);
+    renderReviews([]); // fall back to hardcoded REVIEWS
+  }
 }
 
 
@@ -250,7 +288,7 @@ function updateStarDisplay(val) {
 }
 
 
-function submitReview() {
+async function submitReview() {
   const name  = document.getElementById('reviewName').value.trim();
   const event = document.getElementById('reviewEvent').value.trim();
   const text  = document.getElementById('reviewText').value.trim();
@@ -259,19 +297,28 @@ function submitReview() {
   if (!text)           { alert('Please write your review.'); return; }
   if (!selectedRating) { alert('Please select a star rating.'); return; }
 
-  // Add to REVIEWS array
-  REVIEWS.unshift({
-    stars:    selectedRating,
-    quote:    text,
-    initials: name.substring(0,2).toUpperCase(),
-    name:     name,
-    event:    event || 'Happy Customer',
-  });
+  const newReview = {
+    stars:     selectedRating,
+    quote:     text,
+    initials:  name.substring(0, 2).toUpperCase(),
+    name:      name,
+    event:     event || 'Happy Customer',
+    createdAt: Timestamp.now(),
+  };
 
-  renderReviews();       // re-render the grid
-  observeFadeIns();
-  closeReviewModal();
-  alert('Thank you! Your review is now live ⭐');
+  try {
+    // Save to Firestore ✅
+    await addDoc(collection(db, REVIEWS_COL), newReview);
+
+    // Update local array and re-render
+    firestoreReviews.unshift(newReview);
+    renderReviews(firestoreReviews);
+    closeReviewModal();
+    alert('Thank you! Your review is now live ⭐');
+  } catch (err) {
+    console.error('Firebase save failed:', err);
+    alert('Could not save review. Please check your internet and try again.');
+  }
 }
 
 document.getElementById('reviewModal').addEventListener('click', function(e) {
@@ -298,9 +345,33 @@ document.getElementById('policyModal').addEventListener('click', function(e) {
 });
 
 
-// ── INITIALISE EVERYTHING ────────────────────────────────
+// ── EXPOSE FUNCTIONS TO GLOBAL SCOPE (required for type="module") ──
+window.toggleMenu        = toggleMenu;
+window.switchTab         = switchTab;
+window.openEnquiry       = openEnquiry;
+window.closeEnquiry      = closeEnquiry;
+window.sendEnquiryWhatsApp = sendEnquiryWhatsApp;
+window.openReviewModal   = openReviewModal;
+window.closeReviewModal  = closeReviewModal;
+window.setRating         = setRating;
+window.submitReview      = submitReview;
+window.toggleFAQ         = toggleFAQ;
+window.openPolicy        = openPolicy;
+window.closePolicy       = closePolicy;
+
+
+// ── INITIALISE EVERYTHING ─────────────────────────────────
 renderTabs();
 renderProducts();
-renderReviews();
 renderFAQ();
 observeFadeIns();
+loadFirestoreReviews(); // loads reviews from Firebase & renders them
+
+// ── WIRE FOOTER & HERO LINKS from CONTACT ────────────────
+document.addEventListener('DOMContentLoaded', () => {
+  document.getElementById('footerWA').href = CONTACT.whatsapp;
+  document.getElementById('footerIG').href = CONTACT.instagram;
+  document.getElementById('footerEM').href = 'mailto:' + CONTACT.email;
+  const heroBtn = document.querySelector('.hero-btns .btn-outline');
+  if (heroBtn) heroBtn.href = CONTACT.whatsapp;
+});

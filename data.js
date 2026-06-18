@@ -56,11 +56,29 @@ const CATEGORIES = [
     products: [
       {
         name:      'Birthday — Animation',
-        desc:      'Vibrant animated birthday invitations personalized with your loved one\'s photo and name. Full motion magic!',
+        desc:      'Vibrant animated birthday invitations personalized with your loved one\'s. Full motion magic!',
         price:     '₹49',
         origPrice: '₹99',
         emoji:     '🎂',
         demo:      'templates/birthday/animation/birthday.html',
+        thumb:     '',
+      },
+      {
+        name:      'Birthday — Animation Pro',
+        desc:      'Vibrant animated birthday invitations with advanced features and seamless transitions.',
+        price:     '₹109',
+        origPrice: '₹139',
+        emoji:     '🎂',
+        demo:      'templates/birthday/pro animation/index.html',
+        thumb:     '',
+      },
+      {
+        name:      'Magical Birthday Digital Card',
+        desc:      'A enchanting digital birthday card that brings magic to your celebration. Personalize with your photo and details for a truly unforgettable experience.',
+        price:     '₹149',
+        origPrice: '₹249',
+        emoji:     '🎂',
+        demo:      'templates/birthday/Magical Birth/index.html',
         thumb:     '',
       },
       {
@@ -184,6 +202,7 @@ const CATEGORIES = [
         demo:      'templates/social/Housewarming/index.html',
         thumb:     '',
       },
+     
       {
         name:      'School Farewell',
         desc:      'Emotional and beautiful school farewell invitations to cherish memories and celebrate new beginnings.',
@@ -201,6 +220,7 @@ const CATEGORIES = [
     label: '💍 Wedding',
     name: 'Wedding Invitations',
     products: [
+      
       {
         name:      'Wedding — Basic',
         desc:      'Elegant wedding invitations with your names, date, and venue. Clean, timeless, and beautiful.',

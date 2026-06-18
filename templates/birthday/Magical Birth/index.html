@@ -188,17 +188,13 @@
     animation: spinSlow 8s linear infinite;
   }
 
-  .cake-emoji {
-    font-size: 5rem;
+  .ring-photo {
     position: relative;
     z-index: 2;
-    filter: drop-shadow(0 0 20px rgba(212,168,67,0.6));
-    animation: cakeBounce 2s ease-in-out infinite;
-  }
-
-  @keyframes cakeBounce {
-    0%, 100% { transform: translateY(0); }
-    50%       { transform: translateY(-10px); }
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
   }
 
   @keyframes spinSlow {
@@ -759,7 +755,7 @@
         </defs>
       </svg>
       <div class="ring-inner">
-        <span class="cake-emoji">🎂</span>
+        <img src="girl.png" class="ring-photo" alt="">
       </div>
     </div>
 

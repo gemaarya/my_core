@@ -80,7 +80,7 @@
     </p>
 
     <div class="hero-btns">
-      <a href="#products" class="btn-gold">Explore Designs ✨</a>
+      <a href="#products" class="btn-gold">Explore Designs </a>
       <a href="https://wa.me/919999999999" target="_blank" class="btn-outline">Contact Us</a>
     </div>
   </div>
@@ -119,8 +119,8 @@
     <div class="about-visual fade-in">
       <div class="about-quote">Every event deserves a perfect first impression.</div>
       <div class="about-badge">
-        <span>🎊</span>
-        <span>500+ Celebrations Crafted</span>
+        <span></span>
+        <span>Fastest Delivered even in 6–12 hours</span>
       </div>
     </div>
 
@@ -246,7 +246,7 @@
 
   <div class="reviews-cta">
     <button class="btn-wa" onclick="openReviewModal()">
-      <span>⭐</span> Share Your Experience
+      <span></span> Share Your Experience
     </button>
   </div>
 </section>
@@ -397,7 +397,7 @@
         <textarea id="reviewText" style="min-height:110px" placeholder="Tell us about your experience..."></textarea>
       </div>
       <button class="btn-gold" style="width:100%;padding:14px;font-size:15px;border-radius:12px" onclick="submitReview()">
-        ⭐ Publish My Review
+         Publish My Review
       </button>
     </div>
   </div>
@@ -420,17 +420,8 @@
      SCRIPTS (load data first, then app logic)
 ════════════════════════════════════════════════ -->
 <script src="data.js"></script>
-<script src="app.js"></script>
+<script type="module" src="app.js"></script>
 
-<!-- Wire up footer social links from CONTACT in data.js -->
-<script>
-  document.getElementById('footerWA').href = CONTACT.whatsapp;
-  document.getElementById('footerIG').href = CONTACT.instagram;
-  document.getElementById('footerEM').href = 'mailto:' + CONTACT.email;
-
-  // Also wire "Contact Us" hero button
-  document.querySelector('.hero-btns .btn-outline').href = CONTACT.whatsapp;
-</script>
 
 </body>
 </html>
