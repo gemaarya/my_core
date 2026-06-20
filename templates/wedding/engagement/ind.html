@@ -1,0 +1,1466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>Yashi & Suraj – Engagement 28 June 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Great+Vibes&family=Cinzel+Decorative:wght@400;700&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --blush:#FDE8E8; --blush2:#F9D0D0;
+  --rose:#D4526A;  --rose-dark:#9B2C45;
+  --gold:#C9853A;  --gold-light:#F0B86A;
+  --sage:#7BA18A;  --sage-light:#A8C5B0;
+  --deep:#1A0A10;  --parchment:#FDF5F0; --ink:#3D1A26;
+}
+html{scroll-behavior:smooth;}
+body{background:var(--parchment);color:var(--ink);font-family:'Cormorant Garamond',serif;overflow-x:hidden;min-height:100vh;}
+
+/* ── PAGE BG ── */
+.page-bg{position:fixed;inset:0;pointer-events:none;z-index:0;background:radial-gradient(ellipse at 20% 20%,rgba(212,82,106,0.04) 0%,transparent 60%),radial-gradient(ellipse at 80% 80%,rgba(123,161,138,0.05) 0%,transparent 60%);}
+#petal-canvas{position:fixed;inset:0;pointer-events:none;z-index:1;}
+
+/* ── ENVELOPE INTRO ── */
+#envelope-wrap{position:fixed;inset:0;z-index:9000;display:flex;align-items:center;justify-content:center;background:linear-gradient(160deg,#2d0a1a,#1a0a10,#0d1a14);transition:opacity 0.8s ease 0.4s;}
+#envelope-wrap.gone{opacity:0;pointer-events:none;}
+.env-title{margin-bottom:1.5rem;text-align:center;font-family:'Great Vibes',cursive;font-size:2.8rem;color:rgba(253,232,232,0.9);text-shadow:0 0 30px rgba(212,82,106,0.5);}
+.env{width:min(320px,85vw);cursor:pointer;}
+.env-body{background:linear-gradient(135deg,#FDE8E8,#F5C8C8);border-radius:4px 4px 6px 6px;height:200px;position:relative;box-shadow:0 20px 60px rgba(0,0,0,0.5),0 0 0 1px rgba(201,133,58,0.3);overflow:hidden;}
+.env-flap{position:absolute;top:0;left:0;right:0;height:110px;background:linear-gradient(160deg,#F0C0C0,#FBDEDE);clip-path:polygon(0 0,100% 0,50% 100%);transform-origin:top center;transition:transform 0.8s cubic-bezier(0.4,0,0.2,1);z-index:2;}
+.env-flap.open{transform:perspective(600px) rotateX(180deg);}
+.env-tril,.env-trir{position:absolute;bottom:0;width:50%;height:200px;background:linear-gradient(135deg,#F5C5C5,#EDBABA);}
+.env-tril{left:0;clip-path:polygon(0 100%,100% 100%,0 0);}
+.env-trir{right:0;clip-path:polygon(0 100%,100% 100%,100% 0);background:linear-gradient(225deg,#F5C5C5,#EDBABA);}
+.env-seal{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:54px;height:54px;background:radial-gradient(circle at 35% 35%,var(--gold-light),var(--gold));border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.5rem;box-shadow:0 4px 20px rgba(201,133,58,0.5);z-index:3;animation:sealglow 2s ease-in-out infinite;}
+@keyframes sealglow{0%,100%{box-shadow:0 4px 20px rgba(201,133,58,0.5);}50%{box-shadow:0 4px 40px rgba(240,184,106,0.9),0 0 60px rgba(201,133,58,0.4);}}
+.env-hint{margin-top:1.5rem;text-align:center;font-family:'Cormorant Garamond',serif;font-size:0.8rem;letter-spacing:5px;color:rgba(253,232,232,0.5);text-transform:uppercase;animation:blnk 1.5s ease-in-out infinite;}
+@keyframes blnk{0%,100%{opacity:0.3;}50%{opacity:1;}}
+
+/* ── MAIN ── */
+#main-content{position:relative;z-index:2;opacity:0;transition:opacity 1s ease;}
+#main-content.show{opacity:1;}
+
+/* ── TOP LABEL ── */
+.top-label{font-family:'Cinzel Decorative',serif;font-size:0.5rem;letter-spacing:5px;color:var(--rose);text-transform:uppercase;opacity:0.7;}
+.ornate{text-align:center;padding:1.5rem;color:rgba(212,82,106,0.25);font-size:1rem;letter-spacing:8px;position:relative;}
+.ornate::before,.ornate::after{content:'';position:absolute;top:50%;width:calc(50% - 50px);height:1px;background:linear-gradient(to right,transparent,rgba(212,82,106,0.2));}
+.ornate::before{left:10px;} .ornate::after{right:10px;background:linear-gradient(to left,transparent,rgba(212,82,106,0.2));}
+.reveal{opacity:0;transform:translateY(30px);transition:opacity 0.7s ease,transform 0.7s ease;}
+.reveal.in{opacity:1;transform:translateY(0);}
+
+/* ── SECTION 1: STAMPS + PATH ── */
+#stamp-section{min-height:100vh;padding:3rem 1.5rem 2rem;display:flex;flex-direction:column;align-items:center;position:relative;overflow:hidden;}
+
+.stamp-wrapper{width:100%;max-width:420px;position:relative;margin:1rem auto;min-height:340px;}
+
+/* Photo stamp */
+.stamp{display:inline-flex;flex-direction:column;align-items:center;gap:0;}
+.stamp-a{animation:flt 4s ease-in-out infinite;}
+.stamp-b{animation:flt 4s ease-in-out infinite;animation-delay:-2s;}
+@keyframes flt{0%,100%{transform:translateY(0) rotate(-2deg);}50%{transform:translateY(-8px) rotate(1.5deg);}}
+
+.stamp-frame{position:relative;width:120px;height:130px;border-radius:4px;overflow:hidden;cursor:pointer;transition:transform 0.3s,box-shadow 0.3s;box-shadow:0 8px 30px rgba(0,0,0,0.2);}
+.stamp-frame:active{transform:scale(0.96);}
+
+/* Perforated border */
+.stamp-frame::after{content:'';position:absolute;inset:0;border:3px solid rgba(255,255,255,0.6);border-radius:4px;pointer-events:none;z-index:3;
+  background:repeating-linear-gradient(to right,white 0,white 4px,transparent 4px,transparent 10px) top / 100% 4px no-repeat,
+             repeating-linear-gradient(to right,white 0,white 4px,transparent 4px,transparent 10px) bottom / 100% 4px no-repeat,
+             repeating-linear-gradient(to bottom,white 0,white 4px,transparent 4px,transparent 10px) left / 4px 100% no-repeat,
+             repeating-linear-gradient(to bottom,white 0,white 4px,transparent 4px,transparent 10px) right / 4px 100% no-repeat;}
+
+.stamp-photo{width:100%;height:100%;object-fit:cover;display:block;}
+.stamp-photo-placeholder{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0.4rem;font-size:2.2rem;background:linear-gradient(135deg,#F9D0D0,#EBB0C0,#D490B0);}
+.stamp-photo-placeholder.teal{background:linear-gradient(135deg,#A8D8DC,#80BCC8,#5898B0);}
+.stamp-photo-label{font-family:'Cormorant Garamond',serif;font-size:0.65rem;letter-spacing:2px;color:rgba(255,255,255,0.8);}
+
+.stamp-upload{display:none;}
+.stamp-upload-btn{margin-top:0.4rem;font-family:'Cormorant Garamond',serif;font-size:0.62rem;letter-spacing:2px;color:rgba(212,82,106,0.5);text-transform:uppercase;cursor:pointer;border:none;background:none;padding:0.2rem;transition:color 0.2s;}
+.stamp-upload-btn:hover{color:var(--rose);}
+
+.stamp-name{font-family:'Great Vibes',cursive;font-size:1.6rem;color:var(--rose-dark);margin-top:0.5rem;text-align:center;}
+.stamp-name.teal{color:var(--sage);}
+.stamp-sub{font-family:'Cormorant Garamond',serif;font-size:0.72rem;font-style:italic;color:rgba(61,26,38,0.5);text-align:center;margin-top:0.1rem;line-height:1.4;max-width:130px;}
+
+/* ── ANIMATED PATH ── */
+.path-canvas-wrap{position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0;}
+#pathCanvas{display:block;width:100%;height:100%;}
+
+/* Ring pop-up at join midpoint */
+#ring-pop{
+  position:absolute;
+  font-size:2.4rem;
+  z-index:10;
+  pointer-events:none;
+  transform:translate(-50%,-50%) scale(0);
+  transition:transform 0.5s cubic-bezier(0.34,1.56,0.64,1);
+  filter:drop-shadow(0 4px 16px rgba(201,133,58,0.8));
+  line-height:1;
+}
+#ring-pop.show{transform:translate(-50%,-50%) scale(1);}
+#ring-pop.blink{animation:ringblink 0.85s ease-in-out infinite;}
+@keyframes ringblink{
+  0%,100%{opacity:1;transform:translate(-50%,-50%) scale(1);}
+  50%{opacity:0.4;transform:translate(-50%,-50%) scale(1.2);}
+}
+
+.stamps-row{
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  width:100%;
+  padding:0 8px;
+  position:relative;
+  z-index:2;
+  min-height:340px;
+}
+.stamp-left{align-self:flex-start;margin-top:20px;}
+.stamp-right{align-self:flex-end;margin-bottom:20px;}
+
+/* ── SECTION 2: SCRATCH ── */
+#scratch-section{padding:3rem 1.5rem;text-align:center;background:linear-gradient(180deg,var(--parchment),#FDE8E8 50%,var(--parchment));}
+.scratch-title{font-family:'DM Serif Display',serif;font-size:clamp(1.6rem,5vw,2.4rem);color:var(--ink);margin-bottom:0.2rem;font-style:italic;}
+.scratch-sub{font-family:'Cinzel Decorative',serif;font-size:0.5rem;letter-spacing:5px;color:var(--rose);text-transform:uppercase;margin-bottom:2.5rem;}
+.hearts-grid{display:grid;grid-template-columns:repeat(3,1fr);max-width:320px;margin:0 auto;border:1px solid rgba(212,82,106,0.12);border-radius:10px;overflow:hidden;background:rgba(255,255,255,0.6);}
+.grid-cell{border:1px solid rgba(212,82,106,0.08);display:flex;align-items:center;justify-content:center;height:105px;}
+.scratch-heart{position:relative;width:76px;height:76px;cursor:pointer;user-select:none;-webkit-user-select:none;}
+.heart-canvas-wrap{position:absolute;inset:0;z-index:2;overflow:hidden;border-radius:50%;}
+canvas.sc{width:100%;height:100%;display:block;touch-action:none;}
+.heart-reveal{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;flex-direction:column;z-index:1;}
+.heart-bg{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:4.2rem;line-height:1;}
+.heart-num{font-family:'Cinzel Decorative',serif;font-size:1.3rem;color:white;font-weight:700;z-index:2;text-shadow:0 2px 8px rgba(0,0,0,0.3);position:relative;opacity:0;transition:opacity 0.4s ease;}
+.heart-num.visible{opacity:1;}
+.scratch-hint{margin-top:1.4rem;font-family:'Cormorant Garamond',serif;font-size:0.72rem;letter-spacing:4px;text-transform:uppercase;color:rgba(61,26,38,0.35);animation:blnk 2s ease-in-out infinite;}
+.date-revealed{margin-top:1.8rem;font-family:'Great Vibes',cursive;font-size:2rem;color:var(--rose-dark);opacity:0;transform:translateY(10px);transition:all 0.5s ease;min-height:2.8rem;}
+.date-revealed.show{opacity:1;transform:translateY(0);}
+.partial-date{margin-top:0.7rem;font-family:'Cormorant Garamond',serif;font-size:0.68rem;letter-spacing:3px;text-transform:uppercase;color:rgba(212,82,106,0.5);text-align:center;min-height:1.2rem;}
+
+/* ── SECTION 3: COUNTDOWN ── */
+#countdown-section{padding:3rem 1.5rem;text-align:center;}
+.cd-grid{display:flex;gap:0.8rem;justify-content:center;flex-wrap:wrap;}
+.cd-box{background:white;border:1px solid rgba(212,82,106,0.12);border-radius:10px;padding:1rem 1.2rem;min-width:68px;box-shadow:0 4px 20px rgba(212,82,106,0.07);}
+.cd-num{font-family:'Cinzel Decorative',serif;font-size:clamp(1.8rem,6vw,2.5rem);color:var(--rose);line-height:1;transition:transform 0.15s;}
+.cd-num.pop{transform:scale(1.25);color:var(--rose-dark);}
+.cd-lbl{font-family:'Cormorant Garamond',serif;font-size:0.62rem;letter-spacing:3px;text-transform:uppercase;color:rgba(61,26,38,0.35);margin-top:0.3rem;}
+
+/* ── SECTION 4: INVITE CARD ── */
+#card-section{padding:3rem 1.5rem;display:flex;align-items:center;justify-content:center;}
+.invite-card{background:white;border-radius:14px;max-width:380px;width:100%;padding:2.5rem 2rem;text-align:center;box-shadow:0 2px 4px rgba(212,82,106,0.05),0 10px 30px rgba(212,82,106,0.08),0 0 0 1px rgba(212,82,106,0.07);position:relative;overflow:hidden;}
+.invite-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--rose),var(--gold),var(--sage),var(--rose));background-size:200% 100%;animation:shimmer 3s linear infinite;}
+@keyframes shimmer{to{background-position:200% 0;}}
+.card-names{font-family:'Great Vibes',cursive;font-size:clamp(2rem,7vw,2.8rem);color:var(--rose-dark);line-height:1.15;margin:0.5rem 0;}
+.card-divider{display:flex;align-items:center;gap:0.8rem;margin:1.2rem 0;}
+.card-divider-line{flex:1;height:1px;background:rgba(212,82,106,0.12);}
+.card-divider-gem{font-size:0.5rem;color:var(--rose);opacity:0.4;}
+.card-date-big{font-family:'DM Serif Display',serif;font-size:1.4rem;color:var(--rose-dark);margin:1rem 0;font-style:italic;}
+.card-body{font-family:'Cormorant Garamond',serif;font-size:1rem;line-height:2.1;color:rgba(61,26,38,0.65);}
+.card-tag{display:inline-block;background:rgba(212,82,106,0.07);border:1px solid rgba(212,82,106,0.15);border-radius:20px;padding:0.3rem 1rem;font-size:0.6rem;letter-spacing:2px;color:var(--rose);text-transform:uppercase;margin-top:1rem;font-family:'Cinzel Decorative',serif;}
+
+/* ── SECTION 5: ACTION BUTTONS ── */
+#actions-section{padding:2.5rem 1.5rem;display:flex;flex-direction:column;align-items:center;gap:1rem;max-width:420px;margin:0 auto;}
+.action-btn{display:flex;align-items:center;justify-content:center;gap:0.8rem;width:100%;padding:1rem 1.5rem;border-radius:50px;border:none;font-family:'Cinzel Decorative',serif;font-size:0.6rem;letter-spacing:3px;text-transform:uppercase;cursor:pointer;text-decoration:none;transition:all 0.3s ease;position:relative;overflow:hidden;}
+.action-btn::before{content:'';position:absolute;inset:0;opacity:0;transition:opacity 0.3s;}
+.action-btn:hover::before,.action-btn:active::before{opacity:1;}
+.action-btn i{font-style:normal;font-size:1.1rem;flex-shrink:0;}
+
+.btn-rsvp{background:var(--rose);color:white;box-shadow:0 4px 20px rgba(212,82,106,0.35);}
+.btn-rsvp::before{background:var(--rose-dark);}
+.btn-rsvp:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(212,82,106,0.5);}
+.btn-rsvp span{position:relative;z-index:1;}
+
+.btn-cal{background:white;color:var(--ink);border:1.5px solid rgba(61,26,38,0.12);box-shadow:0 2px 12px rgba(0,0,0,0.06);}
+.btn-cal:hover{background:#f8f8f8;transform:translateY(-2px);}
+
+.btn-call{background:linear-gradient(135deg,#25D366,#128C7E);color:white;box-shadow:0 4px 20px rgba(37,211,102,0.3);}
+.btn-call:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(37,211,102,0.45);}
+
+/* ── SECTION 6: GOOGLE MAP ── */
+#map-section{padding:2.5rem 1.5rem 1.5rem;max-width:500px;margin:0 auto;width:100%;}
+.map-card{background:white;border-radius:14px;overflow:hidden;box-shadow:0 4px 24px rgba(212,82,106,0.1),0 0 0 1px rgba(212,82,106,0.07);}
+.map-header{padding:1.2rem 1.5rem;text-align:center;border-bottom:1px solid rgba(212,82,106,0.08);}
+.map-title{font-family:'DM Serif Display',serif;font-size:1.2rem;color:var(--rose-dark);font-style:italic;}
+.map-sub{font-family:'Cormorant Garamond',serif;font-size:0.78rem;letter-spacing:2px;color:rgba(61,26,38,0.45);margin-top:0.2rem;}
+.map-embed{width:100%;height:250px;display:block;border:none;}
+.map-footer{padding:1rem 1.5rem;display:flex;justify-content:center;}
+.map-dir-btn{display:inline-flex;align-items:center;gap:0.5rem;font-family:'Cinzel Decorative',serif;font-size:0.55rem;letter-spacing:3px;text-transform:uppercase;color:var(--rose);text-decoration:none;border:1px solid rgba(212,82,106,0.25);border-radius:30px;padding:0.6rem 1.5rem;transition:all 0.3s;}
+.map-dir-btn:hover{background:var(--rose);color:white;}
+
+/* ── FOOTER ── */
+footer{padding:2.5rem 1.5rem;text-align:center;border-top:1px solid rgba(212,82,106,0.08);}
+.footer-name{font-family:'Great Vibes',cursive;font-size:2rem;color:var(--rose);}
+.footer-sub{font-size:0.65rem;letter-spacing:3px;text-transform:uppercase;color:rgba(61,26,38,0.22);margin-top:0.5rem;font-family:'Cinzel Decorative',serif;}
+
+/* ── CONFETTI / BURST ── */
+.burst{position:fixed;pointer-events:none;z-index:9999;font-size:1.1rem;animation:brst 0.7s ease forwards;}
+@keyframes brst{0%{transform:translate(-50%,-50%) scale(0);opacity:1;}100%{transform:translate(-50%,-50%) scale(2.5);opacity:0;}}
+.confetti-p{position:fixed;pointer-events:none;z-index:9998;animation:cfall linear both;}
+@keyframes cfall{0%{transform:translateY(-20px) rotate(0);opacity:1;}100%{transform:translateY(105vh) rotate(720deg);opacity:0;}}
+
+/* ── RSVP POPUP MODAL ── */
+#rsvp-modal{display:none;position:fixed;inset:0;z-index:8000;background:rgba(26,10,16,0.7);backdrop-filter:blur(4px);align-items:center;justify-content:center;padding:1.5rem;}
+#rsvp-modal.open{display:flex;}
+.rsvp-modal-box{background:white;border-radius:16px;width:100%;max-width:400px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,0.3);max-height:90vh;display:flex;flex-direction:column;}
+.rsvp-modal-header{padding:1.2rem 1.5rem;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(212,82,106,0.1);}
+.rsvp-modal-title{font-family:'Great Vibes',cursive;font-size:1.6rem;color:var(--rose-dark);}
+.rsvp-close{background:none;border:none;font-size:1.4rem;color:rgba(61,26,38,0.4);cursor:pointer;padding:0.2rem;}
+.rsvp-modal-body{flex:1;overflow:auto;}
+.rsvp-form-frame{width:100%;height:500px;border:none;display:block;}
+
+/* Scatter petals (static) */
+.scatter{position:absolute;pointer-events:none;opacity:0.3;}
+
+/* ── RINGS ANIMATION SECTION ── */
+#rings-section{
+  padding:3rem 1.5rem 1.2rem;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  position:relative;
+  z-index:2;
+}
+#ringsCanvas{display:block;margin:0 auto;max-width:100%;}
+.guess-date-text{
+  font-family:'Great Vibes',cursive;
+  font-size:clamp(1.6rem,6vw,2.2rem);
+  color:var(--rose-dark);
+  text-align:center;
+  margin-top:0.4rem;
+  opacity:0;
+  transform:translateY(12px);
+  transition:opacity 0.8s ease, transform 0.8s ease;
+  text-shadow:0 2px 12px rgba(212,82,106,0.18);
+}
+.guess-date-text.show{opacity:1;transform:translateY(0);}
+.guess-date-sub{
+  font-family:'Cinzel Decorative',serif;
+  font-size:0.46rem;
+  letter-spacing:4px;
+  color:rgba(212,82,106,0.42);
+  text-transform:uppercase;
+  text-align:center;
+  margin-top:0.2rem;
+  opacity:0;
+  transition:opacity 0.8s ease 0.4s;
+}
+.guess-date-sub.show{opacity:1;}
+
+/* ── LOGO SECTION ── */
+#logo-section{padding:2rem 1.5rem 0;display:flex;flex-direction:column;align-items:center;gap:0.8rem;position:relative;z-index:2;}
+.logo-frame{width:auto;height:auto;border-radius:0;overflow:visible;border:none;box-shadow:none;cursor:default;position:relative;background:none;display:flex;align-items:center;justify-content:center;}
+.logo-frame:hover{transform:none;box-shadow:none;}
+.logo-frame img{width:auto;max-width:130px;height:auto;object-fit:contain;display:block;border-radius:0;}
+.logo-placeholder{display:flex;flex-direction:column;align-items:center;gap:0.3rem;color:rgba(212,82,106,0.5);}
+.logo-placeholder span:first-child{font-size:2rem;}
+.logo-placeholder span:last-child{font-size:0.5rem;letter-spacing:2px;font-family:'Cinzel Decorative',serif;text-transform:uppercase;}
+.logo-upload-btn{font-family:'Cormorant Garamond',serif;font-size:0.62rem;letter-spacing:2px;color:rgba(212,82,106,0.45);text-transform:uppercase;cursor:pointer;border:none;background:none;padding:0.2rem;transition:color 0.2s;}
+.logo-upload-btn:hover{color:var(--rose);}
+
+/* ── GANESH JI SECTION ── */
+#ganesh-section{
+  padding:2.5rem 1.5rem 1rem;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  position:relative;
+  z-index:2;
+}
+.ganesh-frame-wrap{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:0.6rem;
+}
+.ganesh-frame{
+  width:auto;
+  height:auto;
+  border-radius:0;
+  position:relative;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:none;
+  box-shadow:none;
+  overflow:visible;
+}
+.ganesh-frame img{
+  width:auto;
+  max-width:260px;
+  height:auto;
+  object-fit:contain;
+  display:block;
+  border-radius:0;
+}
+.ganesh-placeholder{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:0.3rem;
+  color:rgba(212,82,106,0.6);
+}
+.ganesh-om{font-size:3rem;line-height:1;}
+.ganesh-ph-label{
+  font-family:'Cinzel Decorative',serif;
+  font-size:0.45rem;
+  letter-spacing:3px;
+  text-transform:uppercase;
+  color:rgba(212,82,106,0.5);
+}
+.ganesh-glow-ring{ display:none; }
+@keyframes ganeshglow{}
+.ganesh-upload-btn{
+  font-family:'Cormorant Garamond',serif;
+  font-size:0.62rem;
+  letter-spacing:2px;
+  color:rgba(212,82,106,0.45);
+  text-transform:uppercase;
+  cursor:pointer;
+  border:none;
+  background:none;
+  padding:0.2rem;
+  transition:color 0.2s;
+}
+.ganesh-upload-btn:hover{color:var(--rose);}
+.ganesh-caption{
+  font-family:'Great Vibes',cursive;
+  font-size:1.8rem;
+  color:var(--gold);
+  text-align:center;
+  text-shadow:0 2px 12px rgba(201,133,58,0.35);
+  margin-top:0.2rem;
+}
+.ganesh-caption-en{
+  font-family:'Cormorant Garamond',serif;
+  font-size:0.72rem;
+  letter-spacing:3px;
+  text-transform:uppercase;
+  color:rgba(61,26,38,0.38);
+  text-align:center;
+}
+
+/* ── MUSIC TOGGLE ── */
+#music-toggle{position:fixed;bottom:1.5rem;right:1.2rem;z-index:8999;width:48px;height:48px;border-radius:50%;background:white;border:1.5px solid rgba(212,82,106,0.2);box-shadow:0 4px 20px rgba(212,82,106,0.2);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1.3rem;transition:all 0.3s;backdrop-filter:blur(8px);}
+#music-toggle:hover{transform:scale(1.08);box-shadow:0 6px 28px rgba(212,82,106,0.3);}
+#music-toggle.playing{background:var(--rose);border-color:var(--rose);}
+#music-toggle.playing .music-icon{filter:brightness(10);}
+.music-icon{line-height:1;}
+</style>
+</head>
+<body>
+<div class="page-bg"></div>
+<canvas id="petal-canvas"></canvas>
+
+<!-- ENVELOPE -->
+<div id="envelope-wrap">
+  <div style="display:flex;flex-direction:column;align-items:center;">
+    <div class="env-title">Yashi & Suraj</div>
+    <div class="env" id="envelope" onclick="openEnvelope()">
+      <div class="env-body">
+        <div class="env-flap" id="env-flap"></div>
+        <div class="env-tril"></div><div class="env-trir"></div>
+        <div class="env-seal">💌</div>
+      </div>
+    </div>
+    <div class="env-hint">✦ tap to open your invite ✦</div>
+  </div>
+</div>
+
+<!-- MUSIC TOGGLE -->
+<div id="music-toggle" onclick="toggleMusic()" title="Toggle Music">
+  <span class="music-icon">🎵</span>
+</div>
+<audio id="bgMusic" loop preload="auto">
+  <source src="music.mp3" type="audio/mpeg">
+</audio>
+
+<!-- MAIN CONTENT -->
+<div id="main-content">
+
+  <!-- ── GANESH JI SECTION ── -->
+  <section id="ganesh-section">
+    <div class="ganesh-frame-wrap reveal">
+      <div class="ganesh-frame" id="ganeshClickArea" style="cursor:default;">
+        <img src="ganesh.png" alt="Shri Ganesh Ji" />
+        <div class="ganesh-glow-ring"></div>
+      </div>
+      <div class="ganesh-caption">श्री गणेशाय नमः</div>
+      <div class="ganesh-caption-en">Blessings for a New Beginning</div>
+    </div>
+  </section>
+
+  <!-- ── RINGS ANIMATION SECTION ── -->
+  <section id="rings-section">
+    <canvas id="ringsCanvas" width="300" height="200" style="display:block;margin:0 auto;max-width:100%;"></canvas>
+    <div class="guess-date-text" id="guessTxt">Guess the date?</div>
+    <div class="guess-date-sub" id="guessSub">✦ scratch the hearts below to reveal ✦</div>
+  </section>
+
+    <!-- ── LOGO / COUPLE LOGO SECTION ── -->
+  <section id="logo-section">
+    <div class="logo-frame">
+      <img src="logo.png" alt="Couple Logo" />
+    </div>
+  </section>
+
+  <!-- ── SECTION 1: STAMPS + ANIMATED PATH ── -->
+  <section id="stamp-section">
+    <div class="top-label" style="text-align:center;margin-bottom:0.5rem;">A Love Story, Sealed & Delivered</div>
+
+    <div class="stamp-wrapper" id="stampWrapper">
+
+      <!-- PATH CANVAS behind stamps -->
+      <div class="path-canvas-wrap">
+        <canvas id="pathCanvas"></canvas>
+      </div>
+
+      <!-- Ring pop at exact join midpoint -->
+      <div id="ring-pop">💍</div>
+
+      <div class="stamps-row">
+
+        <!-- YASHI STAMP -->
+        <div class="stamp stamp-a stamp-left" id="stampYashi">
+          <div class="stamp-frame" onclick="stampClick(this,event)">
+            <img class="stamp-photo" id="photoYashi" src="" alt="Yashi" style="display:none;" />
+            <div class="stamp-photo-placeholder" id="placeholderYashi">
+              <span>👰</span>
+              <span class="stamp-photo-label">Yashi</span>
+            </div>
+          </div>
+          <label class="stamp-upload-btn" for="uploadYashi">📎 upload photo</label>
+          <input type="file" accept="image/*" id="uploadYashi" class="stamp-upload" onchange="loadPhoto(this,'photoYashi','placeholderYashi')">
+          <div class="stamp-name">Yashi</div>
+          <div class="stamp-sub">She chose the seat<br>next to him… forever</div>
+        </div>
+
+        <!-- SURAJ STAMP -->
+        <div class="stamp stamp-b stamp-right" id="stampSuraj">
+          <div class="stamp-frame" onclick="stampClick(this,event)">
+            <img class="stamp-photo" id="photoSuraj" src="" alt="Suraj" style="display:none;" />
+            <div class="stamp-photo-placeholder teal" id="placeholderSuraj">
+              <span>🤵</span>
+              <span class="stamp-photo-label">Suraj</span>
+            </div>
+          </div>
+          <label class="stamp-upload-btn" for="uploadSuraj">📎 upload photo</label>
+          <input type="file" accept="image/*" id="uploadSuraj" class="stamp-upload" onchange="loadPhoto(this,'photoSuraj','placeholderSuraj')">
+          <div class="stamp-name teal">Suraj</div>
+          <div class="stamp-sub">He found his<br>favourite co-traveller</div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Scatter petals -->
+    <div class="scatter" style="top:12%;right:10%;font-size:1.2rem;transform:rotate(30deg);">🌸</div>
+    <div class="scatter" style="top:30%;left:4%;font-size:0.9rem;transform:rotate(-20deg);">🌺</div>
+    <div class="scatter" style="bottom:22%;right:6%;font-size:1rem;transform:rotate(10deg);">🌸</div>
+    <div class="scatter" style="bottom:32%;left:8%;font-size:0.75rem;transform:rotate(-35deg);">🌼</div>
+
+    <div class="ornate">✦ ◆ ✦</div>
+    <div style="font-family:'Great Vibes',cursive;font-size:2.2rem;color:var(--rose-dark);text-align:center;margin-bottom:0.3rem;">Together</div>
+    <div style="font-family:'Cormorant Garamond',serif;font-size:0.78rem;letter-spacing:3px;text-transform:uppercase;color:rgba(61,26,38,0.38);text-align:center;">They're getting engaged!</div>
+  </section>
+
+  <!-- ── SECTION 2: SCRATCH HEARTS ── -->
+  <section id="scratch-section">
+    <div class="reveal">
+      <div class="top-label" style="text-align:center;margin-bottom:0.5rem;">Save The Date</div>
+      <div class="scratch-title">Save our Date</div>
+      <div class="scratch-sub">The Big Day</div>
+      <div style="position:relative;max-width:320px;margin:0 auto;">
+        <div class="hearts-grid">
+          <div class="grid-cell">
+            <div class="scratch-heart" id="sh0" data-idx="0"><div class="heart-reveal"><div class="heart-bg">💗</div><div class="heart-num" id="hn0">28</div></div><div class="heart-canvas-wrap"><canvas class="sc" id="sc0" width="76" height="76"></canvas></div></div>
+          </div>
+          <div class="grid-cell"></div>
+          <div class="grid-cell"></div>
+          <div class="grid-cell"></div>
+          <div class="grid-cell">
+            <div class="scratch-heart" id="sh1" data-idx="1"><div class="heart-reveal"><div class="heart-bg">💗</div><div class="heart-num" id="hn1" style="font-size:0.9rem;">June</div></div><div class="heart-canvas-wrap"><canvas class="sc" id="sc1" width="76" height="76"></canvas></div></div>
+          </div>
+          <div class="grid-cell"></div>
+          <div class="grid-cell"></div>
+          <div class="grid-cell"></div>
+          <div class="grid-cell">
+            <div class="scratch-heart" id="sh2" data-idx="2"><div class="heart-reveal"><div class="heart-bg">💗</div><div class="heart-num" id="hn2" style="font-size:0.82rem;">2026</div></div><div class="heart-canvas-wrap"><canvas class="sc" id="sc2" width="76" height="76"></canvas></div></div>
+          </div>
+        </div>
+        <div class="partial-date" id="partialDate">&nbsp;</div>
+      </div>
+      <div class="scratch-hint">↑ scratch each heart to reveal the date ↑</div>
+      <div class="date-revealed" id="fullDate">28 June 2026 🎊</div>
+    </div>
+  </section>
+
+  <!-- ── SECTION 3: COUNTDOWN ── -->
+  <section id="countdown-section">
+    <div class="reveal">
+      <div class="top-label" style="text-align:center;margin-bottom:0.4rem;">Until the big moment</div>
+      <div style="font-family:'DM Serif Display',serif;font-size:clamp(1.5rem,5vw,2.2rem);color:var(--ink);margin-bottom:1.8rem;font-style:italic;text-align:center;">Counting Down</div>
+      <div class="cd-grid">
+        <div class="cd-box"><div class="cd-num" id="cdD">00</div><div class="cd-lbl">Days</div></div>
+        <div class="cd-box"><div class="cd-num" id="cdH">00</div><div class="cd-lbl">Hours</div></div>
+        <div class="cd-box"><div class="cd-num" id="cdM">00</div><div class="cd-lbl">Mins</div></div>
+        <div class="cd-box"><div class="cd-num" id="cdS">00</div><div class="cd-lbl">Secs</div></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="ornate">✦ ◆ ✦</div>
+
+  <!-- ── SECTION 4: INVITE CARD ── -->
+  <section id="card-section">
+    <div class="invite-card reveal">
+      <div style="font-size:1.8rem;margin-bottom:0.8rem;">🪔</div>
+      <div style="font-family:'Cinzel Decorative',serif;font-size:0.48rem;letter-spacing:4px;color:var(--sage);text-transform:uppercase;margin-bottom:0.6rem;">With the blessings of our families</div>
+      <div class="card-names">Yashi<br>&amp;<br>Suraj</div>
+      <div class="card-divider"><div class="card-divider-line"></div><div class="card-divider-gem">◆</div><div class="card-divider-line"></div></div>
+      <div style="font-family:'Cinzel Decorative',serif;font-size:0.55rem;letter-spacing:5px;color:var(--rose);margin-bottom:0.8rem;text-transform:uppercase;">Engagement Ceremony</div>
+      <div class="card-date-big">Sunday, 28th June 2026</div>
+      <div class="card-body">
+        🌸 &nbsp;Morning Ceremonies · 10:00 AM<br>
+        💍 &nbsp;Ring Exchange · 12:00 Noon<br>
+        🍽️ &nbsp;Grand Celebration Lunch
+      </div>
+      <div class="card-divider" style="margin-top:1.2rem;"><div class="card-divider-line"></div><div class="card-divider-gem">◆</div><div class="card-divider-line"></div></div>
+      <div class="card-tag">Festive Formals</div>
+    </div>
+  </section>
+
+  <!-- ── SECTION 5: ACTION BUTTONS ── -->
+  <section id="actions-section">
+    <div class="reveal" style="width:100%;display:flex;flex-direction:column;gap:1rem;align-items:center;">
+
+      <!-- RSVP via Google Form -->
+      <button class="action-btn btn-rsvp" onclick="document.getElementById('rsvp-modal').classList.add('open')">
+        <i>💌</i><span>RSVP via Google Form</span>
+      </button>
+
+      <!-- Add to Google Calendar -->
+      <a class="action-btn btn-cal"
+         href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Yashi+%26+Suraj+Engagement&dates=20260628T043000Z/20260628T103000Z&details=Join+us+for+the+engagement+ceremony+of+Yashi+%26+Suraj!+💍&location=Jaipur,+Rajasthan,+India"
+         target="_blank" rel="noopener">
+        <i>📅</i><span>Add to Google Calendar</span>
+      </a>
+
+      <!-- Call Us -->
+      <a class="action-btn btn-call" href="tel:+91XXXXXXXXXX">
+        <i>📞</i><span>Call Us · +91 XXXXX XXXXX</span>
+      </a>
+
+    </div>
+  </section>
+
+  <!-- ── SECTION 6: LIVE GOOGLE MAP ── -->
+  <section id="map-section">
+    <div class="reveal">
+      <div class="map-card">
+        <div class="map-header">
+          <div class="map-title">Venue Location</div>
+          <div class="map-sub">Jaipur, Rajasthan · 28 June 2026</div>
+        </div>
+        <!-- Live Google Maps embed — placeholder for Jaipur city centre; replace src with exact venue -->
+        <iframe
+          class="map-embed"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d114319.97930342!2d75.7372519!3d26.9124336!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x396c4adf4c57e281%3A0xce1c63a0cf22e09!2sJaipur%2C%20Rajasthan!5e0!3m2!1sen!2sin!4v1718600000000"
+          allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+        <div class="map-footer">
+          <a class="map-dir-btn"
+             href="https://www.google.com/maps/dir/?api=1&destination=Jaipur+Rajasthan+India"
+             target="_blank" rel="noopener">
+            🗺️ &nbsp; Get Directions
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-name">Yashi & Suraj</div>
+    <div style="font-family:'Cormorant Garamond',serif;font-size:0.85rem;color:rgba(61,26,38,0.38);letter-spacing:1px;margin-top:0.3rem;">28 · June · 2026</div>
+    <div class="footer-sub" style="margin-top:0.8rem;">Made with 💗 by GemInvite</div>
+  </footer>
+</div>
+
+<!-- ── RSVP MODAL ── -->
+<div id="rsvp-modal">
+  <div class="rsvp-modal-box">
+    <div class="rsvp-modal-header">
+      <div class="rsvp-modal-title">RSVP 💌</div>
+      <button class="rsvp-close" onclick="document.getElementById('rsvp-modal').classList.remove('open')">✕</button>
+    </div>
+    <div class="rsvp-modal-body">
+      <!-- REPLACE the src below with your actual Google Form embed URL -->
+      <!-- To get it: Google Form → Send → Embed → copy the src from the iframe code -->
+      <div style="padding:2rem;text-align:center;">
+        <div style="font-family:'Great Vibes',cursive;font-size:1.8rem;color:var(--rose-dark);margin-bottom:1rem;">Kindly RSVP</div>
+        <p style="font-family:'Cormorant Garamond',serif;font-size:0.9rem;line-height:1.8;color:rgba(61,26,38,0.6);margin-bottom:1.5rem;">
+          Please fill the form below so we can ensure<br>your seat at our celebration! 🌸
+        </p>
+        <!-- Google Form iframe — replace src with your embed link -->
+        <iframe
+          id="rsvpFrame"
+          src="https://docs.google.com/forms/d/e/PLACEHOLDER_FORM_ID/viewform?embedded=true"
+          width="100%" height="420" frameborder="0" marginheight="0" marginwidth="0"
+          style="border-radius:8px;border:1px solid rgba(212,82,106,0.1);">
+          Loading form…
+        </iframe>
+        <p style="margin-top:1rem;font-size:0.7rem;color:rgba(61,26,38,0.3);font-family:'Cormorant Garamond',serif;letter-spacing:1px;">
+          Replace the form link with your actual Google Form URL
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// ── ENVELOPE ──
+let envOpened = false;
+function openEnvelope() {
+  if (envOpened) return; envOpened = true;
+  document.getElementById('env-flap').classList.add('open');
+  setTimeout(() => {
+    document.getElementById('envelope-wrap').classList.add('gone');
+    document.getElementById('main-content').classList.add('show');
+    startPetals(); startCountdown(); startPath();
+  }, 900);
+}
+setTimeout(() => { if (!envOpened) openEnvelope(); }, 6000);
+
+// ── PHOTO UPLOAD ──
+function loadPhoto(input, imgId, phId) {
+  const file = input.files[0]; if (!file) return;
+  const reader = new FileReader();
+  reader.onload = e => {
+    const img = document.getElementById(imgId);
+    img.src = e.target.result; img.style.display = 'block';
+    document.getElementById(phId).style.display = 'none';
+  };
+  reader.readAsDataURL(file);
+}
+
+// ── GANESH PHOTO UPLOAD ──
+function loadGaneshPhoto(input) {
+  const file = input.files[0]; if (!file) return;
+  const reader = new FileReader();
+  reader.onload = e => {
+    const img = document.getElementById('ganeshImg');
+    img.src = e.target.result; img.style.display = 'block';
+    document.getElementById('ganeshPlaceholder').style.display = 'none';
+  };
+  reader.readAsDataURL(file);
+}
+
+
+// ── MUSIC TOGGLE ──
+let musicPlaying = false;
+const bgMusic = document.getElementById('bgMusic');
+function toggleMusic() {
+  const btn = document.getElementById('music-toggle');
+  if (musicPlaying) {
+    bgMusic.pause();
+    btn.classList.remove('playing');
+    btn.querySelector('.music-icon').textContent = '🎵';
+    musicPlaying = false;
+  } else {
+    bgMusic.play().catch(()=>{});
+    btn.classList.add('playing');
+    btn.querySelector('.music-icon').textContent = '🔊';
+    musicPlaying = true;
+  }
+}
+
+// ── ANIMATED PATH — S-curve from both stamp centers, meet at midpoint, 💍 appears ──
+function startPath() {
+  const wrapper   = document.getElementById('stampWrapper');
+  const canvasEl  = document.getElementById('pathCanvas');
+  const ringPop   = document.getElementById('ring-pop');
+
+  // Wait one frame so layout is painted and we can measure actual stamp positions
+  requestAnimationFrame(() => {
+    const wRect = wrapper.getBoundingClientRect();
+    const yRect = document.getElementById('stampYashi').querySelector('.stamp-frame').getBoundingClientRect();
+    const sRect = document.getElementById('stampSuraj').querySelector('.stamp-frame').getBoundingClientRect();
+
+    // Stamp frame centres relative to wrapper
+    const Ax = yRect.left - wRect.left + yRect.width  / 2;   // Yashi centre X
+    const Ay = yRect.top  - wRect.top  + yRect.height / 2;   // Yashi centre Y
+    const Bx = sRect.left - wRect.left + sRect.width  / 2;   // Suraj centre X
+    const By = sRect.top  - wRect.top  + sRect.height / 2;   // Suraj centre Y
+
+    // Midpoint where they meet
+    const Mx = (Ax + Bx) / 2;
+    const My = (Ay + By) / 2;
+
+    // Canvas dimensions = wrapper size
+    const W = wRect.width;
+    const H = wRect.height;
+    canvasEl.width  = W;
+    canvasEl.height = H;
+    const ctx = canvasEl.getContext('2d');
+
+    // ── S-CURVE: cubic bezier  A → cp1 → cp2 → B
+    // cp1 bends from Yashi downward-right, cp2 bends from Suraj upward-left
+    const cp1x = Ax + (Bx - Ax) * 0.15;
+    const cp1y = Ay + (By - Ay) * 0.7;
+    const cp2x = Bx - (Bx - Ax) * 0.15;
+    const cp2y = By - (By - Ay) * 0.7;
+
+    // Pre-sample N+1 points along the cubic bezier
+    const N = 120;
+    const pts = [];
+    for (let i = 0; i <= N; i++) {
+      const t  = i / N;
+      const u  = 1 - t;
+      const x  = u*u*u*Ax + 3*u*u*t*cp1x + 3*u*t*t*cp2x + t*t*t*Bx;
+      const y  = u*u*u*Ay + 3*u*u*t*cp1y + 3*u*t*t*cp2y + t*t*t*By;
+      pts.push({ x, y });
+    }
+
+    // Midpoint index
+    const midIdx = Math.floor(N / 2);
+    const midPt  = pts[midIdx];
+
+    // Position 💍 at exact curve midpoint
+    ringPop.style.left = midPt.x + 'px';
+    ringPop.style.top  = midPt.y + 'px';
+
+    // ── DRAW — both sides grow simultaneously toward midpoint ──
+    let step   = 0;          // 0 → midIdx (each side draws this many segments)
+    let joined = false;
+    const SPEED = 1.4;       // segments per frame
+
+    // Animated dash offset for "marching ants" feel
+    let dashOffset = 0;
+
+    function draw() {
+      ctx.clearRect(0, 0, W, H);
+
+      ctx.setLineDash([7, 5]);
+      ctx.lineDashOffset = dashOffset;
+      ctx.lineWidth      = 2;
+      ctx.lineCap        = 'round';
+
+      // ── LEFT stroke: Yashi side → midpoint (pts[0..step]) ──
+      const lEnd = Math.min(Math.round(step), midIdx);
+      if (lEnd > 0) {
+        ctx.strokeStyle = 'rgba(212,82,106,0.55)';
+        ctx.shadowColor  = 'rgba(212,82,106,0.3)';
+        ctx.shadowBlur   = 6;
+        ctx.beginPath();
+        ctx.moveTo(pts[0].x, pts[0].y);
+        for (let i = 1; i <= lEnd; i++) ctx.lineTo(pts[i].x, pts[i].y);
+        ctx.stroke();
+      }
+
+      // ── RIGHT stroke: Suraj side → midpoint (pts[N..N-step]) ──
+      const rStart = Math.max(N - Math.round(step), midIdx);
+      if (rStart < N) {
+        ctx.strokeStyle = 'rgba(123,161,138,0.55)';
+        ctx.shadowColor  = 'rgba(123,161,138,0.3)';
+        ctx.shadowBlur   = 6;
+        ctx.beginPath();
+        ctx.moveTo(pts[N].x, pts[N].y);
+        for (let i = N - 1; i >= rStart; i--) ctx.lineTo(pts[i].x, pts[i].y);
+        ctx.stroke();
+      }
+
+      ctx.shadowBlur = 0;
+    }
+
+    function animate() {
+      dashOffset -= 0.4;           // marching ants
+      step += SPEED;
+      draw();
+
+      if (!joined && step >= midIdx) {
+        joined = true;
+
+        // Flash full path briefly in gold then settle
+        ctx.clearRect(0, 0, W, H);
+        ctx.setLineDash([7, 5]);
+        ctx.lineWidth   = 2.5;
+        ctx.strokeStyle = 'rgba(201,133,58,0.7)';
+        ctx.shadowColor = 'rgba(201,133,58,0.5)';
+        ctx.shadowBlur  = 12;
+        ctx.beginPath();
+        ctx.moveTo(pts[0].x, pts[0].y);
+        pts.forEach(p => ctx.lineTo(p.x, p.y));
+        ctx.stroke();
+        ctx.shadowBlur = 0;
+
+        // Pop the 💍
+        ringPop.classList.add('show');
+        setTimeout(() => ringPop.classList.add('blink'), 500);
+
+        // Burst at midpoint in page coords
+        burstAt2(
+          wRect.left + midPt.x,
+          wRect.top  + midPt.y
+        );
+      }
+
+      requestAnimationFrame(animate);
+    }
+
+    animate();
+  });
+}
+
+// ── ANIMATED BUTTERFLIES ──
+const petalCanvas = document.getElementById('petal-canvas');
+const pCtx = petalCanvas.getContext('2d');
+petalCanvas.width = window.innerWidth;
+petalCanvas.height = window.innerHeight;
+window.addEventListener('resize', () => {
+  petalCanvas.width = window.innerWidth;
+  petalCanvas.height = window.innerHeight;
+});
+
+// Draw a realistic butterfly using canvas paths
+function drawButterfly(ctx, x, y, size, flapAngle, rotation, alpha, colors) {
+  ctx.save();
+  ctx.globalAlpha = alpha;
+  ctx.translate(x, y);
+  ctx.rotate(rotation);
+
+  const flapY = Math.sin(flapAngle) * 0.55; // wing squish for flap illusion
+
+  // ── Upper wings ──
+  // Left upper wing
+  ctx.save();
+  ctx.scale(1, flapY < 0 ? Math.max(0.08, 1 + flapY) : 1 - flapY * 0.5);
+  ctx.beginPath();
+  ctx.moveTo(0, 0);
+  ctx.bezierCurveTo(-size * 0.2, -size * 0.8, -size * 1.1, -size * 0.9, -size * 1.2, -size * 0.1);
+  ctx.bezierCurveTo(-size * 1.1, size * 0.3, -size * 0.4, size * 0.2, 0, 0);
+  ctx.fillStyle = colors.upper;
+  ctx.fill();
+  // Wing pattern overlay
+  ctx.beginPath();
+  ctx.moveTo(-size * 0.3, -size * 0.1);
+  ctx.bezierCurveTo(-size * 0.5, -size * 0.5, -size * 0.9, -size * 0.5, -size * 0.85, -size * 0.05);
+  ctx.bezierCurveTo(-size * 0.7, size * 0.1, -size * 0.4, size * 0.1, -size * 0.3, -size * 0.1);
+  ctx.fillStyle = colors.pattern;
+  ctx.fill();
+  // Border
+  ctx.beginPath();
+  ctx.moveTo(0, 0);
+  ctx.bezierCurveTo(-size * 0.2, -size * 0.8, -size * 1.1, -size * 0.9, -size * 1.2, -size * 0.1);
+  ctx.bezierCurveTo(-size * 1.1, size * 0.3, -size * 0.4, size * 0.2, 0, 0);
+  ctx.strokeStyle = colors.border;
+  ctx.lineWidth = size * 0.04;
+  ctx.stroke();
+
+  // Right upper wing (mirror)
+  ctx.scale(-1, 1);
+  ctx.beginPath();
+  ctx.moveTo(0, 0);
+  ctx.bezierCurveTo(-size * 0.2, -size * 0.8, -size * 1.1, -size * 0.9, -size * 1.2, -size * 0.1);
+  ctx.bezierCurveTo(-size * 1.1, size * 0.3, -size * 0.4, size * 0.2, 0, 0);
+  ctx.fillStyle = colors.upper;
+  ctx.fill();
+  ctx.beginPath();
+  ctx.moveTo(-size * 0.3, -size * 0.1);
+  ctx.bezierCurveTo(-size * 0.5, -size * 0.5, -size * 0.9, -size * 0.5, -size * 0.85, -size * 0.05);
+  ctx.bezierCurveTo(-size * 0.7, size * 0.1, -size * 0.4, size * 0.1, -size * 0.3, -size * 0.1);
+  ctx.fillStyle = colors.pattern;
+  ctx.fill();
+  ctx.beginPath();
+  ctx.moveTo(0, 0);
+  ctx.bezierCurveTo(-size * 0.2, -size * 0.8, -size * 1.1, -size * 0.9, -size * 1.2, -size * 0.1);
+  ctx.bezierCurveTo(-size * 1.1, size * 0.3, -size * 0.4, size * 0.2, 0, 0);
+  ctx.strokeStyle = colors.border;
+  ctx.lineWidth = size * 0.04;
+  ctx.stroke();
+  ctx.restore();
+
+  // ── Lower wings ──
+  const lowerFlapY = flapY * 0.7;
+  ctx.save();
+  ctx.scale(1, lowerFlapY < 0 ? Math.max(0.08, 1 + lowerFlapY) : 1 - lowerFlapY * 0.4);
+
+  // Left lower wing
+  ctx.beginPath();
+  ctx.moveTo(0, 0);
+  ctx.bezierCurveTo(-size * 0.1, size * 0.3, -size * 0.8, size * 0.8, -size * 0.8, size * 0.35);
+  ctx.bezierCurveTo(-size * 0.75, size * 0.1, -size * 0.3, size * 0.1, 0, 0);
+  ctx.fillStyle = colors.lower;
+  ctx.fill();
+  ctx.strokeStyle = colors.border;
+  ctx.lineWidth = size * 0.04;
+  ctx.stroke();
+
+  // Right lower wing
+  ctx.scale(-1, 1);
+  ctx.beginPath();
+  ctx.moveTo(0, 0);
+  ctx.bezierCurveTo(-size * 0.1, size * 0.3, -size * 0.8, size * 0.8, -size * 0.8, size * 0.35);
+  ctx.bezierCurveTo(-size * 0.75, size * 0.1, -size * 0.3, size * 0.1, 0, 0);
+  ctx.fillStyle = colors.lower;
+  ctx.fill();
+  ctx.strokeStyle = colors.border;
+  ctx.lineWidth = size * 0.04;
+  ctx.stroke();
+  ctx.restore();
+
+  // ── Body ──
+  ctx.beginPath();
+  ctx.ellipse(0, 0, size * 0.07, size * 0.45, 0, 0, Math.PI * 2);
+  ctx.fillStyle = colors.body;
+  ctx.fill();
+
+  // ── Antennae ──
+  ctx.strokeStyle = colors.body;
+  ctx.lineWidth = size * 0.03;
+  ctx.beginPath();
+  ctx.moveTo(0, -size * 0.3);
+  ctx.quadraticCurveTo(-size * 0.3, -size * 0.7, -size * 0.35, -size * 0.9);
+  ctx.stroke();
+  ctx.beginPath();
+  ctx.arc(-size * 0.35, -size * 0.9, size * 0.05, 0, Math.PI * 2);
+  ctx.fillStyle = colors.body;
+  ctx.fill();
+
+  ctx.beginPath();
+  ctx.moveTo(0, -size * 0.3);
+  ctx.quadraticCurveTo(size * 0.3, -size * 0.7, size * 0.35, -size * 0.9);
+  ctx.stroke();
+  ctx.beginPath();
+  ctx.arc(size * 0.35, -size * 0.9, size * 0.05, 0, Math.PI * 2);
+  ctx.fillStyle = colors.body;
+  ctx.fill();
+
+  ctx.restore();
+}
+
+// Butterfly color palettes — elegant, blush/teal themed
+const BUTTERFLY_PALETTES = [
+  { upper:'rgba(100,180,210,0.82)', lower:'rgba(60,150,100,0.75)', pattern:'rgba(30,100,160,0.55)', border:'rgba(20,60,90,0.6)', body:'#1a3a50' },
+  { upper:'rgba(212,82,106,0.78)', lower:'rgba(180,60,90,0.7)',  pattern:'rgba(140,30,60,0.5)',  border:'rgba(80,10,30,0.55)', body:'#4a0a20' },
+  { upper:'rgba(123,161,138,0.8)', lower:'rgba(80,140,110,0.72)', pattern:'rgba(50,110,80,0.5)',  border:'rgba(20,70,50,0.55)', body:'#0d3020' },
+  { upper:'rgba(180,140,220,0.78)',lower:'rgba(140,100,190,0.7)', pattern:'rgba(100,60,160,0.5)', border:'rgba(60,20,100,0.55)', body:'#300a60' },
+];
+
+// Single butterfly — freely wanders all over, bounces off all edges, smoothly shifts color
+class Butterfly {
+  constructor() {
+    const W = petalCanvas.width, H = petalCanvas.height;
+    this.x = W * 0.5;
+    this.y = H * 0.3;
+    this.size = 22;
+    this.flapSpeed = 5;
+    this.flapPhase = 0;
+    this.vx = 1.1;
+    this.vy = 0.7;
+    this.time = 0;
+    this.colorT = 0; // drives color cycling
+  }
+  // Smoothly interpolate between two rgba arrays [r,g,b,a]
+  _lerpColor(a, b, t) {
+    return `rgba(${Math.round(a[0]+(b[0]-a[0])*t)},${Math.round(a[1]+(b[1]-a[1])*t)},${Math.round(a[2]+(b[2]-a[2])*t)},${(a[3]+(b[3]-a[3])*t).toFixed(2)})`;
+  }
+  _palette(t) {
+    // Cycle through hues using HSL math — upper, lower, pattern, border derive from same hue
+    const hue = (t * 60) % 360; // full hue rotation every 6 seconds
+    const hue2 = (hue + 30) % 360;
+    return {
+      upper:   `hsla(${hue},   70%, 55%, 0.85)`,
+      lower:   `hsla(${hue2},  60%, 40%, 0.78)`,
+      pattern: `hsla(${hue+60},75%, 35%, 0.55)`,
+      border:  `hsla(${hue},   40%, 18%, 0.65)`,
+      body:    `hsl(${hue},     30%, 15%)`
+    };
+  }
+  update(dt) {
+    this.time += dt;
+    this.colorT += dt;
+
+    // Free wandering with sine wobble
+    this.x += this.vx + Math.sin(this.time * 1.1) * 0.6;
+    this.y += this.vy + Math.cos(this.time * 0.8) * 0.5;
+
+    const W = petalCanvas.width, H = petalCanvas.height;
+    const pad = 40;
+    // Bounce off all four edges
+    if (this.x < pad)     { this.vx =  Math.abs(this.vx); }
+    if (this.x > W - pad) { this.vx = -Math.abs(this.vx); }
+    if (this.y < pad)     { this.vy =  Math.abs(this.vy); }
+    if (this.y > H - pad) { this.vy = -Math.abs(this.vy); }
+
+    // Randomly nudge direction every ~3s so it doesn't just loop
+    if (Math.random() < dt / 3) {
+      this.vx += (Math.random() - 0.5) * 0.8;
+      this.vy += (Math.random() - 0.5) * 0.8;
+      // Clamp speed
+      const spd = Math.sqrt(this.vx*this.vx + this.vy*this.vy);
+      if (spd > 2) { this.vx = this.vx/spd*2; this.vy = this.vy/spd*2; }
+      if (spd < 0.5) { this.vx *= 1.5; this.vy *= 1.5; }
+    }
+
+    this.rotation = Math.sin(this.time * 0.7) * 0.18;
+  }
+  draw(t) {
+    const flap = t * this.flapSpeed + this.flapPhase;
+    const pal  = this._palette(this.colorT);
+    drawButterfly(pCtx, this.x, this.y, this.size, flap, this.rotation, 0.88, pal);
+  }
+}
+
+const butterflies = [new Butterfly()];
+
+function startPetals() {
+  let last = 0;
+  function loop(ts) {
+    const dt = Math.min((ts - last) / 1000, 0.05);
+    last = ts;
+    pCtx.clearRect(0, 0, petalCanvas.width, petalCanvas.height);
+    const t = ts / 1000;
+    butterflies.forEach(b => { b.update(dt); b.draw(t); });
+    requestAnimationFrame(loop);
+  }
+  requestAnimationFrame(loop);
+}
+
+// ── COUNTDOWN ──
+function startCountdown() {
+  function upd() {
+    const target = new Date('2026-06-28T10:00:00'); const now = new Date(); const diff = Math.max(0, target - now);
+    const d = Math.floor(diff / 86400000), h = Math.floor((diff % 86400000) / 3600000),
+          m = Math.floor((diff % 3600000) / 60000), s = Math.floor((diff % 60000) / 1000);
+    [['cdD',d],['cdH',h],['cdM',m],['cdS',s]].forEach(([id, v]) => {
+      const el = document.getElementById(id), nv = String(v).padStart(2,'0');
+      if (el.textContent !== nv) { el.textContent = nv; el.classList.add('pop'); setTimeout(() => el.classList.remove('pop'), 200); }
+    });
+  }
+  upd(); setInterval(upd, 1000);
+}
+
+// ── SCRATCH HEARTS ──
+const scratched = [false, false, false];
+const dateLabels = ['28', 'June', '2026'];
+const partialEl = document.getElementById('partialDate');
+
+function initScratch(idx) {
+  const sc = document.getElementById('sc' + idx);
+  const ctx = sc.getContext('2d');
+  const W = 76, H = 76;
+  const colors = ['#D4527A','#C44488','#7BA18A'];
+  ctx.fillStyle = colors[idx];
+  // Heart shape
+  const hx = W/2, hy = H/2 - 4, hs = 26;
+  ctx.beginPath();
+  ctx.moveTo(hx, hy + hs * 0.5);
+  ctx.bezierCurveTo(hx, hy, hx-hs, hy, hx-hs, hy-hs*0.3);
+  ctx.bezierCurveTo(hx-hs, hy-hs*0.8, hx-hs*0.5, hy-hs*1.1, hx, hy-hs*0.5);
+  ctx.bezierCurveTo(hx+hs*0.5, hy-hs*1.1, hx+hs, hy-hs*0.8, hx+hs, hy-hs*0.3);
+  ctx.bezierCurveTo(hx+hs, hy, hx, hy, hx, hy+hs*0.5);
+  ctx.fill();
+  ctx.fillStyle = 'rgba(255,255,255,0.35)';
+  ctx.font = 'bold 8px sans-serif'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+  ctx.fillText('SCRATCH', W/2, H/2 - 2); ctx.fillText('ME', W/2, H/2 + 9);
+
+  let drawing = false;
+  function scratch(x, y) {
+    if (scratched[idx]) return;
+    ctx.globalCompositeOperation = 'destination-out';
+    ctx.beginPath(); ctx.arc(x, y, 15, 0, Math.PI * 2); ctx.fill();
+    checkReveal(idx, sc, ctx, W, H);
+  }
+  function pos(e) {
+    const r = sc.getBoundingClientRect();
+    const sx = W / r.width, sy = H / r.height;
+    if (e.touches) return [(e.touches[0].clientX - r.left)*sx, (e.touches[0].clientY - r.top)*sy];
+    return [(e.clientX - r.left)*sx, (e.clientY - r.top)*sy];
+  }
+  sc.addEventListener('mousedown', e => { drawing=true; scratch(...pos(e)); });
+  sc.addEventListener('mousemove', e => { if(drawing) scratch(...pos(e)); });
+  sc.addEventListener('mouseup', () => drawing=false);
+  sc.addEventListener('touchstart', e => { e.preventDefault(); drawing=true; scratch(...pos(e)); }, {passive:false});
+  sc.addEventListener('touchmove', e => { e.preventDefault(); if(drawing) scratch(...pos(e)); }, {passive:false});
+  sc.addEventListener('touchend', () => drawing=false);
+}
+
+function checkReveal(idx, sc, ctx, W, H) {
+  const data = ctx.getImageData(0,0,W,H).data;
+  let cleared = 0;
+  for (let i = 3; i < data.length; i+=4) if(data[i] < 128) cleared++;
+  if (cleared / (W*H) > 0.48) {
+    scratched[idx] = true;
+    sc.style.opacity='0'; sc.style.transition='opacity 0.4s';
+    // Reveal the number after scratch
+    const numEl = document.getElementById('hn'+idx);
+    if(numEl) { setTimeout(()=>numEl.classList.add('visible'),300); }
+    partialEl.textContent = dateLabels.filter((_,i)=>scratched[i]).join(' · ');
+    const heart = document.getElementById('sh'+idx);
+    const rect = heart.getBoundingClientRect();
+    burstAt2(rect.left+rect.width/2, rect.top+rect.height/2);
+    if (scratched.every(Boolean)) {
+      setTimeout(() => { document.getElementById('fullDate').classList.add('show'); confettiBurst(); }, 500);
+    }
+  }
+}
+
+initScratch(0); initScratch(1); initScratch(2);
+
+// ── STAMP CLICK ──
+function stampClick(el, e) {
+  e.stopPropagation();
+  el.style.transform='scale(1.12) rotate(4deg)';
+  setTimeout(()=>{ el.style.transition='transform 0.3s'; el.style.transform=''; },250);
+  const r = el.getBoundingClientRect();
+  burstAt2(r.left+r.width/2, r.top+r.height/2);
+}
+
+// ── BURST + CONFETTI ──
+function burstAt2(x, y) {
+  ['🌸','💗','✨','💛','🌺','💍'].forEach((em, i) => {
+    const b = document.createElement('div'); b.className='burst';
+    b.style.left=(x+(Math.random()-.5)*80)+'px'; b.style.top=(y+(Math.random()-.5)*80)+'px';
+    b.style.animationDelay=(i*0.06)+'s'; b.textContent=em;
+    document.body.appendChild(b); setTimeout(()=>b.remove(),900);
+  });
+}
+function confettiBurst() {
+  const colors=['#D4527A','#F0B86A','#7BA18A','#F9D0D0','#fff'];
+  for(let i=0;i<60;i++){
+    const c=document.createElement('div'); c.className='confetti-p';
+    c.style.left=(10+Math.random()*80)+'vw'; c.style.top='-10px';
+    c.style.background=colors[Math.floor(Math.random()*colors.length)];
+    const sz=(5+Math.random()*8)+'px'; c.style.width=sz; c.style.height=sz;
+    c.style.borderRadius=Math.random()>.5?'50%':'2px';
+    c.style.animationDuration=(2+Math.random()*3)+'s';
+    c.style.animationDelay=(Math.random()*.6)+'s';
+    document.body.appendChild(c); setTimeout(()=>c.remove(),4500);
+  }
+}
+
+// ── SCROLL REVEAL ──
+const revEls = document.querySelectorAll('.reveal');
+const obs = new IntersectionObserver(entries=>{ entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('in'); }); },{threshold:0.1});
+revEls.forEach(r=>obs.observe(r));
+
+// ── LIVE RINGS ANIMATION ──
+function startRingsAnimation() {
+  const canvas = document.getElementById('ringsCanvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+
+  // Hi-DPI support
+  const DPR = Math.min(window.devicePixelRatio || 1, 2);
+  const W = 300, H = 220;
+  canvas.width  = W * DPR;
+  canvas.height = H * DPR;
+  canvas.style.width  = W + 'px';
+  canvas.style.height = H + 'px';
+  ctx.scale(DPR, DPR);
+
+  // ── Ring geometry (matches reference image) ──
+  // Left ring: lower, tilted left  (~-18°)
+  // Right ring: upper, tilted right (~+18°)
+  // They interlock: left ring passes THROUGH right ring
+  const R  = 62;    // radius
+  const RY = 0.82;  // y-squish ratio (ellipse perspective)
+  const SW = 13;    // stroke width — chunky like reference
+  const TILT_L = -0.32;  // left ring tilt (rad)
+  const TILT_R =  0.32;  // right ring tilt (rad)
+
+  // Final centres
+  const LCX = 128, LCY = 138;
+  const RCX = 172, RCY = 100;
+
+  // Animation phases
+  let phase = 0;
+  let prog  = 0;
+  const SPD = 0.020;
+
+  // Heart state
+  let hL = 0, hR = 0;  // 0→1 scale-in
+  let tick = 0;
+  let sparkles = [];
+  let sparksReady = false;
+
+  function easeOut(t)    { return 1 - Math.pow(1 - t, 3); }
+  function easeOutBack(t){ const c1=1.70158,c3=c1+1; return 1+c3*Math.pow(t-1,3)+c1*Math.pow(t-1,2); }
+
+  // ── Gold gradient helper ──
+  function goldGrad(x1,y1,x2,y2, alpha) {
+    const g = ctx.createLinearGradient(x1,y1,x2,y2);
+    g.addColorStop(0,   `rgba(255,228,130,${alpha})`);
+    g.addColorStop(0.2, `rgba(201,133,58,${alpha})`);
+    g.addColorStop(0.5, `rgba(245,195,100,${alpha})`);
+    g.addColorStop(0.8, `rgba(160,100,30,${alpha})`);
+    g.addColorStop(1,   `rgba(255,220,110,${alpha})`);
+    return g;
+  }
+
+  // ── Draw a complete tilted ring at (cx,cy) ──
+  function drawFullRing(cx, cy, tilt, alpha, glow) {
+    if (alpha <= 0) return;
+    ctx.save();
+    ctx.translate(cx, cy);
+    ctx.rotate(tilt);
+    // glow layer 1 (wide soft)
+    ctx.shadowColor = `rgba(240,180,80,${alpha * 0.5})`;
+    ctx.shadowBlur  = glow * 2;
+    ctx.beginPath();
+    ctx.ellipse(0, 0, R, R * RY, 0, 0, Math.PI*2);
+    ctx.strokeStyle = goldGrad(-R,-R*RY, R,R*RY, alpha);
+    ctx.lineWidth = SW;
+    ctx.stroke();
+    // glow layer 2 (tight bright core)
+    ctx.shadowColor = `rgba(255,220,100,${alpha * 0.9})`;
+    ctx.shadowBlur  = glow * 0.5;
+    ctx.beginPath();
+    ctx.ellipse(0, 0, R, R * RY, 0, 0, Math.PI*2);
+    ctx.strokeStyle = goldGrad(-R,-R*RY, R,R*RY, alpha * 0.6);
+    ctx.lineWidth = SW * 0.35;
+    ctx.stroke();
+    ctx.shadowBlur = 0;
+    ctx.restore();
+  }
+
+  // ── Draw HALF a ring (top arc = 0→π going left side, bottom arc = π→2π) ──
+  // We use this for the interlocking weave effect.
+  // For the LEFT ring going THROUGH the right ring:
+  //   - draw LEFT ring's "back" arc (part behind right)
+  //   - draw RIGHT ring fully
+  //   - draw LEFT ring's "front" arc (part in front of right)
+  function drawArc(cx, cy, tilt, alpha, startAngle, endAngle, glow) {
+    if (alpha <= 0) return;
+    ctx.save();
+    ctx.translate(cx, cy);
+    ctx.rotate(tilt);
+    ctx.shadowColor = `rgba(240,180,80,${alpha * 0.6})`;
+    ctx.shadowBlur  = glow;
+    ctx.beginPath();
+    ctx.ellipse(0, 0, R, R * RY, 0, startAngle, endAngle);
+    ctx.strokeStyle = goldGrad(-R,-R*RY, R,R*RY, alpha);
+    ctx.lineWidth = SW;
+    ctx.lineCap = 'butt';
+    ctx.stroke();
+    // bright inner shine
+    ctx.shadowBlur = glow * 0.3;
+    ctx.beginPath();
+    ctx.ellipse(0, 0, R, R * RY, 0, startAngle, endAngle);
+    ctx.strokeStyle = goldGrad(-R,-R*RY, R,R*RY, alpha * 0.5);
+    ctx.lineWidth = SW * 0.3;
+    ctx.stroke();
+    ctx.shadowBlur = 0;
+    ctx.restore();
+  }
+
+  // ── Heart shape draw (canvas path — crisp, no emoji rendering issues) ──
+  // cx,cy = top-centre of heart, size = half-width
+  function drawHeartShape(cx, cy, size, alpha, glowStr) {
+    if (size <= 0 || alpha <= 0) return;
+    ctx.save();
+    ctx.globalAlpha = Math.min(alpha, 1);
+    ctx.translate(cx, cy);
+
+    const s = size;
+
+    // Helper: build the heart path
+    function heartPath() {
+      ctx.beginPath();
+      ctx.moveTo(0, s * 0.4);
+      ctx.bezierCurveTo(-s*0.05, s*0.05, -s*1.0, s*0.05, -s*0.8, -s*0.45);
+      ctx.bezierCurveTo(-s*0.65, -s*0.85, 0, -s*0.6, 0, -s*0.1);
+      ctx.bezierCurveTo(0, -s*0.6, s*0.65, -s*0.85, s*0.8, -s*0.45);
+      ctx.bezierCurveTo(s*1.0, s*0.05, s*0.05, s*0.05, 0, s*0.4);
+      ctx.closePath();
+    }
+
+    // ── Outer glow halo ──
+    ctx.shadowColor  = `rgba(255,80,120,${alpha * 0.85})`;
+    ctx.shadowBlur   = (glowStr || 14) * 2;
+    heartPath();
+    ctx.fillStyle = `rgba(220,40,80,${alpha * 0.18})`;
+    ctx.fill();
+    ctx.shadowBlur = 0;
+
+    // ── Thin rose-gold stroke rim ──
+    heartPath();
+    const rimGrad = ctx.createLinearGradient(-s, -s*0.8, s*0.5, s*0.4);
+    rimGrad.addColorStop(0,   `rgba(255,200,180,${alpha})`);
+    rimGrad.addColorStop(0.5, `rgba(220,80,110,${alpha})`);
+    rimGrad.addColorStop(1,   `rgba(155,20,50,${alpha})`);
+    ctx.strokeStyle = rimGrad;
+    ctx.lineWidth = s * 0.09;
+    ctx.shadowColor = `rgba(255,120,140,${alpha * 0.6})`;
+    ctx.shadowBlur  = 6;
+    ctx.stroke();
+    ctx.shadowBlur = 0;
+
+    // ── Main fill — deep velvet to crimson ──
+    heartPath();
+    const hg = ctx.createRadialGradient(-s*0.2, -s*0.35, 0, s*0.1, s*0.1, s*1.3);
+    hg.addColorStop(0,    `rgba(255,130,155,${alpha})`);
+    hg.addColorStop(0.25, `rgba(235,60,95,${alpha})`);
+    hg.addColorStop(0.65, `rgba(195,30,65,${alpha})`);
+    hg.addColorStop(1,    `rgba(120,10,40,${alpha})`);
+    ctx.fillStyle = hg;
+    ctx.fill();
+
+    // ── Top-left glossy sheen ──
+    ctx.globalAlpha = alpha * 0.35;
+    ctx.beginPath();
+    ctx.ellipse(-s*0.3, -s*0.38, s*0.26, s*0.15, -0.55, 0, Math.PI*2);
+    ctx.fillStyle = 'rgba(255,255,255,0.9)';
+    ctx.fill();
+
+    // ── Tiny sparkle dot at top-right ──
+    ctx.globalAlpha = alpha * 0.55;
+    ctx.beginPath();
+    ctx.arc(s * 0.35, -s * 0.5, s * 0.07, 0, Math.PI * 2);
+    ctx.fillStyle = 'rgba(255,255,255,0.95)';
+    ctx.fill();
+
+    ctx.restore();
+  }
+
+  // ── Sparkle init ──
+  function initSparkles() {
+    sparkles = [
+      // Positioned around the rings naturally
+      {x: LCX - 72, y: LCY - 52, ch:'✦', sz:11, ph:0.0, spd:1.5, col:'#F0B86A'},
+      {x: RCX + 68, y: RCY - 48, ch:'✦', sz:13, ph:1.2, spd:1.8, col:'#F0C850'},
+      {x: LCX - 60, y: LCY + 48, ch:'✧', sz: 9, ph:0.7, spd:2.1, col:'#C9853A'},
+      {x: RCX + 60, y: RCY + 60, ch:'✧', sz: 9, ph:1.9, spd:1.6, col:'#C9853A'},
+      {x: (LCX+RCX)/2, y: 14,    ch:'✦', sz:10, ph:0.4, spd:2.3, col:'#F0D080'},
+      {x: (LCX+RCX)/2, y: H-10,  ch:'✧', sz: 8, ph:2.0, spd:1.7, col:'#C9853A'},
+    ];
+    sparksReady = true;
+  }
+
+  // ── Main loop ──
+  function loop() {
+    ctx.clearRect(0, 0, W, H);
+    tick += 0.032;
+
+    let lx = LCX, ly = LCY, rx = RCX, ry = RCY;
+    let lA = 1, rA = 1;
+    const GLOW = 18;
+
+    if (phase === 0) {
+      // Left ring slides from far bottom-left
+      prog = Math.min(prog + SPD, 1);
+      const e = easeOut(prog);
+      lx = -R*2 + e * (LCX + R*2);
+      ly =  H + R + e * (LCY - H - R);
+      lA = Math.min(prog * 3, 1);
+      rx = RCX + W;   // off-screen right
+      ry = RCY - H;   // off-screen top
+      rA = 0;
+      if (prog >= 1) { phase = 1; prog = 0; }
+
+    } else if (phase === 1) {
+      // Right ring slides from far top-right
+      prog = Math.min(prog + SPD, 1);
+      const e = easeOut(prog);
+      lx = LCX; ly = LCY;
+      rx = RCX + W  - e * W;
+      ry = RCY - H*0.8 + e * H*0.8;
+      lA = 1;
+      rA = Math.min(prog * 3, 1);
+      if (prog >= 1) { phase = 2; prog = 0; initSparkles(); }
+
+    } else {
+      lx = LCX; ly = LCY;
+      rx = RCX; ry = RCY;
+      lA = 1; rA = 1;
+      prog = Math.min(prog + SPD * 0.7, 1);
+      hL = Math.min(hL + 0.048, 1);
+      hR = Math.min(hR + 0.038, 1);
+      if (hL >= 1 && hR >= 1 && phase === 2) phase = 3;
+    }
+
+    // ── Sparkles ──
+    if (sparksReady) {
+      const now = performance.now() / 1000;
+      sparkles.forEach(sp => {
+        const a = 0.75 * (0.5 + 0.5 * Math.sin(now * sp.spd + sp.ph));
+        ctx.save();
+        ctx.globalAlpha = a;
+        ctx.font = `bold ${sp.sz}px sans-serif`;
+        ctx.fillStyle = sp.col;
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.shadowColor = sp.col;
+        ctx.shadowBlur = 6;
+        ctx.fillText(sp.ch, sp.x, sp.y);
+        ctx.restore();
+      });
+    }
+
+    // ── INTERLOCKING RING DRAW ──
+    // Order: right-ring-back-arc → left-ring-full → right-ring-front-arc
+    // This makes left ring pass THROUGH right ring (reference image style)
+    
+    if (rA > 0) {
+      // Right ring — bottom arc (behind left ring) — π to 2π (lower half)
+      drawArc(rx, ry, TILT_R, rA, Math.PI, Math.PI*2, GLOW);
+    }
+    if (lA > 0) {
+      // Left ring — full
+      drawFullRing(lx, ly, TILT_L, lA, GLOW);
+    }
+    if (rA > 0) {
+      // Right ring — top arc (in front of left ring) — 0 to π (upper half)
+      drawArc(rx, ry, TILT_R, rA, 0, Math.PI, GLOW);
+    }
+
+    // ── HEARTS ──
+    // Heart size = ~40% of ring radius so they look proportional
+    const HEART_SIZE = R * 0.42;
+    const beat = phase === 3 ? 1 + 0.18 * Math.abs(Math.sin(tick * 1.5)) : 1;
+
+    if (phase >= 2) {
+      // Heart positions: above each ring, clearly on their respective sides
+      const lHeartX = lx - R * 0.55;   // left ring heart → shifted left
+      const lHeartY = ly - R * RY - HEART_SIZE * 0.5;
+      const rHeartX = rx + R * 0.45;   // right ring heart → shifted right
+      const rHeartY = ry - R * RY - HEART_SIZE * 0.6;
+
+      // Scale: bounce-in then heartbeat
+      const sL = hL < 1 ? easeOutBack(hL) : beat;
+      const sR = hR < 1 ? easeOutBack(hR) : (1 + 0.18 * Math.abs(Math.sin(tick * 1.5 + 0.45)));
+
+      drawHeartShape(lHeartX, lHeartY, HEART_SIZE * sL, Math.min(hL * 2, 1), 16);
+      drawHeartShape(rHeartX, rHeartY, HEART_SIZE * 0.88 * sR, Math.min(hR * 2, 1), 14);
+    }
+
+    requestAnimationFrame(loop);
+  }
+
+  setTimeout(loop, 350);
+
+  // Show text after hearts pop in
+  setTimeout(() => {
+    const t1 = document.getElementById('guessTxt');
+    const t2 = document.getElementById('guessSub');
+    if (t1) t1.classList.add('show');
+    if (t2) t2.classList.add('show');
+  }, 4000);
+}
+
+// Kick off rings animation when main content shows
+document.addEventListener('DOMContentLoaded', () => {
+  const envWrap = document.getElementById('envelope-wrap');
+  if (envWrap) {
+    const obs = new MutationObserver(() => {
+      if (envWrap.classList.contains('gone')) {
+        startRingsAnimation();
+        obs.disconnect();
+      }
+    });
+    obs.observe(envWrap, { attributes: true, attributeFilter: ['class'] });
+  }
+});
+
+</script>
+</body>
+</html>

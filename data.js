@@ -222,6 +222,15 @@ const CATEGORIES = [
     products: [
       
       {
+        name:      'Engagement',
+        desc:      'an enchanting engagement invitation that captures the magic of your love story. Personalize with your photo and details for a truly unforgettable experience.',
+        price:     '₹999',
+        origPrice: '₹1499',
+        emoji:     '💍',
+        demo:      'templates/wedding/engagement/ind.html',
+        thumb:     '',
+      },
+      {
         name:      'Wedding — Basic',
         desc:      'Elegant wedding invitations with your names, date, and venue. Clean, timeless, and beautiful.',
         price:     '₹199',
