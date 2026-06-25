@@ -1,0 +1,69 @@
+https://claude.ai/share/7ebf52d4-9578-4aa2-9e42-af6431249890
+
+Step 1 — Google Form banao
+
+1)forms.google.com pe jao
+2)Nayi form banao, fields add karo jaise:
+
+Name
+Phone number
+Kitne log aa rahe hain
+Konsi rasam mein (Sangeet, Wedding, etc.)
+
+3)Form save karo
+
+
+Step 2 — Form ka link lo
+Google Form ke andar Send button click karo → Link icon (🔗) → link copy karo
+Kuch aisa dikhega:
+https://docs.google.com/forms/d/e/XXXXXXXXXXXXXXXX/viewform
+
+Step 3 — Code mein yeh dhundo
+Apni file mein #rsvp section dhundo. Wahan kuch aisa hoga:Ran a command, viewed a fileRan a command, viewed a fileAcha — code mein already sab kuch ready hai, sirf Form ID aur Entry IDs fill karni hain! Yeh step-by-step karo:
+
+Acha — code mein already sab kuch ready hai, sirf Form ID aur Entry IDs fill karni hain! Yeh step-by-step karo:
+
+Sirf 2 cheezein fill karni hain code mein:
+1️⃣ GOOGLE_FORM_ID nikalo
+Apni Google Form ka URL kuch aisa hoga:
+https://docs.google.com/forms/d/e/1FAIpQLSe_ABCDEF123.../viewform
+Bas 1FAIpQLSe_ABCDEF123... wala part copy karo aur yahan paste karo:
+jsconst GOOGLE_FORM_ID = '1FAIpQLSe_ABCDEF123...';
+
+2️⃣ entry.XXXXXXXXX IDs nikalo — yeh kaise karte hain:
+
+1)Apni Google Form kholo
+2)3-dot menu (⋮) → "Get pre-filled link" click karo
+3)Har field mein kuch bhi type karo (jaise "test")
+4)Neeche "Get Link" click karo → link copy karo
+
+Link kuch aisa dikhega:
+https://docs.google.com/forms/d/e/FORM_ID/viewform?
+  entry.123456789=test       ← Name ka entry ID
+  &entry.987654321=test      ← Mobile ka entry ID
+  &entry.111222333=test      ← Email ka entry ID
+  ... aur baaki fields
+
+  Har entry.XXXXXXXX number ko copy karke code mein paste karo:
+jsconst FORM_ENTRIES = {
+  name      : 'entry.123456789',   // ← yahan paste karo
+  mobile    : 'entry.987654321',
+  email     : 'entry.111222333',
+  guests    : 'entry.444555666',
+  functions : 'entry.777888999',
+  dietary   : 'entry.000111222',
+  blessing  : 'entry.333444555',
+};
+
+VS Code mein Ctrl + G dabao → 1062 type karo → Enter — seedha us line pe pahunch jaoge.
+Yeh 10 lines dikhegi:
+jsconst GOOGLE_FORM_ID   = 'PASTE_YOUR_FORM_ID_HERE';   // ← Form ID yahan
+const FORM_ENTRIES = {
+  name      : 'entry.XXXXXXXXX',   // Full Name
+  mobile    : 'entry.XXXXXXXXX',   // Mobile Number
+  email     : 'entry.XXXXXXXXX',   // Email Address
+  guests    : 'entry.XXXXXXXXX',   // Number of Guests
+  functions : 'entry.XXXXXXXXX',   // Functions attending
+  dietary   : 'entry.XXXXXXXXX',   // Dietary Preference
+  blessing  : 'entry.XXXXXXXXX',   // Blessing message
+};
