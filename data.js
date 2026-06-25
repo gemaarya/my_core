@@ -231,6 +231,24 @@ const CATEGORIES = [
         thumb:     '',
       },
       {
+        name:      'Wedding —   Royal',
+        desc:      'The royal wedding invitation package — luxurious design, elegant typography, and a touch of grandeur with coustomized song.',
+        price:     '₹4999',
+        origPrice: '₹14999',
+        emoji:     '🤵🏻👰🏻',
+        demo:      'templates/wedding/royal/b.html',
+        thumb:     '',
+      },
+      {
+        name:      'Wedding — Premium',
+        desc:      'The ultimate wedding invitation package — multi-event, cinematic design, music, and unlimited sharing.',
+        price:     '₹1999',
+        origPrice: '₹4999',
+        emoji:     '🤵🏻👰🏻',
+        demo:      'templates/wedding/premium/index.html',
+        thumb:     '',
+      },
+      {
         name:      'Wedding — Basic',
         desc:      'Elegant wedding invitations with your names, date, and venue. Clean, timeless, and beautiful.',
         price:     '₹199',
@@ -248,15 +266,7 @@ const CATEGORIES = [
         demo:      'templates/wedding/pro/index.html',
         thumb:     '',
       },
-      {
-        name:      'Wedding — Premium',
-        desc:      'The ultimate wedding invitation package — multi-event, cinematic design, music, and unlimited sharing.',
-        price:     '₹1999',
-        origPrice: '₹4999',
-        emoji:     '🤵🏻👰🏻',
-        demo:      'templates/wedding/premium/index.html',
-        thumb:     '',
-      },
+      
     ],
   },
 
