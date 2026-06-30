@@ -236,7 +236,7 @@ const CATEGORIES = [
         price:     '₹4999',
         origPrice: '₹14999',
         emoji:     '🤵🏻👰🏻',
-        demo:      'templates/wedding/royal/b.html',
+        demo:      'templates/wedding/royal/FR.html',
         thumb:     '',
       },
       {
