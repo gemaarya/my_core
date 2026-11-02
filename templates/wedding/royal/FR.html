@@ -572,7 +572,6 @@ footer{background:#3D2B0E;padding:52px 20px 26px;text-align:center;color:var(--c
     <div class="scroll-text-overlay">
       <div class="scroll-text-inner">
         <span class="scroll-ganesha" data-en="॥ Shri Ganeshaya Namah ॥" data-hi="॥ श्री गणेशाय नमः ॥">॥ Shri Ganeshaya Namah ॥ </span>
-        <span class="scroll-shubh" data-en="— Auspicious Wedding Invitation —" data-hi="— शुभ विवाह निमंत्रण —">— Auspicious Wedding Invitation —</span>
         <div class="scroll-body">
           <span data-en="With hearts full of joy and God's blessings,<br>the families of" data-hi="हर्ष और ईश्वर की कृपा से परिपूर्ण हृदयों के साथ,<br>परिवारजन">With hearts full of joy and God's blessings,<br>the families of</span><br>
           <span class="scroll-names" data-en="Fiza &nbsp;❤&nbsp; Rachit" data-hi="फ़िज़ा &nbsp;❤&nbsp; राचित">Fiza &nbsp;❤&nbsp; Rachit</span>
@@ -693,6 +692,7 @@ footer{background:#3D2B0E;padding:52px 20px 26px;text-align:center;color:var(--c
       <!-- Caption under mirror -->
       <div class="mirror-caption">
         <span class="mc-name" id="mirror-person-name">fiza</span>
+        <span class="mc-sub" id="mirror-person-sub">Grandaughter of Late Smt. Vimla Devi &amp; Late Shri Ratanlal Ji Nakhat</span>
         <span class="mc-sub" id="mirror-person-sub">Daughter of Smt. Saroj Devi &amp; Shri B M Jain</span>
       </div>
 
@@ -952,7 +952,8 @@ const MIRROR_DATA = {
   bride: {
     photo: 'assets/bride.jpg',
     name: 'Fiza',
-    sub: 'Daughter of Smt. Saroj Devi &amp; Shri B M Jain'
+    sub: 'Grandaughter of Late Smt. Vimla Devi &amp; Late Shri Ratanlal Ji Nakhat',
+    sub: 'Daughter of Smt. Saroj Devi &amp; Shri B M Jain',
   },
   groom: {
     photo: 'assets/groom.jpg',
@@ -1222,6 +1223,7 @@ function updateSelects(lang) {
 function updateMirrorCaptions(lang) {
   const captions = {
     bride: {
+      en: { name: 'fiza', sub: 'Grandaughter of Late Smt. Vimla Devi &amp; Late Shri Ratanlal Ji Nakhat' },
       en: { name: 'fiza', sub: 'Daughter of Smt. Saroj Devi &amp; Shri B M Jain' },
       hi: { name: 'फ़िज़ा', sub: 'सुश्री सरोज देवी एवं श्री बी एम जैन की सुपुत्री' }
     },
