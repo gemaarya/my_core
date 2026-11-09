@@ -735,12 +735,6 @@ footer{background:#3D2B0E;padding:52px 20px 26px;text-align:center;color:var(--c
         <div class="venue-addr" data-en="Near Lal Kothi, Tonk Road,<br>Jaipur, Rajasthan — 302015" data-hi="लाल कोठी के पास, टोंक रोड,<br>जयपुर, राजस्थान — 302015">Near Lal Kothi, Tonk Road,<br>Jaipur, Rajasthan — 302015</div>
         <a href="https://maps.google.com/?q=Jaipur+Rajasthan" target="_blank" class="venue-link" data-en="📍 Get Directions" data-hi="📍 दिशा पाएं">📍 Get Directions</a>
       </div>
-      <div class="venue-card reveal">
-        <div class="venue-ev" data-en="🎶 Sangeet &amp; Reception" data-hi="🎶 संगीत और रिसेप्शन">🎶 Sangeet &amp; Reception</div>
-        <div class="venue-name" data-en="Rambagh Palace Lawns" data-hi="रामबाग पैलेस लॉन्स">Rambagh Palace Lawns</div>
-        <div class="venue-addr" data-en="Bhawani Singh Rd, Rambagh,<br>Jaipur, Rajasthan — 302005" data-hi="भवानी सिंह रोड, रामबाग,<br>जयपुर, राजस्थान — 302005">Bhawani Singh Rd, Rambagh,<br>Jaipur, Rajasthan — 302005</div>
-        <a href="https://maps.google.com/?q=Rambagh+Palace+Jaipur" target="_blank" class="venue-link" data-en="📍 Get Directions" data-hi="📍 दिशा पाएं">📍 Get Directions</a>
-      </div>
     </div>
     <div class="map-wrap reveal">
       <div class="map-label" data-en="✦ Jaipur, Rajasthan ✦" data-hi="✦ जयपुर, राजस्थान ✦">✦ Jaipur, Rajasthan ✦</div>
@@ -1002,14 +996,10 @@ document.getElementById('mirror-file-input').addEventListener('change',function(
 
 /* ── PROGRAMS ── */
 const PROGRAMS=[
-  {icon:'💛',badge:'Day 1 — Evening',  name:'Haldi Ceremony', hindi: '',desc:'Turmeric paste lovingly applied by family, symbolising purification, radiance and blessings for the journey ahead.',time:'🕔 5:00 PM Onwards'},
+  {icon:'💛',badge:'Day 1 — Morning',  name:'Haldi Ceremony', hindi: '',desc:'Turmeric paste lovingly applied by family, symbolising purification, radiance and blessings for the journey ahead.',time:'🕔 5:00 PM Onwards'},
   {icon:'🎶',badge:'Day 1 — Night',    name:'Sangeet Night',  hindi: '',      desc:'A joyous evening of music, dance and performances as both families celebrate through songs, laughter and shared memories.',time:'🕖 7:00 PM — Late Night'},
   {icon:'🌿',badge:'Day 2 — Morning',  name:'Mehndi Ceremony', hindi: '',             desc:'Intricate henna art adorns the bride\'s hands and feet — each pattern a story of love and prosperity.',time:'🕙 10:00 AM Onwards'},
-  {icon:'💍',badge:'Day 2 — Evening',  name:'Tilak & Sagai', hindi: '',        desc:'Rings exchanged and the sacred tilak applied as both families officially unite in a joyous bond of blessings.',time:'🕓 4:00 PM Onwards'},
-  {icon:'🥁',badge:'Day 3 — Evening',  name:'Baraat Procession', hindi: '',          desc:'Grand arrival of the groom with dhol, dancing and lights. Rachit arrives on a decorated horse amidst joy and cheers.',time:'🕓 4:30 PM'},
   {icon:'🔥',badge:'Day 3 — Main',     name:'Vivah — The Wedding',hindi: '', desc:'Sacred Saat Pheras, Jai Mala and Vedic rituals as Fiza & Rachit take their eternal vows before family and God.',time:'🕕 Muhurat at 6:00 PM'},
-  {icon:'💐',badge:'Day 3 — Post Wedding',name:'Vidaai & Reception',hindi: '', desc:'Emotional farewell for the bride followed by a grand reception dinner. Greet the newlyweds and celebrate into the night.',time:'🕘 9:00 PM Onwards'},
-  {icon:'🏡',badge:'Day 4 — Morning',  name:'Griha Pravesh', hindi: '',           desc:'The bride\'s first entry into her new home, decorated with diyas and rangoli — she kicks the kalash bringing love and prosperity.',time:'🕦 Auspicious Hour (TBD)'},
 ];
 const pgrid=document.getElementById('programs-grid');
 PROGRAMS.forEach(p=>{
@@ -1154,9 +1144,9 @@ function applyLang() {
 /* ── Programs bilingual data ── */
 const PROGRAMS_DATA = {
   en: [
+    {icon:'🌿', badge:'Morning',        name:'Mayra',     desc:'The function returns blessings, prosperity, and emotional support from the maternal side of the family.', time:'🕙 10:00 AM Onwards'},
     {icon:'💛', badge:'Day 1 — Evening',       name:'Haldi Ceremony',      desc:'Turmeric paste lovingly applied by family, symbolising purification, radiance and blessings for the journey ahead.', time:'🕔 5:00 PM Onwards'},
     {icon:'🎶', badge:'Day 1 — Night',          name:'Sangeet Night',       desc:'A joyous evening of music, dance and performances as both families celebrate through songs, laughter and shared memories.', time:'🕖 7:00 PM — Late Night'},
-    {icon:'🌿', badge:'Day 2 — Morning',        name:'Mehndi Ceremony',     desc:'Intricate henna art adorns the bride\'s hands and feet — each pattern a story of love and prosperity.', time:'🕙 10:00 AM Onwards'},
     {icon:'💍', badge:'Day 2 — Evening',        name:'Tilak & Sagai',       desc:'Rings exchanged and the sacred tilak applied as both families officially unite in a joyous bond of blessings.', time:'🕓 4:00 PM Onwards'},
     {icon:'🥁', badge:'Day 3 — Evening',        name:'Baraat Procession',   desc:'Grand arrival of the groom with dhol, dancing and lights. Rachit arrives on a decorated horse amidst joy and cheers.', time:'🕓 4:30 PM'},
     {icon:'🔥', badge:'Day 3 — Main',           name:'Vivah — The Wedding', desc:'Sacred Saat Pheras, Jai Mala and Vedic rituals as Fiza & Rachit take their eternal vows before family and God.', time:'🕕 Muhurat at 6:00 PM'},
@@ -1164,6 +1154,7 @@ const PROGRAMS_DATA = {
     {icon:'🏡', badge:'Day 4 — Morning',        name:'Griha Pravesh',       desc:'The bride\'s first entry into her new home, decorated with diyas and rangoli — she kicks the kalash bringing love and prosperity.', time:'🕦 Auspicious Hour (TBD)'},
   ],
   hi: [
+    {icon:'🌿', badge:'सुबह',           name:'मय्रा',            desc:'फंक्शन आशीर्वाद, समृद्धि और मातृत्व के पक्ष से भावनात्मक समर्थन लौटाता है।', time:'🕙 सुबह 10:00 बजे से'},
     {icon:'💛', badge:'दिन 1 — शाम',           name:'हल्दी समारोह',        desc:'परिवार द्वारा प्रेम से हल्दी का लेप लगाया जाता है, जो शुद्धि, तेज और आगे की यात्रा के लिए आशीर्वाद का प्रतीक है।', time:'🕔 शाम 5:00 बजे से'},
     {icon:'🎶', badge:'दिन 1 — रात',           name:'संगीत संध्या',           desc:'संगीत, नृत्य और प्रदर्शन की एक आनंदमयी शाम, जब दोनों परिवार गीत, हँसी और साझा यादों के साथ उत्सव मनाते हैं।', time:'🕖 रात 7:00 बजे से'},
     {icon:'🌿', badge:'दिन 2 — सुबह',          name:'मेहंदी समारोह',       desc:'दुल्हन के हाथों और पैरों पर जटिल मेहंदी की कला सजाई जाती है — हर नमूना प्रेम और समृद्धि की एक कहानी है।', time:'🕙 सुबह 10:00 बजे से'},
