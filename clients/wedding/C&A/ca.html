@@ -79,14 +79,15 @@ nav.scrolled{background:rgba(237,227,204,0.97);box-shadow:0 2px 20px rgba(139,10
 .kharita-above .k-div::after{background:linear-gradient(to left,transparent,var(--gold));}
 .kharita-above .k-div span{color:var(--gold);font-size:0.9rem;}
 
-.scroll-outer{position:relative;width:min(560px,94vw);margin:0 auto;}
+.scroll-outer{position:relative;width:min(560px,94vw);margin:0 auto;container-type:inline-size;}
 .scroll-outer img.latter-img{width:100%;display:block;}
-.scroll-text-overlay{position:absolute;top:13%;left:13%;right:13%;bottom:11%;display:flex;align-items:center;justify-content:center;text-align:center;color:var(--brown-d);overflow:hidden;}
+.scroll-text-overlay{position:absolute;top:13%;left:11%;right:11%;bottom:13%;display:flex;align-items:center;justify-content:center;text-align:center;color:var(--brown-d);overflow:hidden;}
 .scroll-text-inner{width:100%;}
-.scroll-ganesha{font-family:'Noto Serif Devanagari',serif;font-size:clamp(0.95rem,3.6vw,1.1rem);color:var(--maroon);display:block;margin-bottom:5px;}
-.scroll-body{font-family:'IM Fell English',serif;font-size:clamp(0.8rem,2.8vw,0.95rem);line-height:1.9;color:var(--brown-d);}
-.scroll-names{font-family:'Cinzel Decorative',serif;font-size:clamp(0.95rem,3.6vw,1.15rem);color:var(--maroon);display:block;margin:7px 0;}
-.scroll-footer{margin-top:10px;font-family:'IM Fell English',serif;font-style:italic;font-size:clamp(0.76rem,2.4vw,0.85rem);color:var(--brown-d);}
+.scroll-ganesha{font-family:'Noto Serif Devanagari',serif;font-size:3.8cqw;color:var(--maroon);display:block;margin-bottom:1.2cqw;}
+.scroll-mantra{font-family:'IM Fell English','Noto Serif Devanagari',serif;font-size:2.55cqw;line-height:1.6;color:var(--maroon);margin-bottom:5cqw;}
+.scroll-body{font-family:'IM Fell English',serif;font-size:2.95cqw;line-height:1.65;color:var(--brown-d);}
+.scroll-names{font-family:'Cinzel Decorative',serif;font-size:4cqw;color:var(--maroon);display:block;margin:1cqw 0;}
+.scroll-footer{margin-top:1cqw;font-family:'IM Fell English',serif;font-style:italic;font-size:2.8cqw;color:var(--brown-d);}
 
 /* ═══ SCRATCH ═══ */
 #scratch-section{padding:76px 16px;background:var(--ivory-l);text-align:center;}
@@ -436,6 +437,7 @@ footer{background:#3D2B0E;padding:52px 20px 26px;text-align:center;color:var(--c
     <div class="scroll-text-overlay">
       <div class="scroll-text-inner">
         <span class="scroll-ganesha" data-en="॥ Namah Siddham ॥" data-hi="॥ नमः सिद्धं ॥">॥ Namah Siddham ॥ </span>
+        <div class="scroll-mantra" data-en="Mangalam Bhagwan Veero, Mangalam Gautamo Ganee |<br>Mangalam Sthulibhadradyah, Jain Dharmo&#39;stu Mangalam ||" data-hi="मंगलं भगवान् वीरो, मंगलं गौतमो गणी ।<br>मंगलं स्थूलिभद्राद्याः, जैनधर्मोऽस्तु मंगलम् ।।">Mangalam Bhagwan Veero, Mangalam Gautamo Ganee |<br>Mangalam Sthulibhadradyah, Jain Dharmo&#39;stu Mangalam ||</div>
         <div class="scroll-body">
           <span data-en="With hearts full of joy and God's blessings,<br>the families of" data-hi="हर्ष और ईश्वर की कृपा से परिपूर्ण हृदयों के साथ,<br>परिवारजन">With hearts full of joy and God's blessings,<br>the families of</span><br>
           <span class="scroll-names" data-en="Chanchal &nbsp;❤&nbsp; Ayush" data-hi="चंचल &nbsp;❤&nbsp; आयुष">Chanchal &nbsp;❤&nbsp; Ayush</span>
@@ -572,7 +574,7 @@ footer{background:#3D2B0E;padding:52px 20px 26px;text-align:center;color:var(--c
         <div class="venue-ev" data-en="🔥 Wedding Ceremony" data-hi="🔥 विवाह समारोह">🔥 Wedding Ceremony</div>
         <div class="venue-name" data-en="Shri Radha Krishna Vivah Vatika" data-hi="श्री राधा कृष्ण विवाह वाटिका">Shri Radha Krishna Vivah Vatika</div>
         <div class="venue-addr" data-en="Near Lal Kothi, Tonk Road,<br>Jaipur, Rajasthan — 302015" data-hi="लाल कोठी के पास, टोंक रोड,<br>जयपुर, राजस्थान — 302015">Near Lal Kothi, Tonk Road,<br>Jaipur, Rajasthan — 302015</div>
-        <a href="https://www.google.com/maps/place/The+Meera/@22.6857573,75.8609245,17z/data=!3m1!4b1!4m6!3m5!1s0x3962fcf11e4a088b:0x5a4f0c455e396b64!8m2!3d22.6857573!4d75.8609245!16s%2Fg%2F11b5wjfys8?entry=ttu&g_ep=EgoyMDI2MTEwMy4wIKXMDSoASAFQAw%3D%3D" target="_blank" class="venue-link" data-en="📍 Get Directions" data-hi="📍 दिशा पाएं">📍 Get Directions</a>
+        <a href="https://share.google/PRNsI0u24qiUObfSy" target="_blank" class="venue-link" data-en="📍 Get Directions" data-hi="📍 दिशा पाएं">📍 Get Directions</a>
       </div>
     </div>
     <div class="map-wrap reveal">
