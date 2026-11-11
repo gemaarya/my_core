@@ -855,10 +855,17 @@ function switchMirror(who){
 let playing=false;
 const audio=document.getElementById('bg-audio');
 function initMusic(){
-  document.body.addEventListener('click',function tp(){
-    if(audio.src&&!playing){audio.play().then(()=>{playing=true;syncUI();}).catch(()=>{});}
-    document.body.removeEventListener('click',tp);
-  },{once:true});
+  audio.loop=true; audio.preload='auto';
+  const evs=['pointerdown','pointerup','touchend','click','keydown','mousedown'];
+  function cleanup(){evs.forEach(e=>document.removeEventListener(e,start,true));}
+  function start(){
+    if(playing){cleanup();return;}
+    audio.play().then(()=>{playing=true;syncUI();cleanup();}).catch(()=>{});
+  }
+  /* 1) page khulte hi try karo (kuch browsers allow karte hain) */
+  audio.play().then(()=>{playing=true;syncUI();cleanup();}).catch(()=>{});
+  /* 2) nahi chala to pehle kisi bhi touch/click/scratch par start karo */
+  evs.forEach(e=>document.addEventListener(e,start,true));
 }
 function toggleMusic(){
   if(!audio.src||audio.src===window.location.href)return;
