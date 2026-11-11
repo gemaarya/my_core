@@ -512,7 +512,7 @@ footer{background:#3D2B0E;padding:52px 20px 26px;text-align:center;color:var(--c
     </div>
 
     <div class="gcal-wrap reveal">
-      <a class="gcal-btn" href="https://calendar.app.google/dZb71XzaHqKmK5cn8" target="_blank" rel="noopener">
+      <a class="gcal-btn" href="https://calendar.google.com/calendar/event?action=TEMPLATE&amp;tmeid=NmR2aHZwNGxzMjhoajQ4ZmRzajZ1dmxpNWkgYW50aW1hbmFraGF0QG0&amp;tmsrc=antimanakhat%40gmail.com" target="_blank" rel="noopener">
         <span class="gcal-icon">📅</span>
         <span data-en="Save the Date" data-hi="तारीख याद रखें">Save the Date</span>
       </a>
@@ -671,7 +671,7 @@ footer{background:#3D2B0E;padding:52px 20px 26px;text-align:center;color:var(--c
           <div class="f-group"><label class="f-label" data-en="A Blessing for the Couple" data-hi="जोड़े को आशीर्वाद">A Blessing for the Couple</label>
             <textarea class="f-textarea" placeholder="Write your heartfelt wishes here..." data-ph-en="Write your heartfelt wishes here..." data-ph-hi="यहाँ अपनी हार्दिक शुभकामनाएँ लिखें..."></textarea>
           </div>
-          <button type="submit" class="rsvp-btn"><span data-en="&nbsp; Confirm Attendance &nbsp; " data-hi=" &nbsp; उपस्थिति की पुष्टि करें &nbsp; ">&nbsp; Confirm Attendance &nbsp; </span></button>
+          <button type="submit" class="rsvp-btn"><span data-en="✦ &nbsp; Confirm Attendance &nbsp; ✦" data-hi="✦ &nbsp; उपस्थिति की पुष्टि करें &nbsp; ✦">✦ &nbsp; Confirm Attendance &nbsp; ✦</span></button>
           <p class="rsvp-note" data-en="Your details are safe and will only be used for wedding arrangements." data-hi="आपकी जानकारी सुरक्षित है और केवल विवाह की व्यवस्था के लिए उपयोग की जाएगी।">Your details are safe and will only be used for wedding arrangements.</p>
         </form>
       </div>
@@ -886,13 +886,13 @@ function syncUI(){
   5. Paste FORM_ID below and the entry.XXXXXXX numbers for each field
 */
 
-const GOOGLE_FORM_ID   = 'PASTE_YOUR_FORM_ID_HERE';   // e.g. 1FAIpQLSe...
+const GOOGLE_FORM_ID   = '1FAIpQLSfqpk5q3khKjos01LPIhRHDUxRVNYeqck0V1p2OHzlsYhXasw';   // e.g. 1FAIpQLSe...
 const FORM_ENTRIES = {
-  name      : 'entry.XXXXXXXXX',   // Full Name
-  mobile    : 'entry.XXXXXXXXX',   // Mobile Number
-  email     : 'entry.XXXXXXXXX',   // Email Address
-  guests    : 'entry.XXXXXXXXX',   // Number of Guests
-  blessing  : 'entry.XXXXXXXXX',   // Blessing message
+  name      : 'entry.1511769921',   // Full Name
+  mobile    : 'entry.1313275974',   // Mobile Number
+  email     : 'entry.758413485',   // Email Address
+  guests    : 'entry.521960253',   // Number of Guests
+  blessing  : 'entry.1278558976',   // Blessing message
 };
 
 function submitRSVP(e){
@@ -904,6 +904,9 @@ function submitRSVP(e){
   const form = document.getElementById('rsvp-form');
   const inputs = form.querySelectorAll('input, select, textarea');
   const vals = [...inputs].map(i => encodeURIComponent(i.value));
+  // Guests dropdown: always send the English option (the Google Form only accepts its own option text, even if the page is in Hindi)
+  const guestOpts = ['Just Me (1)','2 People','3 People','4 People','Family (5+)'];
+  vals[3] = encodeURIComponent(guestOpts[form.querySelector('select').selectedIndex] || guestOpts[0]);
 
   const FORM_URL = `https://docs.google.com/forms/d/e/${GOOGLE_FORM_ID}/formResponse`;
   const body = [
