@@ -260,7 +260,6 @@ nav.scrolled{background:rgba(237,227,204,0.97);box-shadow:0 2px 20px rgba(139,10
 }
 .prog-name{font-family:'Cinzel Decorative',serif;font-size:0.92rem;color:var(--brown-d);margin-bottom:3px;text-shadow:0 1px 4px rgba(139,105,20,0.12);}
 .prog-hindi{font-family:'Noto Serif Devanagari',serif;font-size:0.86rem;color:var(--maroon);margin-bottom:10px;font-weight:600;}
-.prog-desc{font-size:0.85rem;line-height:1.75;color:var(--brown-d);border-top:1px solid rgba(201,168,76,0.25);padding-top:10px;}
 .prog-time{
   margin-top:12px;font-size:0.66rem;letter-spacing:1.5px;
   color:var(--gold-d);font-weight:700;text-transform:uppercase;
@@ -296,6 +295,13 @@ nav.scrolled{background:rgba(237,227,204,0.97);box-shadow:0 2px 20px rgba(139,10
 .fam-line{font-size:0.86rem;line-height:1.7;color:var(--brown-d);}
 .fam-tel{display:inline-block;margin-top:10px;color:var(--gold-d);font-weight:700;letter-spacing:1px;text-decoration:none;border-bottom:1px solid var(--gold-d);}
 .fam-card .fam-name+.fam-name{margin-top:4px;}
+
+/* ═══ BAL MANUHAR ═══ */
+#manuhar{padding:76px 16px;}
+.manuhar-card{max-width:620px;margin:0 auto;text-align:center;background:linear-gradient(135deg,var(--ivory-ll),#F5EBD5);border:1px solid rgba(201,168,76,0.3);padding:30px 22px;}
+.manuhar-card::before{content:'';display:block;height:2px;margin-bottom:18px;background:linear-gradient(to right,var(--gold-d),var(--gold-l),var(--gold-d));}
+.manuhar-poem{font-family:'Cormorant Garamond','Noto Serif Devanagari',serif;font-size:clamp(1rem,4.4vw,1.3rem);font-weight:600;line-height:1.8;color:var(--maroon);}
+.manuhar-names{margin-top:18px;font-family:'Cinzel Decorative',serif;font-size:0.8rem;line-height:2;letter-spacing:1px;color:var(--gold-d);}
 
 /* ═══ RSVP ═══ */
 #rsvp{padding:76px 16px;background:var(--ivory-l);}
@@ -439,11 +445,11 @@ footer{background:#3D2B0E;padding:52px 20px 26px;text-align:center;color:var(--c
         <span class="scroll-ganesha" data-en="॥ Namah Siddham ॥" data-hi="॥ नमः सिद्धं ॥">॥ Namah Siddham ॥ </span>
         <div class="scroll-mantra" data-en="Mangalam Bhagwan Veero, Mangalam Gautamo Ganee |<br>Mangalam Sthulibhadradyah, Jain Dharmo&#39;stu Mangalam ||" data-hi="मंगलं भगवान् वीरो, मंगलं गौतमो गणी ।<br>मंगलं स्थूलिभद्राद्याः, जैनधर्मोऽस्तु मंगलम् ।।">Mangalam Bhagwan Veero, Mangalam Gautamo Ganee |<br>Mangalam Sthulibhadradyah, Jain Dharmo&#39;stu Mangalam ||</div>
         <div class="scroll-body">
-          <span data-en="With hearts full of joy and God's blessings,<br>the families of" data-hi="हर्ष और ईश्वर की कृपा से परिपूर्ण हृदयों के साथ,<br>परिवारजन">With hearts full of joy and God's blessings,<br>the families of</span><br>
+          <span data-en="With hearts full of joy, the family members<br>cordially invite you on the auspicious<br>occasion of the wedding of" data-hi="परिपूर्ण हृदयों के साथ,<br>परिवारजन">With hearts full of joy, the family members<br>cordially invite you on the auspicious<br>occasion of the wedding of</span><br>
           <span class="scroll-names" data-en="Chanchal &nbsp;❤&nbsp; Ayush" data-hi="चंचल &nbsp;❤&nbsp; आयुष">Chanchal &nbsp;❤&nbsp; Ayush</span>
-          <span data-en="joyfully invite you to grace the <br> auspicious occasion of their wedding.<br><br>" data-hi="आपको इस शुभ अवसर पर<br>अपने शाही विवाह में सादर आमंत्रित करते हैं।<br><br>">joyfully invite you to grace the auspicious occasion<br>of their royal wedding.<br><br></span>
+          <span data-en="<br>" data-hi="की शादी के शुभ अवसर पर<br>आपको सादर आमंत्रित करते हैं।<br><br>"><br></span>
         </div>
-        <div class="scroll-footer" data-en="— With love, Both Family" data-hi="— प्रेम सहित,  नखत परिवार">— With love, Nakhat Family </div>
+        <div class="scroll-footer" data-en="— With love, Nakhat Family" data-hi="— प्रेम सहित,  नखत परिवार">— With love, Nakhat Family </div>
       </div>
     </div>
   </div>
@@ -572,14 +578,14 @@ footer{background:#3D2B0E;padding:52px 20px 26px;text-align:center;color:var(--c
     <div class="venue-cards">
       <div class="venue-card reveal">
         <div class="venue-ev" data-en="🔥 Wedding Ceremony" data-hi="🔥 विवाह समारोह">🔥 Wedding Ceremony</div>
-        <div class="venue-name" data-en="Shri Radha Krishna Vivah Vatika" data-hi="श्री राधा कृष्ण विवाह वाटिका">Shri Radha Krishna Vivah Vatika</div>
-        <div class="venue-addr" data-en="Near Lal Kothi, Tonk Road,<br>Jaipur, Rajasthan — 302015" data-hi="लाल कोठी के पास, टोंक रोड,<br>जयपुर, राजस्थान — 302015">Near Lal Kothi, Tonk Road,<br>Jaipur, Rajasthan — 302015</div>
+        <div class="venue-name" data-en="The Meera" data-hi="द मीरा">The Meera</div>
+        <div class="venue-addr" data-en=" Pipliya Rao, Near Rajiv Gandhi Square, A B Road, Sarvanand Nagar,<br>Indore, Madhya Pradesh 452001" data-hi="पिपलिया राव, राजीव गांधी चौराहे के पास, ए बी रोड, सर्वानंद नगर,<br>इंदौर, मध्य प्रदेश — 452001"> Pipliya Rao, Near Rajiv Gandhi Square, A B Road, Sarvanand Nagar<br>Indore, Madhya Pradesh 452001</div>
         <a href="https://share.google/PRNsI0u24qiUObfSy" target="_blank" class="venue-link" data-en="📍 Get Directions" data-hi="📍 दिशा पाएं">📍 Get Directions</a>
       </div>
     </div>
     <div class="map-wrap reveal">
-      <div class="map-label" data-en="✦ Jaipur, Rajasthan ✦" data-hi="✦ जयपुर, राजस्थान ✦">✦ Jaipur, Rajasthan ✦</div>
-      <iframe src="https://www.google.com/maps/place/The+Meera/@22.6857573,75.8609245,17z/data=!3m1!4b1!4m6!3m5!1s0x3962fcf11e4a088b:0x5a4f0c455e396b64!8m2!3d22.6857573!4d75.8609245!16s%2Fg%2F11b5wjfys8?entry=ttu&g_ep=EgoyMDI2MTEwMy4wIKXMDSoASAFQAw%3D%3D" allowfullscreen loading="lazy"></iframe>
+      <div class="map-label" data-en="✦ Indore, Madhya Pradesh ✦" data-hi="✦ इंदौर, मध्य प्रदेश ✦">✦ Indore, Madhya Pradesh ✦</div>
+      <iframe src="https://www.google.com/maps?q=The+Meera,+Pipliya+Rao,+A+B+Road,+Sarvanand+Nagar,+Indore,+Madhya+Pradesh+452001&amp;output=embed" title="Map of The Meera, Indore" allowfullscreen loading="lazy"></iframe>
     </div>
   </div>
 </section>
@@ -625,6 +631,18 @@ footer{background:#3D2B0E;padding:52px 20px 26px;text-align:center;color:var(--c
   </div>
 </section>
 
+<!-- ══════════ BAL MANUHAR ══════════ -->
+<section id="manuhar" class="bg-ivory">
+  <div class="sec-wrap">
+    <h2 class="sec-title reveal" data-en="Bal Manuhar" data-hi="बाल मनुहार">Bal Manuhar</h2>
+    <div class="sec-div reveal"><span class="sec-div-icon">✦</span></div>
+    <div class="manuhar-card reveal">
+      <div class="manuhar-poem" data-en="It's Didi's wedding, the joy is in full bloom,<br>we are eagerly waiting for you to come." data-hi="दीदी की शादी है, खुशियों की बहार है,<br>आपके आने का हमें बेसब्री से इंतज़ार है">It's Didi's wedding, the joy is in full bloom,<br>we are eagerly waiting for you to come.</div>
+      <div class="manuhar-names" data-en="Aarya ✦ Neha ✦ Gaurav ✦ Mudit ✦ Garima ✦ Jayesh ✦ Bhavy ✦ Ridhi" data-hi="आर्या ✦ नेहा ✦ गौरव ✦ मुदित ✦ गरिमा ✦ जयेश ✦ भव्य ✦ ऋद्धि">Aarya ✦ Neha ✦ Gaurav ✦ Mudit ✦ Garima ✦ Jayesh ✦ Bhavy ✦ Ridhi</div>
+    </div>
+  </div>
+</section>
+
 <!-- ══════════ RSVP ══════════ -->
 <section id="rsvp" class="bg-light">
   <div class="sec-wrap">
@@ -664,9 +682,9 @@ footer{background:#3D2B0E;padding:52px 20px 26px;text-align:center;color:var(--c
 <!-- FOOTER -->
 <footer>
   <div class="ft-names" data-en="Chanchal &nbsp;❤️&nbsp; Ayush" data-hi="चंचल &nbsp;❤️&nbsp; आयुष">Chanchal &nbsp;❤️&nbsp; Ayush</div>
-  <div class="ft-date" data-en="9 DECEMBER 2026 &nbsp;·&nbsp; JAIPUR, RAJASTHAN" data-hi="9 दिसम्बर 2026 &nbsp;·&nbsp; जयपुर, राजस्थान">9 DECEMBER 2026 &nbsp;·&nbsp; JAIPUR, RAJASTHAN</div>
+  <div class="ft-date" data-en="9 DECEMBER 2026 &nbsp;·&nbsp; INDORE, MADHYA PRADESH" data-hi="9 दिसम्बर 2026 &nbsp;·&nbsp; इंदौर, मध्य प्रदेश">9 DECEMBER 2026 &nbsp;·&nbsp; INDORE, MADHYA PRADESH</div>
   <div class="ft-quote" data-en="&quot;Two souls, one destiny. As the stars aligned in the heavens, so did our paths on this sacred earth.&quot;" data-hi="&quot;दो आत्माएँ, एक भाग्य। जैसे आकाश में तारे मिले, वैसे ही इस पवित्र धरती पर हमारे रास्ते मिले।&quot;">"Two souls, one destiny. As the stars aligned in the heavens, so did our paths on this sacred earth."</div>
-  <div class="ft-credit" data-en="Made with ❤️ by" data-hi="❤️ से बनाया गया">Made with ❤️ by Aarya Nakhat</div>
+  <div class="ft-credit" data-en="Made with ❤️ by" data-hi="❤️ आर्या नखत द्वारा निर्मित">Made with ❤️ by Aarya Nakhat</div>
 </footer>
 
 <script>
@@ -950,20 +968,20 @@ function applyLang() {
 
 const PROGRAMS_DATA = {
   en: [
-    {icon:'🌿', badge:'6 December', name:'Mehndi Ceremony', desc:'Intricate henna art adorns the bride\'s hands and feet — each pattern a story of love and prosperity.', time:'🕘 9:00 AM · Sardarshahar'},
-    {icon:'🎵', badge:'6 December', name:'Bada Geet', desc:'An afternoon of traditional folk songs sung by the family, filled with blessings and good wishes for the couple.', time:'🕑 2:00 PM · Sardarshahar'},
-    {icon:'🪔', badge:'8 December', name:'Mayra', desc:'The function returns blessings, prosperity, and emotional support from the maternal side of the family.', time:'🕣 8:30 AM · Indore'},
-    {icon:'💛', badge:'8 December', name:'Haldi Ceremony', desc:'Turmeric paste lovingly applied by family, symbolising purification, radiance and blessings for the journey ahead.', time:'🕦 11:30 AM · Indore'},
-    {icon:'🎶', badge:'8 December', name:'Sangeet Night', desc:'A joyous evening of music, dance and performances as both families celebrate through songs, laughter and shared memories.', time:'🕗 8:00 PM · Indore'},
-    {icon:'🔥', badge:'9 December', name:'Vivah — The Wedding', desc:'Sacred Saat Pheras, Jai Mala and Vedic rituals as Chanchal & Ayush take their eternal vows before family and God.', time:'🕛 12:15 PM · Indore'},
+    {icon:'🌿', badge:'6 December', name:'Mehndi Ceremony', time:'🕘 9:00 AM · Sardarshahar'},
+    {icon:'🎵', badge:'6 December', name:'Bada Geet', time:'🕑 2:00 PM · Sardarshahar'},
+    {icon:'🪔', badge:'8 December', name:'Mayra', time:'🕣 8:30 AM · Indore'},
+    {icon:'💛', badge:'8 December', name:'Haldi Ceremony', time:'🕦 11:30 AM · Indore'},
+    {icon:'🎶', badge:'8 December', name:'Sangeet Night', time:'🕗 8:00 PM · Indore'},
+    {icon:'🔥', badge:'9 December', name:'Vivah — The Wedding', time:'🕛 12:15 PM · Indore'},
   ],
   hi: [
-    {icon:'🌿', badge:'6 दिसंबर', name:'मेहंदी समारोह', desc:'दुल्हन के हाथों और पैरों पर रची जटिल मेहंदी कला — हर डिज़ाइन प्रेम और समृद्धि की एक कहानी।', time:'🕘 सुबह 9:00 बजे · सरदारशहर'},
-    {icon:'🎵', badge:'6 दिसंबर', name:'बड़ा गीत', desc:'परिवार द्वारा गाए जाने वाले पारंपरिक लोकगीतों की एक दोपहर, जिसमें जोड़े के लिए आशीर्वाद और शुभकामनाएँ होती हैं।', time:'🕑 दोपहर 2:00 बजे · सरदारशहर'},
-    {icon:'🪔', badge:'8 दिसंबर', name:'मायरा', desc:'फंक्शन आशीर्वाद, समृद्धि और मातृत्व के पक्ष से भावनात्मक समर्थन लौटाता है।', time:'🕣 सुबह 8:30 बजे · इंदौर'},
-    {icon:'💛', badge:'8 दिसंबर', name:'हल्दी समारोह', desc:'परिवार द्वारा प्रेम से हल्दी का लेप लगाया जाता है, जो शुद्धि, तेज और आगे की यात्रा के लिए आशीर्वाद का प्रतीक है।', time:'🕦 सुबह 11:30 बजे · इंदौर'},
-    {icon:'🎶', badge:'8 दिसंबर', name:'संगीत संध्या', desc:'संगीत, नृत्य और प्रदर्शन की एक आनंदमयी शाम, जब दोनों परिवार गीत, हँसी और साझा यादों के साथ उत्सव मनाते हैं।', time:'🕗 रात 8:00 बजे · इंदौर'},
-    {icon:'🔥', badge:'9 दिसंबर', name:'विवाह', desc:'पवित्र सात फेरे, जयमाल और वैदिक रीति-रिवाज़ जब चंचल और आयुष परिवार और ईश्वर के समक्ष अपने शाश्वत वचन लेते हैं।', time:'🕛 दोपहर 12:15 बजे · इंदौर'},
+    {icon:'🌿', badge:'6 दिसंबर', name:'मेहंदी समारोह', time:'🕘 सुबह 9:00 बजे · सरदारशहर'},
+    {icon:'🎵', badge:'6 दिसंबर', name:'बड़ा गीत', time:'🕑 दोपहर 2:00 बजे · सरदारशहर'},
+    {icon:'🪔', badge:'8 दिसंबर', name:'मायरा', time:'🕣 सुबह 8:30 बजे · इंदौर'},
+    {icon:'💛', badge:'8 दिसंबर', name:'हल्दी समारोह', time:'🕦 सुबह 11:30 बजे · इंदौर'},
+    {icon:'🎶', badge:'8 दिसंबर', name:'संगीत संध्या', time:'🕗 रात 8:00 बजे · इंदौर'},
+    {icon:'🔥', badge:'9 दिसंबर', name:'विवाह', time:'🕛 दोपहर 12:15 बजे · इंदौर'},
   ]
 };
 
@@ -975,7 +993,7 @@ function rebuildPrograms(lang) {
   data.forEach(p => {
     const d = document.createElement('div');
     d.className = 'prog-card reveal';
-    d.innerHTML = `<span class="pc-corner">✦ ✦</span><span class="prog-icon">${p.icon}</span><div class="prog-badge">${p.badge}</div><div class="prog-name">${p.name}</div><div class="prog-desc">${p.desc}</div><div class="prog-time">${p.time}</div>`;
+    d.innerHTML = `<span class="pc-corner">✦ ✦</span><span class="prog-icon">${p.icon}</span><div class="prog-badge">${p.badge}</div><div class="prog-name">${p.name}</div><div class="prog-time">${p.time}</div>`;
     pgrid.appendChild(d);
     obs.observe(d);
   });
@@ -1000,8 +1018,8 @@ function updateSelects(lang) {
 function updateMirrorCaptions(lang) {
   const captions = {
     bride: {
-      en: { name: 'Chanchal', sub: '<span class="mc-line">Granddaughter of Late Shri Ratanlal Ji Nakhat &amp; Late Smt. Vimla Devi Nakhat</span><span class="mc-line">Daughter of Shri Bhanwar Ji Nakhat &amp; Smt. Suman Nakhat</span>' },
-      hi: { name: 'चंचल', sub: '<span class="mc-line">स्वर्गीय श्री रतनलाल जी नखत एवं स्वर्गीय श्रीमती विमला देवी नखत की पौत्री</span><span class="mc-line">श्री भँवर जी नखत एवं श्रीमती सुमन नखत की सुपुत्री</span>' }
+      en: { name: 'Chanchal', sub: '<span class="mc-line">Granddaughter of Late Shri Ratanlal Ji Nakhat &amp; Late Smt. Vimla Devi Nakhat</span><span class="mc-line">Daughter of Shri Bhanwarlal Ji Nakhat &amp; Smt. Suman Nakhat</span>' },
+      hi: { name: 'चंचल', sub: '<span class="mc-line">स्वर्गीय श्री रतनलाल जी नखत एवं स्वर्गीय श्रीमती विमला देवी नखत की पौत्री</span><span class="mc-line">श्री भँवरलाल जी नखत एवं श्रीमती सुमन नखत की सुपुत्री</span>' }
     },
     groom: {
       en: { name: 'Ayush', sub: '<span class="mc-line">Grandson of Late Shri Bhanwar Lal Ji &amp; Late Smt. Sushila Ji Baid</span><span class="mc-line">Son of Shri Sanjay Ji Baid &amp; Smt. Meena Baid</span>' },
